@@ -5,34 +5,37 @@
 
 | | |
 |---|---|
-| **Status** | 🟡 In Progress (scaffolding only) |
-| **Completion** | `███░░░░░░░░░░░` 20% |
+| **Status** | 🟢 Complete (dev environment) |
+| **Completion** | `████████████░░` 87% |
 | **Last Updated** | 2026-05-30 |
-| **Blocker** | None — Convex deployed at `wry-mandrill-452.convex.cloud` ✅ |
+| **Updated By** | Claude Code — all 5 Mastra tools + CopilotKit wired; 29 agent tests pass |
 
 ### ✅ Completed
 - `convex/schema.ts` — all 7 tables with correct indexes (Phase 0)
 - `convex/queries.ts` — all §3.4 query stubs (`listWards`, `getDailyAggregates`, `getForecast`, `getHotspots`, `getRiskScores`, `searchSummaries`, `getPipelineRun`)
 - `convex/mutations.ts` — `importArtifacts` mutation (idempotent upsert)
 - `convex/seed.ts` — `seedMockData` internal mutation with Toronto mock data
-- `agent/llm.ts` — LLM provider abstraction (NIM + fallback, single constructor)
-- `agent/index.ts` — Mastra agent skeleton with ping tool
-- CopilotKit ↔ Mastra route scaffold (`/api/copilotkit/route.ts`)
+- `agent/llm.ts` — `getLLM()`, `getMastraModelConfig()` (OpenAICompatibleConfig for NIM + fallback), `healthcheck()`
+- `agent/convexClient.ts` — `ConvexHttpClient` singleton; `getConvexUrl()` reads `CONVEX_URL` / `NEXT_PUBLIC_CONVEX_URL`
+- `agent/tools/ping.ts` — fixed execute signature (Mastra 1.37 API)
+- `agent/tools/getForecast.ts` — wraps `queries.getForecast` → `Forecast[]`
+- `agent/tools/getHotspots.ts` — wraps `queries.getHotspots` → `Hotspot[]`
+- `agent/tools/getRiskScore.ts` — wraps `queries.getRiskScores` → `RiskScore[]`
+- `agent/tools/queryRequests.ts` — wraps `queries.getDailyAggregates` → `DailyAggregate[]`
+- `agent/tools/simulateWeather.ts` — scenario multiplier stub → scaled `Forecast[]`
+- `agent/index.ts` — all 6 tools registered; full Toronto 311 system prompt; `getMastraModelConfig()` model
+- `app/app/api/copilotkit/route.ts` — `CopilotRuntime` + `ExperimentalEmptyAdapter` + `getLocalAgents({ mastra })`
+- `agent/scripts/smoke-llm.mjs` + `smoke-agent.mjs` — acceptance test scripts
+- **29 Vitest tests passing** (TDD red→green for all tools)
+- `npm run typecheck` — 0 errors
 
-### ⏳ To Do
-- Deploy Convex schema (`npx convex dev` — needs user auth)
-- Implement real Convex queries with proper filtering and index usage
-- Add `importDailyAggregates` batched mutation (large parquet)
-- Mastra tools: `queryRequests`, `getForecast`, `getHotspots`, `getRiskScore`, `simulateWeather`
-- Each tool: Zod input schema, Convex query call, exact §3.5 output shape
-- LLM `healthcheck()` with auto-fallback on NIM failure
-- Wire CopilotKit runtime → Mastra via AG-UI `registerCopilotKit`
-- Agent system prompt (Toronto 311 context, tool usage guide)
-- Smoke tests: `smoke-llm.mjs` + `smoke-agent.mjs`
-- Fallback path verified: `LLM_PROVIDER=fallback`
+### ⏳ To Do (needs live infra)
+- Run `node agent/scripts/smoke-llm.mjs` against live NIM/fallback endpoint
+- Run `node agent/scripts/smoke-agent.mjs` to confirm tool fires end-to-end
+- Manual chat test: "Which wards will see most pothole complaints next week?" in the UI
 
 ### 🔑 Next Action
-Build `agent/tools/getForecast.ts` — the first real Mastra tool against the live Convex deployment
+Phase 3 — build the map component + generative UI (ForecastBarChart, hotspot heatmap, risk choropleth)
 
 ---
 

@@ -118,10 +118,14 @@ def join_weather(agg: pd.DataFrame, weather: pd.DataFrame) -> pd.DataFrame:
 
 def compute_forecasts(agg: pd.DataFrame, weather_forecast: pd.DataFrame) -> list[dict]:
     """7-day rolling-average forecast per ward × category."""
+    from datetime import date, timedelta
     agg["date"] = pd.to_datetime(agg["date"])
     data_max = agg["date"].max()
-    horizon_start = (data_max + pd.Timedelta(days=1)).date().isoformat()
-    horizon_end = (data_max + pd.Timedelta(days=7)).date().isoformat()
+    # Anchor forecast horizon to TODAY so the window is always "next 7 days",
+    # even when the training data doesn't extend to the current date.
+    today = date.today()
+    horizon_start = today.isoformat()
+    horizon_end = (today + timedelta(days=7)).isoformat()
 
     # Use last 30 days of history to compute moving average
     cutoff = data_max - pd.Timedelta(days=30)

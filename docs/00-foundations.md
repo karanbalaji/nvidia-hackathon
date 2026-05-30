@@ -86,7 +86,7 @@ export default defineSchema({
 ```
 
 ### 1.4 Agent package skeleton + LLM abstraction
-- [ ] Create `agent/` with `package.json`. Install `@mastra/core` (and Mastra deps) + an OpenAI-compatible client (`openai` or `@ai-sdk/openai`).
+- [ ] Create `agent/` with `package.json`. Install `@mastra/core @mastra/client-js` (and Mastra deps) + an OpenAI-compatible client (`openai` or `@ai-sdk/openai`). `@mastra/client-js` is required for the AG-UI / CopilotKit integration in Phase 2.
 - [ ] Implement `agent/llm.ts` per §3.7: read `LLM_PROVIDER` and return a configured OpenAI-compatible client (NIM base URL/key/model, or fallback). **This is the only place a client is constructed.**
 - [ ] Create `agent/index.ts` that defines a Mastra agent with an empty tool set and a system prompt placeholder. It must **compile and instantiate** (no real tools yet — those are Phase 2).
 - [ ] Create `agent/tools/` with one trivial `ping` tool to prove the wiring.
@@ -106,8 +106,8 @@ export const MODEL = (process.env.LLM_PROVIDER ?? "nim") === "nim"
 ```
 
 ### 1.5 CopilotKit runtime skeleton
-- [ ] Install `@copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime`.
-- [ ] Add API route `app/app/api/copilotkit/route.ts` wiring the CopilotKit runtime (Phase 2 connects it to Mastra; for now a no-op/echo handler is fine).
+- [ ] Install `@copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime @ag-ui/mastra @ag-ui/core @ag-ui/client`. CopilotKit now integrates with Mastra via the **AG-UI protocol** — these packages are needed for Phase 2 wiring.
+- [ ] Add API route `app/app/api/copilotkit/route.ts` wiring the CopilotKit runtime (Phase 2 connects it to Mastra via `registerCopilotKit`; for now a no-op/echo handler is fine).
 - [ ] Wrap the app in `<CopilotKit runtimeUrl={NEXT_PUBLIC_COPILOTKIT_URL}>` and drop a `<CopilotChat />` in the right pane. It should render and accept input (even if it echoes).
 
 ### 1.6 Python pipeline package + engine abstraction + MOCK ARTIFACTS

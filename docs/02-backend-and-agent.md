@@ -82,8 +82,9 @@ export const getForecastTool = createTool({
   - Instructs it to always cite `drivers`/data when recommending actions and to be concise.
 - [ ] Verify multi-step reasoning: a question triggers tool call(s) → synthesizes an answer.
 
-## 4. CopilotKit runtime ↔ Mastra
-- [ ] Finalize `app/app/api/copilotkit/route.ts` to bridge CopilotKit's runtime to the Mastra agent (CopilotKit + Mastra integrate over the agent protocol; expose the Mastra agent as the CopilotKit backend agent).
+## 4. CopilotKit runtime ↔ Mastra (via AG-UI protocol)
+- [ ] CopilotKit + Mastra now integrate via the **AG-UI protocol**. In the Mastra agent config, call `registerCopilotKit({ path: "/copilotkit", resourceId: "<agent-id>" })` to expose the agent over the AG-UI event stream.
+- [ ] Finalize `app/app/api/copilotkit/route.ts` to wire CopilotKit's runtime to the Mastra AG-UI endpoint. Use `@ag-ui/mastra` to connect — see [Mastra CopilotKit guide](https://mastra.ai/guides/build-your-ui/copilotkit) for the exact handler pattern.
 - [ ] Ensure tool calls and their results are streamed to the client so Phase 3 can render generative UI from them.
 - [ ] Confirm the chat in the existing UI shell now produces real, tool-grounded answers.
 

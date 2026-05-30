@@ -76,7 +76,7 @@ Each story must be answerable **end-to-end** in the finished demo: question → 
 - Tool calling: data queries, map rendering, forecast lookup, what-if simulation
 
 **User Interface** ([Phase 3](./docs/03-frontend-and-generative-ui.md))
-- Next.js 15 (App Router) web app
+- Next.js 16 (App Router) web app
 - Interactive Toronto map (heatmaps, predicted hotspots, risk overlays)
 - **CopilotKit** chat with **generative UI** (agent renders charts/maps inline)
 - Operations dashboard view
@@ -99,8 +99,8 @@ Each story must be answerable **end-to-end** in the finished demo: question → 
 
 | Layer | Technology | Reason |
 |---|---|---|
-| **Frontend** | Next.js 15 (App Router) + TypeScript | Fast, modern, great DX |
-| **UI** | Tailwind + shadcn/ui + Recharts | Polish & speed |
+| **Frontend** | Next.js 16 (App Router) + React 19 + TypeScript | Fast, modern, great DX |
+| **UI** | Tailwind v4 + shadcn/ui + Recharts | Polish & speed |
 | **AI Chat / Copilot** | **CopilotKit** | Best-in-class agent UI, generative UI, tool calling |
 | **AI Agents** | **Mastra** (TS agent framework) | Agents, workflows, memory, tools |
 | **Backend / DB** | **Convex** | Real-time, reactive, great Next.js integration |

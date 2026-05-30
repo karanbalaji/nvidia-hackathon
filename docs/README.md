@@ -43,7 +43,7 @@ Everyone codes against the mock artifacts + frozen signatures from Phase 0, so n
 nvidia-hackathon/
 ├─ prd.md
 ├─ docs/                      # this build plan
-├─ app/                       # Next.js 15 App Router
+├─ app/                       # Next.js 16 App Router
 │  ├─ app/                    # routes
 │  ├─ components/             # UI + generative UI components
 │  ├─ lib/                    # client helpers

@@ -3,7 +3,7 @@
 This document outlines the design standards, component guidelines, and technical implementation details for the **311 Pulse** project — a predictive & agentic 311 intelligence console for the City of Toronto. All agents building frontend components (see `docs/03-frontend-and-generative-ui.md`) MUST adhere to these rules. Data tokens map to the contracts in `docs/README.md` §3.
 
 ## 1. Technical Stack
-- **Framework**: Next.js 15+ (App Router, RSC)
+- **Framework**: Next.js 16+ (App Router, RSC) + React 19
 - **Styling**: Tailwind CSS v4 (CSS-first `@theme`, no `tailwind.config.js`)
 - **Components**: Shadcn UI (Radix UI primitives)
 - **Charts**: Recharts

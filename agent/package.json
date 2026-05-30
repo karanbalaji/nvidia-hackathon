@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@mastra/core": "^1.36.0",
     "@mastra/client-js": "^1.21.0",
+    "convex": "^1.39.1",
+    "dotenv": "^16",
     "openai": "^4",
     "zod": "^3"
   },
   "devDependencies": {
     "typescript": "^5",
-    "@types/node": "^22"
+    "@types/node": "^22",
+    "vitest": "^2"
   }
 }

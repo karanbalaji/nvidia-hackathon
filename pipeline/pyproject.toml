@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pipeline-311pulse"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2",
+    "polars>=1",
+    "duckdb>=1",
+    "pyarrow>=15",
+    "requests>=2",
+    "python-dotenv>=1",
+]
+
+[project.optional-dependencies]
+rapids = [
+    "cudf-cu12",
+    "cuml-cu12",
+    "cuspatial-cu12",
+]
+
+[tool.ruff]
+line-length = 100

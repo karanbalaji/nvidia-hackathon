@@ -1,7 +1,7 @@
 import { createTool } from "@mastra/core/tools";
 import { z } from "zod";
-import { getConvexClient } from "../convexClient.js";
-import { api } from "../../convex/_generated/api.js";
+import { getConvexClient } from "../convexClient";
+import { api } from "../../convex/_generated/api";
 
 const MULTIPLIERS: Record<string, number> = {
   heavy_rain: 1.4,

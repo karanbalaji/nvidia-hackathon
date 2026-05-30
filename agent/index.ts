@@ -1,12 +1,12 @@
 import { Mastra } from "@mastra/core";
 import { Agent } from "@mastra/core/agent";
-import { getMastraModelConfig } from "./llm.js";
-import { pingTool } from "./tools/ping.js";
-import { getForecastTool } from "./tools/getForecast.js";
-import { getHotspotsTool } from "./tools/getHotspots.js";
-import { getRiskScoreTool } from "./tools/getRiskScore.js";
-import { queryRequestsTool } from "./tools/queryRequests.js";
-import { simulateWeatherTool } from "./tools/simulateWeather.js";
+import { getMastraModelConfig } from "./llm";
+import { pingTool } from "./tools/ping";
+import { getForecastTool } from "./tools/getForecast";
+import { getHotspotsTool } from "./tools/getHotspots";
+import { getRiskScoreTool } from "./tools/getRiskScore";
+import { queryRequestsTool } from "./tools/queryRequests";
+import { simulateWeatherTool } from "./tools/simulateWeather";
 
 const systemPrompt = `You are 311 Pulse, an intelligent assistant for the City of Toronto's 311 operations team.
 

@@ -1,5 +1,6 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { GlobalHeader } from "@/components/layout/global-header";
 import { LeftSidebar } from "@/components/layout/left-sidebar";
 import { PulseChat } from "@/components/chat/pulse-chat";

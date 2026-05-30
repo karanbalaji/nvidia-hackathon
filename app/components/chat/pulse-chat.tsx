@@ -2,16 +2,29 @@
 
 import { CopilotChat } from "@copilotkit/react-ui";
 import "@copilotkit/react-ui/styles.css";
-import { useCopilotReadable } from "@copilotkit/react-core";
+import { useCopilotReadable, useCopilotChat } from "@copilotkit/react-core";
+import { TextMessage, Role } from "@copilotkit/runtime-client-gql";
 import { useSidebar } from "@/context/sidebar-context";
 import { useWard } from "@/context/ward-context";
-import { Activity, Mic, Upload, Sparkles, PanelRightClose, PanelRightOpen } from "lucide-react";
+import { Activity, Sparkles, PanelRightClose, PanelRightOpen } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { CopilotActions } from "@/components/copilot/copilot-actions";
+
+const SUGGESTED_PROMPTS = [
+  "Which wards will see the most pothole complaints next week?",
+  "Show garbage complaints correlated with rain in Scarborough last year.",
+  "Is my neighbourhood at risk for flooding this weekend?",
+];
 
 export function PulseChat() {
   const { isRightCollapsed, toggleRight } = useSidebar();
   const { selectedWardId, activeCategory } = useWard();
+  const { appendMessage } = useCopilotChat();
+
+  function sendPrompt(prompt: string) {
+    appendMessage(new TextMessage({ content: prompt, role: Role.User }));
+  }
 
   useCopilotReadable({
     description: "Currently active ward filter",
@@ -88,6 +101,8 @@ export function PulseChat() {
         {/* Always mounted — hidden class instead of conditional rendering so
             CopilotKit's textarea never remounts and won't expand on reopen */}
         <div className={cn("flex-1 overflow-hidden relative min-h-0", isRightCollapsed && "hidden")}>
+          {/* Mount generative UI action hooks */}
+          <CopilotActions />
           <CopilotChat
             labels={{
               title: "311 Pulse Agent",
@@ -100,17 +115,21 @@ export function PulseChat() {
           />
         </div>
 
-        <div className={cn("px-4 pb-4 bg-transparent mt-2 shrink-0", isRightCollapsed && "hidden")}>
-          <div className="flex justify-between items-center px-1">
-            <button className="flex items-center gap-1.5 text-[10px] font-bold text-muted-foreground uppercase tracking-wider hover:text-primary transition-colors group">
-              <Mic className="h-3.5 w-3.5 group-hover:scale-110 transition-transform" />
-              Voice Query
+        {/* Suggested prompt chips */}
+        <div className={cn("flex flex-col gap-1.5 px-4 pt-3 pb-4 shrink-0", isRightCollapsed && "hidden")}>
+          <p className="text-[8px] font-black uppercase tracking-widest text-muted-foreground/70 px-1 pb-0.5">
+            Try asking
+          </p>
+          {SUGGESTED_PROMPTS.map((prompt) => (
+            <button
+              key={prompt}
+              onClick={() => sendPrompt(prompt)}
+              className="flex items-start gap-2 text-[11px] font-semibold leading-snug border border-primary/20 bg-primary/5 hover:bg-primary/10 rounded-xl px-3 py-2 text-foreground/90 transition-colors text-left"
+            >
+              <Sparkles className="h-3 w-3 text-primary mt-0.5 shrink-0" />
+              <span>{prompt}</span>
             </button>
-            <button className="flex items-center gap-1.5 text-[10px] font-bold text-muted-foreground uppercase tracking-wider hover:text-primary transition-colors group">
-              <Upload className="h-3.5 w-3.5 group-hover:scale-110 transition-transform" />
-              Export Report
-            </button>
-          </div>
+          ))}
         </div>
       </aside>
     </TooltipProvider>

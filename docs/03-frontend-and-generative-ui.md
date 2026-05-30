@@ -5,12 +5,23 @@
 
 | | |
 |---|---|
-| **Status** | 🟡 In Progress (shell built) |
-| **Completion** | `████░░░░░░░░░░` 25% |
+| **Status** | 🟢 Complete |
+| **Completion** | `██████████████` 100% |
 | **Last Updated** | 2026-05-30 |
-| **Updated By** | Claude Code — shell + layout build + deploy stability fix (Lightning CSS Linux optional dep) |
+| **Updated By** | Claude — design polish pass: brand palette, chart color fixes, InsightCard hero, severity scale |
 
 ### ✅ Completed
+- **Design polish pass (2026-05-30):**
+  - Applied real 311 Pulse brand palette to `globals.css` (was default shadcn grayscale) — dark `#1E5EFF` primary + semantic success/warning/critical/info tokens
+  - Fixed broken `hsl(var(--…))` color refs in Recharts/Leaflet (SVG attrs can't resolve CSS vars) → new `app/lib/chart-theme.ts` concrete tokens
+  - `app/lib/categories.ts` — canonical category color/label source (matches designsystem §8); `category-colors.ts` now re-exports it
+  - `app/lib/severity.ts` (+ test) — 5-band scale (Low/Guarded/Elevated/High/Severe) per designsystem §7; `RiskScoreBadge` + `RiskPanel` header now use it
+  - `app/lib/correlation.ts` (+ test) — Pearson correlation; `TrendLineChart` shows a rainfall-correlation callout
+  - `InsightCard` hero wrapper (eyebrow → chart → recommendation) with `motion/react` stagger — the "money shot"; `RecommendationCard` now wired into all forecast/risk copilot actions
+  - `ForecastBarChart` highlights only the top-ranked ward bar (primary), rest neutral
+  - Map `highlightWards` now targets real ward centroids with a single 600ms CSS pulse ring (graceful fallback when geometry absent)
+  - CopilotKit chat themed to brand tokens; suggested prompts no longer truncate; removed dead Voice/Export footer
+
 - Three-pane shell layout (Clinical Lens-style): `LeftSidebar` + main content + `PulseChat`
 - `GlobalHeader` — sticky header with logo zone synced to sidebar width, ward search (⌘K), breadcrumb, theme switcher
 - `LeftSidebar` — collapsible 280px/64px, nav items (Map · Dashboard · Wards · Alert Center · System Settings), active indicator with `motion/react` animation
@@ -18,16 +29,40 @@
 - `ThemeSwitcher` — animated system/light/dark pill
 - `WardContext` — `selectedWardId`, `activeCategory` state
 - `SidebarContext` — independent left/right collapse state
-- `/dashboard` page with 4 widget placeholders
 - Dark mode default · Tailwind v4 CSS-first · `motion/react` animations
-- `npm run typecheck` ✅ · `npm run lint` ✅
-- Vercel Linux deploy stability fix: added `lightningcss-linux-x64-gnu` as `optionalDependencies` in `app/package.json` and refreshed lockfile
+- Vercel Linux deploy stability fix
+- **§1 Map Context** — `map-context.tsx` with `MapProvider`, `highlightWards`, `clearHighlights`, `registerMap`, `pushHeatLayer`, `setActiveLayer`
+- **§2.1 `TorontoMap`** — dark CartoDB tiles, `MapRegistrar`, accepts children, SSR-disabled via `next/dynamic`
+- **§2.2 `WardLayer`** — GeoJSON choropleth with heat + risk modes, click/hover handlers, fetches from `/api/wards-geojson`
+- **§2.3 `HotspotLayer`** — `CircleMarker` per hotspot, colour-coded by category, exports `CATEGORY_COLORS`
+- **§2.4 `MapControls`** — category pills, layer selector, date range buttons
+- **§2.5 `MapLegend`** — heat/risk/hotspot colour scale legend
+- **§2.6 `WardDetailPanel`** — slide-in panel with risk score, forecast sparkline, category breakdown, "Ask agent" CTA
+- **§2.7 `MapSkeleton`** — animated loading placeholder
+- **`MapView`** — SSR-safe composition wrapper (dynamic import), wires all Convex queries to map components
+- **`WardForecastMiniChart`** — compact Recharts AreaChart sparkline
+- **`/api/wards-geojson`** — serves `pipeline/artifacts/wards.json`, graceful empty fallback
+- **Leaflet marker icons** copied to `public/leaflet/`
+- **§3 Shared primitives** — `CategoryBadge`, `RiskScoreBadge`, `StatCard`, `EmptyState`, `ChartSkeleton`, `RecommendationCard`
+- **§4.1 `ForecastBarChart`** — horizontal BarChart with ErrorBar, `React.memo`, EmptyState + test
+- **§4.2 `TrendLineChart`** — ComposedChart Area + precipitation Bar, `React.memo`, EmptyState + test
+- **§4.3 `HotspotMapAction`** — hotspot table card + imperative map layer push
+- **§4.4 `RiskPanel`** — risk cards sorted by score, collapse at 4, `React.memo` + test
+- **§4.5 `WardHighlight`** — pure side-effect component for agent-driven ward highlighting
+- **§5.1 `CopilotActions`** — all 4 `useCopilotAction` hooks (getForecast, queryRequests, getHotspots, getRiskScore)
+- **§5.2 Suggested prompts** — 3 golden-path prompt chips in `PulseChat` wired to `appendMessage`
+- **`ConvexClientProvider`** — graceful no-op when `NEXT_PUBLIC_CONVEX_URL` is unset
+- **§6 Dashboard widgets** — `HotspotWidget`, `RiskWidget`, `TrendWidget`, `SparkBenchmarkWidget`
+- **`/dashboard` page** — real widgets with category filter tabs
+- **`/` page** — full map view via dynamic `MapView`
+- **Vitest** — config + setup + `@311pulse/contracts` dep wired; 13 tests passing
+- `npm run typecheck` ✅ · `npm run lint` ✅ (0 errors) · `npm run test:run` ✅ 13/13
 
 ### ⏳ To Do
-See §1–§8 task lists below — every `- [ ]` is pending.
+- None — all acceptance criteria met
 
 ### 🔑 Next Action
-Trigger a fresh Vercel redeploy (clear cache) to validate Linux Lightning CSS binary resolution, then continue map work (`TorontoMap`)
+Phase 4: harden reliability, run RAPIDS on DGX Spark, record demo video, write README
 
 **Update this tracker after every component you build.**
 

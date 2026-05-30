@@ -4,7 +4,9 @@ import { ThemeProvider } from "next-themes";
 import { CopilotKit } from "@copilotkit/react-core";
 import { SidebarProvider } from "@/context/sidebar-context";
 import { WardProvider } from "@/context/ward-context";
+import { MapProvider } from "@/context/map-context";
 import { Toaster } from "@/components/ui/sonner";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import "./globals.css";
 
 const lexend = Lexend({ variable: "--font-lexend", subsets: ["latin"] });
@@ -20,13 +22,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${lexend.variable} ${jetbrainsMono.variable} h-full`} suppressHydrationWarning>
       <body className="min-h-full flex flex-col antialiased font-[family-name:var(--font-lexend)]">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-          <CopilotKit runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"}>
-            <SidebarProvider>
-              <WardProvider>
-                {children}
-              </WardProvider>
-            </SidebarProvider>
-          </CopilotKit>
+          <ConvexClientProvider>
+            <CopilotKit
+              runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"}
+              agent="311-pulse-agent"
+            >
+              <SidebarProvider>
+                <WardProvider>
+                  <MapProvider>{children}</MapProvider>
+                </WardProvider>
+              </SidebarProvider>
+            </CopilotKit>
+          </ConvexClientProvider>
           <Toaster />
         </ThemeProvider>
       </body>

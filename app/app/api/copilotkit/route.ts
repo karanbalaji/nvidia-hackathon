@@ -9,6 +9,7 @@ import { NextRequest } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   const runtime = new CopilotRuntime({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     agents: getLocalAgents({ mastra: mastra as any, resourceId: "311-pulse-agent" }) as any,
   });
 

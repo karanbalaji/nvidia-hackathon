@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-full flex flex-col antialiased font-[family-name:var(--font-lexend)]">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ConvexClientProvider>
-            <CopilotKit runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"}>
+            <CopilotKit runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"} agent="311-pulse-agent">
               <SidebarProvider>
                 <WardProvider>
                   <MapProvider>

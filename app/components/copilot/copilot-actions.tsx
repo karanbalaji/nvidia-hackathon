@@ -15,6 +15,7 @@ export function CopilotActions() {
   // 1. Forecast Action
   useCopilotAction({
     name: "getForecast",
+    available: "disabled",
     description: "Retrieve 7-day service request count forecasts for a category and optional ward.",
     parameters: [
       {
@@ -51,6 +52,7 @@ export function CopilotActions() {
   // 2. Query Requests (Trend) Action
   useCopilotAction({
     name: "queryRequests",
+    available: "disabled",
     description: "Get historical complaint trend lines with precipitation and temperature correlations.",
     parameters: [
       {
@@ -92,6 +94,7 @@ export function CopilotActions() {
   // 3. Get Hotspots Action
   useCopilotAction({
     name: "getHotspots",
+    available: "disabled",
     description: "Retrieve active service request clustering hotspots for a category.",
     parameters: [
       {
@@ -115,6 +118,7 @@ export function CopilotActions() {
   // 4. Get Risk Score Action
   useCopilotAction({
     name: "getRiskScore",
+    available: "disabled",
     description: "Get predictive risk scoring and risk drivers for specific wards.",
     parameters: [
       {

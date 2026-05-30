@@ -1,0 +1,108 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]: Dashboard
+      - generic [ref=e7]:
+        - img [ref=e8]
+        - textbox "Search wards, categories, areas..." [ref=e11]
+        - generic:
+          - generic: ⌘K
+      - generic [ref=e12]:
+        - button [ref=e13]:
+          - img [ref=e14]
+        - button [ref=e17]:
+          - img [ref=e18]
+    - generic [ref=e24]:
+      - complementary [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - img [ref=e29]
+            - generic [ref=e31]: 311 Pulse
+          - button "Collapse sidebar" [ref=e32]:
+            - img [ref=e33]
+        - navigation [ref=e36]:
+          - paragraph [ref=e37]: Navigation
+          - link "Map" [ref=e38] [cursor=pointer]:
+            - /url: /
+            - img [ref=e39]
+            - generic [ref=e41]: Map
+          - link "Dashboard" [ref=e42] [cursor=pointer]:
+            - /url: /dashboard
+            - img [ref=e43]
+            - generic [ref=e48]: Dashboard
+          - link "Wards" [ref=e50] [cursor=pointer]:
+            - /url: /wards
+            - img [ref=e51]
+            - generic [ref=e54]: Wards
+          - link "Alert Center" [ref=e55] [cursor=pointer]:
+            - /url: /alerts
+            - img [ref=e56]
+            - generic [ref=e59]: Alert Center
+          - paragraph [ref=e60]: Configuration
+          - link "System Settings" [ref=e61] [cursor=pointer]:
+            - /url: /settings
+            - img [ref=e62]
+            - generic [ref=e65]: System Settings
+        - paragraph [ref=e67]: 311 Pulse v0.1.0
+      - main [ref=e68]:
+        - generic [ref=e69]:
+          - img [ref=e71]
+          - generic [ref=e76]:
+            - heading "Operations Dashboard" [level=1] [ref=e77]
+            - paragraph [ref=e78]: Predictions · Risk scores · Spark benchmark
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - paragraph [ref=e81]: Top Predicted Hotspots
+            - paragraph [ref=e82]: ForecastBarChart renders here — Phase 3
+            - generic [ref=e84]: Awaiting Phase 3
+          - generic [ref=e85]:
+            - paragraph [ref=e86]: Highest-Risk Wards
+            - paragraph [ref=e87]: RiskPanel renders here — Phase 3
+            - generic [ref=e89]: Awaiting Phase 3
+          - generic [ref=e90]:
+            - paragraph [ref=e91]: City-Wide Trend
+            - paragraph [ref=e92]: TrendLineChart renders here — Phase 3
+            - generic [ref=e94]: Awaiting Phase 3
+          - generic [ref=e95]:
+            - paragraph [ref=e96]: Spark Benchmark
+            - paragraph [ref=e97]: Pipeline run metadata — Phase 1
+            - generic [ref=e99]: Awaiting Phase 3
+      - complementary [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - img [ref=e104]
+            - generic [ref=e106]:
+              - heading "311 Pulse Agent" [level=3] [ref=e107]
+              - generic [ref=e110]: Active Intelligence
+          - generic [ref=e111]:
+            - img [ref=e113] [cursor=pointer]
+            - button [ref=e116]:
+              - img [ref=e117]
+        - generic [ref=e122]:
+          - generic [ref=e125]:
+            - generic [ref=e127]: I'm your 311 intelligence partner. Ask me about Toronto service request patterns, forecasts, or risk scores.
+            - generic [ref=e128]:
+              - button "Regenerate response" [ref=e129] [cursor=pointer]:
+                - img
+              - button "Copy to clipboard" [ref=e130] [cursor=pointer]:
+                - img
+              - button "Thumbs up" [ref=e131] [cursor=pointer]:
+                - img
+              - button "Thumbs down" [ref=e132] [cursor=pointer]:
+                - img
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - textbox "Ask about 311 data..."
+              - button "Send" [disabled] [ref=e138]:
+                - img [ref=e139]
+            - paragraph [ref=e142]: Powered by CopilotKit
+        - generic [ref=e144]:
+          - button "Voice Query" [ref=e145]:
+            - img [ref=e146]
+            - text: Voice Query
+          - button "Export Report" [ref=e149]:
+            - img [ref=e150]
+            - text: Export Report
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e158] [cursor=pointer]:
+    - img [ref=e159]

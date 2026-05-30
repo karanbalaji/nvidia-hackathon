@@ -1,5 +1,41 @@
 # Phase 2 — Backend & Agent (Convex + Mastra + Nemotron + CopilotKit)
 
+---
+## 📊 Progress Tracker
+
+| | |
+|---|---|
+| **Status** | 🟡 In Progress (scaffolding only) |
+| **Completion** | `███░░░░░░░░░░░` 20% |
+| **Last Updated** | 2026-05-30 |
+| **Blocker** | None — Convex deployed at `wry-mandrill-452.convex.cloud` ✅ |
+
+### ✅ Completed
+- `convex/schema.ts` — all 7 tables with correct indexes (Phase 0)
+- `convex/queries.ts` — all §3.4 query stubs (`listWards`, `getDailyAggregates`, `getForecast`, `getHotspots`, `getRiskScores`, `searchSummaries`, `getPipelineRun`)
+- `convex/mutations.ts` — `importArtifacts` mutation (idempotent upsert)
+- `convex/seed.ts` — `seedMockData` internal mutation with Toronto mock data
+- `agent/llm.ts` — LLM provider abstraction (NIM + fallback, single constructor)
+- `agent/index.ts` — Mastra agent skeleton with ping tool
+- CopilotKit ↔ Mastra route scaffold (`/api/copilotkit/route.ts`)
+
+### ⏳ To Do
+- Deploy Convex schema (`npx convex dev` — needs user auth)
+- Implement real Convex queries with proper filtering and index usage
+- Add `importDailyAggregates` batched mutation (large parquet)
+- Mastra tools: `queryRequests`, `getForecast`, `getHotspots`, `getRiskScore`, `simulateWeather`
+- Each tool: Zod input schema, Convex query call, exact §3.5 output shape
+- LLM `healthcheck()` with auto-fallback on NIM failure
+- Wire CopilotKit runtime → Mastra via AG-UI `registerCopilotKit`
+- Agent system prompt (Toronto 311 context, tool usage guide)
+- Smoke tests: `smoke-llm.mjs` + `smoke-agent.mjs`
+- Fallback path verified: `LLM_PROVIDER=fallback`
+
+### 🔑 Next Action
+Build `agent/tools/getForecast.ts` — the first real Mastra tool against the live Convex deployment
+
+---
+
 > **Goal:** Make the data queryable (Convex), give the **Mastra agent** real tools over that data, wire **Nemotron via NIM** (with fallback) through the LLM abstraction, and connect it all to the UI through the **CopilotKit runtime**. This is where the "agentic" half of the demo comes alive.
 
 **Owner agent scope:** Read this file + `docs/README.md` §3 (contracts §3.2, §3.4, §3.5, §3.6, §3.7). Build against the **mock artifacts from Phase 0** (already in Convex) — you do not need Phase 1 finished. Honor every signature in §3.4 and §3.5 exactly; Phase 3's UI keys off them.

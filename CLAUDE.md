@@ -39,6 +39,9 @@ The single most important outcome: **the golden path works end-to-end** (see `pr
 | Validation | Zod | latest |
 | Icons | Lucide React | latest |
 | Theming | next-themes | latest · **dark mode default** |
+| **Testing (TS)** | **Vitest** + @testing-library/react + jsdom | latest · default for all TS code |
+| **Testing (Python)** | **pytest** | latest · default for pipeline |
+| **E2E (optional)** | Playwright | Phase 3+ if time allows |
 
 ---
 
@@ -87,6 +90,12 @@ npm run import           # reads pipeline/artifacts/, validates via Zod, loads i
 # Quality
 npm run typecheck        # tsc --noEmit (must pass before claiming any phase done)
 npm run lint             # ESLint (must pass)
+
+# Tests — MUST pass before any phase is complete
+npm run test             # Vitest (app/ + agent/) — watch mode
+npm run test:run         # Vitest single run (CI / pre-commit)
+npm run test:coverage    # Coverage report
+python -m pytest pipeline/tests/ -v   # Python pipeline tests
 
 # Convex queries (smoke test)
 npx convex run queries:getForecast '{}'
@@ -187,6 +196,126 @@ All TypeScript types live in `packages/contracts/src/index.ts`. Types are derive
 
 ### General
 - **YAGNI ruthlessly.** No future-proofing, no unused abstractions.
+
+---
+
+## Test-Driven Development (TDD) — MANDATORY
+
+**TDD is not optional.** Every non-trivial function, Mastra tool, Convex query helper, pipeline transform, and UI component gets a test written **before** the implementation. This is enforced.
+
+### The cycle (Red → Green → Refactor)
+
+1. **Write a failing test first.** The test must fail for the right reason (not a syntax error — an actual assertion failure because the code doesn't exist yet).
+2. **Write the minimum implementation** to make the test pass. No extra code.
+3. **Refactor** if needed. Tests still pass.
+4. Repeat per behaviour.
+
+### Test stack by layer
+
+| Layer | Framework | Environment | Config file |
+|---|---|---|---|
+| `app/` components + hooks | Vitest + @testing-library/react | jsdom | `app/vitest.config.ts` |
+| `agent/` tools + llm | Vitest | node | `agent/vitest.config.ts` |
+| `packages/contracts/` | Vitest | node | (inherits) |
+| `pipeline/` transforms + analytics | pytest | — | `pipeline/pyproject.toml` |
+| E2E (Phase 3+ if time) | Playwright | chromium | `playwright.config.ts` |
+
+### Vitest setup (app/ and agent/)
+
+**Install once** (already done in Phase 0 via `npm run test`):
+```bash
+# app/
+npm install -D vitest @vitejs/plugin-react @testing-library/react @testing-library/user-event @testing-library/jest-dom jsdom
+
+# agent/
+npm install -D vitest
+```
+
+**`app/vitest.config.ts`:**
+```ts
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: "jsdom",
+    globals: true,
+    setupFiles: ["./vitest.setup.ts"],
+  },
+  resolve: {
+    alias: { "@": path.resolve(__dirname, "./") },
+  },
+});
+```
+
+**`app/vitest.setup.ts`:**
+```ts
+import "@testing-library/jest-dom";
+```
+
+**`agent/vitest.config.ts`:**
+```ts
+import { defineConfig } from "vitest/config";
+export default defineConfig({
+  test: { globals: true, environment: "node" },
+});
+```
+
+### Where tests live
+
+```
+app/
+├─ components/ui/__tests__/ForecastBarChart.test.tsx
+├─ lib/__tests__/utils.test.ts
+└─ app/__tests__/page.test.tsx
+
+agent/
+├─ tools/__tests__/ping.test.ts
+├─ __tests__/llm.test.ts
+└─ __tests__/agent.test.ts
+
+pipeline/
+└─ tests/
+   ├─ test_engine.py
+   ├─ test_mock.py
+   └─ test_validate.py
+```
+
+Co-locate test files with source when that's cleaner (`Foo.tsx` → `Foo.test.tsx` alongside).
+
+### pytest setup (pipeline/)
+
+Add to `pipeline/pyproject.toml`:
+```toml
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_functions = ["test_*"]
+```
+
+### What to test per layer
+
+**`packages/contracts/`** — Each Zod schema: valid input parses, invalid input throws, edge cases (nulls, empty arrays).
+
+**`agent/tools/`** — Each tool's `execute()` function: correct output shape, handles empty Convex responses, Zod output schema validates the return value.
+
+**`agent/llm.ts`** — `getLLM()` returns different base URLs for `LLM_PROVIDER=nim` vs `=fallback`. No network call needed.
+
+**`pipeline/src/`** — `engine.py` dispatches correctly; `mock.py` writes valid artifacts that pass `validate.py`; analytics functions produce correct aggregations on known input data.
+
+**`app/components/`** — Generative UI components render given mock data matching the §3.5 tool output shapes. Snapshot tests for layout stability.
+
+**`convex/`** — Query/mutation logic is tested via Convex's `convex-test` package (unit tests against an in-memory Convex database).
+
+### TDD rules
+
+- **No implementation file without a test file.** Every `foo.ts` → `foo.test.ts` (or `__tests__/foo.test.ts`).
+- **Tests must run in < 10s total** (fast feedback). If a test is slow, mock the slow part.
+- **No mocking the thing under test.** Mock external dependencies (Convex client, OpenAI, filesystem) — not the function you're testing.
+- **Tests are part of the Definition of Done.** `npm run test:run` must pass before marking any task complete.
+- **Failing tests block merges.** Never comment out or `skip` a test to get past CI.
 - No comments that describe what code does — only comments explaining non-obvious WHY (hidden constraints, workarounds).
 - Commit per phase milestone.
 - `pipeline/artifacts/`, `.env*`, `__pycache__`, `.venv`, `.next` are gitignored — never commit them.
@@ -279,6 +408,54 @@ Phases 1, 2, and 3 can run in parallel after Phase 0 completes. Never let a suba
 - **Do not** commit `.env`, `pipeline/artifacts/`, or `.next`.
 - **Do not** add auth, multi-tenancy, or live streaming ingestion — explicitly out of scope.
 - **Do not** claim a phase is "done" until `npm run typecheck && npm run lint` pass and the self-test commands at the bottom of the phase doc run with captured output.
+- **Do not** write implementation code before writing a failing test — TDD is mandatory, not optional.
+- **Do not** skip or comment out tests to make CI pass — fix the underlying issue.
+- **Do not** mock the module under test — only mock its external dependencies.
+
+---
+
+## Progress Tracking — MANDATORY AFTER EVERY CHANGE
+
+**After every code change — no exceptions — update the docs:**
+
+### What to update
+
+1. **Phase file** (`docs/0N-*.md`) — check off completed task checkboxes (`- [ ]` → `- [x]`) and update the `📊 Progress Tracker` block at the top:
+   - Recalculate the completion % and progress bar
+   - Move finished items from ⏳ To Do → ✅ Completed
+   - Update **Last Updated** to today's date (YYYY-MM-DD)
+   - Update **Status** (`🔴 Not Started` / `🟡 In Progress` / `🟢 Complete`)
+
+2. **`docs/README.md` overall table** — update the row for the phase you worked on:
+   - New % and progress bar
+   - New status emoji
+   - Updated **Next Action** (what the next person/agent should pick up)
+   - Recalculate **Overall %** (weighted average across all phases)
+
+### Progress bar reference
+
+| Bar | % |
+|---|---|
+| `░░░░░░░░░░░░░░` | 0% |
+| `██░░░░░░░░░░░░` | 15% |
+| `████░░░░░░░░░░` | 25% |
+| `██████░░░░░░░░` | 40% |
+| `████████░░░░░░` | 55% |
+| `██████████░░░░` | 70% |
+| `████████████░░` | 87% |
+| `██████████████` | 100% |
+
+### When to update
+
+| Trigger | Action |
+|---|---|
+| A task checkbox gets completed | Check it off + update % in phase file + README |
+| A new file is created | Note it in ✅ Completed in the phase tracker |
+| A phase becomes unblocked | Update Status + Next Action in README |
+| A phase is fully done | Set `🟢 Complete`, update overall % |
+| Anything discovered that adds work | Add to ⏳ To Do and adjust % down if needed |
+
+**Never finish a work session without updating both the phase file tracker and `docs/README.md`.** A stale tracker is worse than no tracker — another agent or team member will make decisions based on it.
 
 ---
 
@@ -289,4 +466,9 @@ A phase is done **only** when:
 2. Every acceptance criterion is met.
 3. Self-test commands (bottom of the phase file) run and produce the expected output.
 4. `npm run typecheck && npm run lint` pass (for app/agent phases).
-5. `python -m pipeline.src.validate` passes (for pipeline phase).
+5. **`npm run test:run` passes with zero failures** (for app/agent phases).
+6. **`python -m pytest pipeline/tests/ -v` passes** (for pipeline phase).
+7. `python -m pipeline.src.validate` passes (for pipeline phase).
+8. Every new function/component/tool has at least one test written **before** its implementation.
+9. **Phase file `📊 Progress Tracker` shows 100% and `🟢 Complete`.**
+10. **`docs/README.md` overall table row is updated to reflect the completed phase.**

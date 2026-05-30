@@ -1,5 +1,40 @@
 # Phase 1 — Data Pipeline (Engine-Agnostic, RAPIDS-Ready)
 
+---
+## 📊 Progress Tracker
+
+| | |
+|---|---|
+| **Status** | 🔴 Not Started |
+| **Completion** | `░░░░░░░░░░░░░░` 0% |
+| **Last Updated** | 2026-05-30 |
+| **Blocker** | Waiting on Phase 0 Convex deployment + `.env` configuration |
+
+### ✅ Completed
+- Nothing yet
+
+### ⏳ To Do
+- `pipeline/src/ingest_311.py` — CKAN API fetch for 311 Service Requests (sampled first)
+- `pipeline/src/ingest_weather.py` — Environment Canada historical climate data
+- Ward & neighbourhood boundary GeoJSON download
+- Clean + normalize categories (`pothole`, `garbage`, `flooding`, `graffiti`, `tree`, `noise`, `other`)
+- Geospatial enrichment (point-in-polygon → ward/neighbourhood)
+- Weather join (daily temp + precipitation)
+- `daily_aggregates.parquet` — group by `date × ward × category`
+- `hotspots.json` — DBSCAN clustering (sklearn CPU / cuML GPU)
+- `forecasts.json` — 7-day horizon per ward × category (moving avg / Prophet)
+- `risk_scores.json` — composite 0–100 with human-readable `drivers`
+- `request_summaries.json` — template-based RAG summaries
+- `pipeline_run.json` — benchmark metadata (engine, rows, duration)
+- `pipeline/src/run.py` — orchestration DAG with `--sample`, `--engine`, `--skip-download` flags
+- RAPIDS branch (`cuDF`/`cuML`/`cuspatial`) guarded imports for Spark run
+- Honest CPU-vs-GPU benchmark on DGX Spark
+
+### 🔑 Next Action
+Run on Mac first: `python -m pipeline.src.run --sample 50000 --engine pandas`
+
+---
+
 > **Goal:** Turn raw Open Data Toronto 311 + weather + ward boundaries into the **artifact contract** (`docs/README.md` §3.3). The same code runs on pandas/Polars/DuckDB locally and on **RAPIDS (cuDF/cuML)** on the DGX Spark via the `PIPELINE_ENGINE` flag. Produce an **honest CPU-vs-GPU benchmark**.
 
 **Owner agent scope:** Read this file + `docs/README.md` §3 (contracts §3.2, §3.3). Replace the Phase 0 mock artifacts with real, processed ones. **Do not change the artifact schemas** — Phase 2 depends on them.

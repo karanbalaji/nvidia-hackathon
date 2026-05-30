@@ -1,0 +1,27 @@
+{
+  "name": "311-pulse",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "app",
+    "packages/contracts",
+    "agent"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=app",
+    "build": "npm run build --workspace=app",
+    "lint": "npm run lint --workspace=app",
+    "typecheck": "npm run typecheck --workspace=app && npm run typecheck --workspace=packages/contracts",
+    "import": "tsx scripts/import-artifacts.ts",
+    "mock": "python3 -m pipeline.src.mock",
+    "validate": "python3 -m pipeline.src.validate",
+    "convex": "npx convex dev"
+  },
+  "dependencies": {
+    "convex": "^1.39.1"
+  },
+  "devDependencies": {
+    "tsx": "^4",
+    "typescript": "^5"
+  }
+}

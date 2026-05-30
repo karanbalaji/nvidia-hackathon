@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Environment variables — NEVER commit
+.env
+.env.local
+.env.*.local
+
+# Pipeline artifacts (generated, not committed)
+pipeline/artifacts/
+pipeline/data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.uv/
+*.egg-info/
+.ruff_cache/
+
+# Editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Testing
+coverage/
+.pytest_cache/
+
+# Convex local dev
+.convex/

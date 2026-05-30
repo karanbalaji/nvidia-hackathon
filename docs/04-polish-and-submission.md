@@ -1,5 +1,39 @@
 # Phase 4 — Polish, Reliability & Submission
 
+---
+## 📊 Progress Tracker
+
+| | |
+|---|---|
+| **Status** | 🔴 Not Started |
+| **Completion** | `░░░░░░░░░░░░░░` 0% |
+| **Last Updated** | 2026-05-30 |
+| **Prerequisite** | Phases 1–3 must be complete + golden path runs end-to-end |
+
+### ✅ Completed
+- Nothing yet — unlock after golden path works
+
+### ⏳ To Do
+- Run golden path 3 user stories end-to-end; fix any flakiness
+- Verify LLM fallback (kill NIM → chat still answers)
+- Verify engine fallback (pandas/polars/RAPIDS artifacts all work)
+- Global error boundaries — no white-screen crashes
+- Pre-seed known-good Convex dataset for reproducible demo
+- **DGX Spark full run**: `PIPELINE_ENGINE=rapids python -m pipeline.src.run` (full multi-year dataset)
+- Capture real `pipeline_run.json` with measured RAPIDS speedup
+- Run Nemotron via local NIM on the Spark; confirm agent uses it
+- Stream tokens in chat; tool-call progress indicators
+- Lazy-load map/charts; trim bundle
+- Write `README.md` (pitch, architecture diagram, NVIDIA story, setup, screenshots)
+- Record 3–5 min demo video (golden path beat-for-beat per `prd.md` §9)
+- Public GitHub repo — clean history, no `.env` committed
+- Final commit + tag; submission form completed before **May 31, 11:00 AM**
+
+### 🔑 Next Action
+Blocked — complete Phases 1–3 golden path first
+
+---
+
 > **Goal:** Make the golden path bulletproof, run the full pipeline on the **DGX Spark** to capture the real RAPIDS benchmark, write the README + NVIDIA story, and produce the 3–5 minute demo video. Ship.
 
 **Owner agent scope:** Requires Phases 1–3 working (golden path runs end-to-end). Read this file + `prd.md` (§8, §9, §11, §12) + `docs/README.md` §3.

@@ -5,9 +5,11 @@
 
 ---
 
-## The One Rule
+## The Two Rules
 
-**The shared contracts in `docs/README.md §3` are frozen.** Every agent codes against them. No agent may silently change a type, artifact schema, query signature, or tool shape. If a change is genuinely necessary, update `docs/README.md §3` first and call it out explicitly.
+**Rule 1 — Contracts are frozen.** The shared contracts in `docs/README.md §3` are frozen.
+
+**Rule 2 — Tests before code.** Every function, tool, component, and pipeline transform gets a **failing test written before any implementation**. No exceptions. Every agent codes against them. No agent may silently change a type, artifact schema, query signature, or tool shape. If a change is genuinely necessary, update `docs/README.md §3` first and call it out explicitly.
 
 ---
 
@@ -17,12 +19,13 @@ Each phase file is fully self-contained. When dispatched to build a phase:
 
 1. **Read** your assigned phase doc (e.g. `docs/02-backend-and-agent.md`).
 2. **Read** `docs/README.md §3` (shared contracts — the data spine).
-3. **Read** `CLAUDE.md` (tech stack, commands, conventions).
+3. **Read** `CLAUDE.md` (tech stack, commands, TDD rules).
 4. If building frontend: **Read** `designsystem.md` before writing any UI code.
 5. **Do not** read other phase files. Your phase file states exactly what you need.
-6. Implement every task in the task list, in order.
+6. **For each task: write the test first (Red), then implement (Green), then refactor.** See TDD section below.
 7. Run the **Self-Test** commands at the bottom of your phase file and capture output.
-8. Report: what passed, what failed, actual command output.
+8. Run `npm run test:run` (TS) or `python -m pytest pipeline/tests/ -v` (Python) — both must pass.
+9. Report: what passed, what failed, actual command output including test results.
 
 **Dispatch prompt template:**
 ```
@@ -47,6 +50,76 @@ Phase 0 — Foundations          (must complete first — freezes contracts + sh
 ```
 
 Phases 1, 2, and 3 only depend on the **contracts** (§3), not on each other's finished code. Phase 0 ships mock artifacts so every later phase can build and self-test in isolation.
+
+---
+
+## Test-Driven Development (TDD) — MANDATORY FOR ALL AGENTS
+
+TDD is **not optional** and **not skippable under time pressure**. The cycle is always:
+
+```
+1. Write failing test  →  2. Write minimum implementation  →  3. Refactor  →  repeat
+```
+
+### Test framework by workspace
+
+| Workspace | Framework | Run command |
+|---|---|---|
+| `app/` | Vitest + @testing-library/react | `cd app && npm run test:run` |
+| `agent/` | Vitest | `cd agent && npm run test:run` |
+| `packages/contracts/` | Vitest | `cd packages/contracts && npm run test:run` |
+| `pipeline/` | pytest | `python -m pytest pipeline/tests/ -v` |
+
+### Vitest config files (already created in Phase 0)
+
+- `app/vitest.config.ts` — jsdom environment, React plugin, `@/*` alias, setupFiles loads `@testing-library/jest-dom`
+- `agent/vitest.config.ts` — node environment
+
+### package.json test scripts (add to each workspace)
+
+```json
+"test":          "vitest",
+"test:run":      "vitest run",
+"test:coverage": "vitest run --coverage"
+```
+
+### pytest config (in `pipeline/pyproject.toml`)
+
+```toml
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+```
+
+### Where test files live
+
+```
+app/components/ui/__tests__/ForecastBarChart.test.tsx
+app/lib/__tests__/utils.test.ts
+agent/tools/__tests__/ping.test.ts
+agent/__tests__/llm.test.ts
+pipeline/tests/test_engine.py
+pipeline/tests/test_mock.py
+pipeline/tests/test_validate.py
+packages/contracts/src/__tests__/index.test.ts
+```
+
+### What each agent must test
+
+**Phase 0 agent:** Zod schemas parse valid data and reject invalid data. `mock.py` produces 7 files, all validated by `validate.py`. `getLLM()` returns different base URLs per `LLM_PROVIDER` value (no network).
+
+**Phase 1 agent:** Each pipeline transform (`groupby`, weather join, hotspot clustering, forecast) produces the correct shape on known fixture data. Engine abstraction dispatches correctly for pandas/polars/duckdb.
+
+**Phase 2 agent:** Each Mastra tool's `execute()` returns the exact §3.5 output shape given mock Convex responses. Convex query handlers filter correctly (use `convex-test` for in-memory testing).
+
+**Phase 3 agent:** Each generative UI component renders given mock tool output data matching §3.5 shapes. Snapshot tests for layout stability. Key interactions (ward click, category toggle) work.
+
+### Hard rules
+
+- A task is **not started** until its test file exists with at least one failing test.
+- A task is **not complete** until all its tests pass and `npm run test:run` (or pytest) exits 0.
+- **Never** use `vi.mock()` or `unittest.mock` on the module being tested — only mock its external dependencies (Convex client, OpenAI API, filesystem, network).
+- **Never** `.skip` or `.todo` a test to unblock CI — fix the code or the test.
+- Tests must run in **< 10 seconds total**. Slow tests mock the slow boundary.
 
 ---
 
@@ -138,6 +211,10 @@ importArtifacts({ ... }): { ok: true }
 ### Foundations (Phase 0)
 ```bash
 npm run typecheck && npm run lint
+cd packages/contracts && npm run test:run     # Zod schema tests
+cd app && npm run test:run                    # app skeleton tests
+cd agent && npm run test:run                  # llm.ts + ping tool tests
+python -m pytest pipeline/tests/ -v          # mock + validate tests
 python -m pipeline.src.mock && ls pipeline/artifacts   # 7 files
 npm run import
 npx convex run queries:getForecast '{}'
@@ -146,6 +223,7 @@ npm run dev   # manual: header + panes + chat visible
 
 ### Data Pipeline (Phase 1)
 ```bash
+python -m pytest pipeline/tests/ -v          # ALL pipeline tests must pass
 python -m pipeline.src.run --sample 50000 --engine pandas
 python -m pipeline.src.validate
 python -m pipeline.src.run --sample 50000 --engine polars
@@ -155,6 +233,7 @@ npm run import
 
 ### Backend & Agent (Phase 2)
 ```bash
+cd agent && npm run test:run                  # all tool + agent tests
 npx convex run queries:getForecast '{"category":"pothole"}'
 node agent/scripts/smoke-llm.mjs
 node agent/scripts/smoke-agent.mjs "Which wards see most potholes next week?"
@@ -164,6 +243,7 @@ npm run dev   # manual: ask the 3 golden-path questions in chat
 
 ### Frontend & Generative UI (Phase 3)
 ```bash
+cd app && npm run test:run                    # all component + hook tests
 npm run typecheck && npm run lint
 npm run dev
 # Manual checklist:
@@ -176,6 +256,10 @@ npm run dev
 
 ### Polish & Submission (Phase 4)
 ```bash
+# Full test suite — all must pass before submission
+cd app && npm run test:run
+cd agent && npm run test:run
+python -m pytest pipeline/tests/ -v
 cp .env.example .env   # fill values
 npx convex dev &
 python -m pipeline.src.run --sample 50000 && npm run import
@@ -213,6 +297,41 @@ If a task would break or delay this path, it is lower priority.
 
 ---
 
+## Progress Tracking — MANDATORY AFTER EVERY CHANGE
+
+This is not optional. Every agent must update the docs after making any code change.
+
+### Step 1 — Update the phase file (`docs/0N-*.md`)
+
+- Check off completed task checkboxes: `- [ ]` → `- [x]`
+- In the `📊 Progress Tracker` block at the top:
+  - Move completed items from **⏳ To Do** → **✅ Completed**
+  - Recalculate completion % (tasks done / total tasks × 100)
+  - Update the progress bar (see bar reference in `CLAUDE.md`)
+  - Update **Last Updated** to today's date
+  - Update **Status**: `🔴 Not Started` → `🟡 In Progress` → `🟢 Complete`
+  - Update **Updated By** to describe what was done (e.g. "Claude Code — built Mastra getForecast tool")
+
+### Step 2 — Update `docs/README.md` overall table
+
+Find the row for your phase and update:
+- Status emoji and progress bar + %
+- **Next Action** column — what is the very next thing to do or who is blocked on what
+- Recalculate the **Overall %** line at the bottom of the table
+
+### The update rule is simple
+
+```
+Did you write, edit, or delete any code?  →  Update docs/0N-*.md + docs/README.md
+Did you complete a task checkbox?         →  Check it off immediately, not at the end
+Did you finish the phase?                 →  Set 🟢 Complete in both files
+Did you discover new work?                →  Add to ⏳ To Do and adjust % down
+```
+
+**Do not end a task without updating both files.** Another agent or team member will read the tracker to decide what to build next — a stale tracker wastes their time or causes duplicate work.
+
+---
+
 ## What Agents Must Never Do
 
 - Change a contract in `docs/README.md §3` without flagging it first.
@@ -225,6 +344,12 @@ If a task would break or delay this path, it is lower priority.
 - Commit `.env`, `pipeline/artifacts/`, or `.next`.
 - Claim a phase complete without running the self-test commands and capturing output.
 - Read multiple phase files when dispatched to one phase — it causes over-engineering.
+- Write implementation code before writing a failing test — Red → Green → Refactor, always.
+- Skip or `.todo` a test to unblock a task — fix the code or the test.
+- Mock the module under test — only mock its external dependencies (Convex client, OpenAI, filesystem).
+- Deliver a task where `npm run test:run` or `pytest` exits non-zero.
+- Finish any code change without updating the phase file `📊 Progress Tracker` and `docs/README.md` overall table.
+- Leave a task checkbox unchecked after completing the work it describes.
 
 ---
 
@@ -242,3 +367,6 @@ If a task would break or delay this path, it is lower priority.
 | Phase 3 tasks (frontend + gen UI) | `docs/03-frontend-and-generative-ui.md` |
 | Phase 4 tasks (polish + submit) | `docs/04-polish-and-submission.md` |
 | CopilotKit + Mastra AG-UI integration | https://mastra.ai/guides/build-your-ui/copilotkit |
+| TDD rules + Vitest config | `CLAUDE.md` — TDD section |
+| Vitest docs | https://vitest.dev/ |
+| React Testing Library | https://testing-library.com/docs/react-testing-library/intro/ |

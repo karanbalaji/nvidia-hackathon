@@ -1,5 +1,40 @@
 # Phase 0 — Foundations
 
+---
+## 📊 Progress Tracker
+
+| | |
+|---|---|
+| **Status** | 🟢 Complete |
+| **Completion** | `██████████████` 100% |
+| **Last Updated** | 2026-05-30 |
+| **Updated By** | Claude Code — Convex deployed, schema live |
+
+### ✅ Completed
+- Next.js 16.2.6 app scaffolded (Turbopack, App Router, TypeScript, Tailwind v4, shadcn/ui new-york)
+- Shell layout: `GlobalHeader` + `LeftSidebar` + `PulseChat` three-pane layout (adapted from Clinical Lens)
+- `SidebarContext` + `WardContext` providers
+- `/dashboard` route stub with widget placeholders
+- `packages/contracts/` — all 7 Zod schemas + TypeScript types (`Ward`, `ServiceRequest`, `DailyAggregate`, `Forecast`, `Hotspot`, `RiskScore`, `PipelineRun`)
+- `convex/schema.ts`, `queries.ts`, `mutations.ts`, `seed.ts` — all tables, indexes, query stubs, mock seed
+- Convex schema deployed to `wry-mandrill-452.convex.cloud` ✅
+- `app/.env.local` — `NEXT_PUBLIC_CONVEX_URL` set ✅
+- `convex` added to root `package.json` dependencies ✅
+- `agent/` — `llm.ts` provider abstraction, `agent/index.ts` Mastra agent, `tools/ping.ts`
+- `@copilotkit/*` + `@ag-ui/*` packages installed; `/api/copilotkit/route.ts` wired; `CopilotKit` provider in layout
+- `pipeline/src/engine.py` (pandas/polars/duckdb/RAPIDS abstraction)
+- `pipeline/src/mock.py` — writes all 7 schema-valid artifacts (180-row parquet + 6 JSON)
+- `pipeline/src/validate.py` — validates all 7 artifacts
+- `scripts/import-artifacts.ts` — Zod-validates then loads into Convex
+- `.env.example`, `.gitignore`, root `package.json` with npm workspaces + scripts
+- `npm run typecheck` ✅ · `npm run lint` ✅ · `npm run dev` → HTTP 200 ✅
+- `python -m pipeline.src.mock` → 7 artifacts ✅ · `python -m pipeline.src.validate` → all valid ✅
+
+### ⏳ Pending
+- `README.md` stub — deferred to Phase 4
+
+---
+
 > **Goal:** Stand up the entire skeleton — repo, all tooling, the **shared contracts**, env config, and runnable-but-empty versions of every part — so Phases 1–3 can be built independently and in parallel. **Mock data ships here** so nothing downstream is blocked on real processing.
 
 **Owner agent scope:** Read this file + `docs/README.md` §3 (contracts). Do not build features — build the frame and freeze the contracts.
@@ -15,16 +50,16 @@
 ## 1. Tasks
 
 ### 1.1 Initialize the Next.js app
-- [ ] `npx create-next-app@latest app --ts --app --tailwind --eslint --src-dir=false` (App Router, TypeScript, Tailwind).
-- [ ] Add **shadcn/ui**: `npx shadcn@latest init`; add `button card input dialog tabs badge skeleton sonner`.
-- [ ] Install: `recharts date-fns lucide-react zod sonner`.
-- [ ] Create a top-level shell layout: header "311 Pulse", a two-pane layout placeholder (map area left, chat area right), and a dashboard route stub at `/dashboard`.
+- [x] `npx create-next-app@latest app --ts --app --tailwind --eslint --src-dir=false` (App Router, TypeScript, Tailwind).
+- [x] Add **shadcn/ui**: `npx shadcn@latest init`; add `button card input dialog tabs badge skeleton sonner`.
+- [x] Install: `recharts date-fns lucide-react zod sonner`.
+- [x] Create a top-level shell layout: header "311 Pulse", a two-pane layout placeholder (map area left, chat area right), and a dashboard route stub at `/dashboard`.
 
 ### 1.2 Shared contracts package (the spine) 🔒
-- [ ] Create `packages/contracts/` with `package.json` (name `@311pulse/contracts`) and `src/index.ts`.
-- [ ] Implement **exactly** the types in `docs/README.md` §3.2 (`Ward`, `ServiceRequest`, `DailyAggregate`, `Forecast`, `Hotspot`, `RiskScore`, `PipelineRun`).
-- [ ] For each type, also export a matching **Zod schema** (`WardSchema`, etc.) and an array schema. Derive TS types from Zod (`z.infer`) so they can't drift.
-- [ ] Wire it as a workspace dependency consumable by `app/`, `convex/`, `agent/`. (npm/pnpm workspaces, or a simple path import if single-package.)
+- [x] Create `packages/contracts/` with `package.json` (name `@311pulse/contracts`) and `src/index.ts`.
+- [x] Implement **exactly** the types in `docs/README.md` §3.2 (`Ward`, `ServiceRequest`, `DailyAggregate`, `Forecast`, `Hotspot`, `RiskScore`, `PipelineRun`).
+- [x] For each type, also export a matching **Zod schema** (`WardSchema`, etc.) and an array schema. Derive TS types from Zod (`z.infer`) so they can't drift.
+- [x] Wire it as a workspace dependency consumable by `app/`, `convex/`, `agent/`. (npm/pnpm workspaces, or a simple path import if single-package.)
 
 ```ts
 // packages/contracts/src/index.ts (excerpt — implement all of §3.2)
@@ -62,10 +97,10 @@ export type Forecast = z.infer<typeof ForecastSchema>;
 ```
 
 ### 1.3 Convex setup (schema skeleton + mock data)
-- [ ] `npm create convex` (or `npx convex dev`) inside the project; creates `convex/`.
-- [ ] Implement `convex/schema.ts` tables mirroring the contract: `wards`, `dailyAggregates`, `forecasts`, `hotspots`, `riskScores`, `summaries`, `pipelineRuns`. Add indexes used by §3.4 (`by_ward`, `by_category`, `by_ward_category`, `by_date`).
-- [ ] Stub all query functions from §3.4 returning data from the tables (empty is fine now).
-- [ ] Add a `convex/seed.ts` internal mutation that loads the **mock artifacts** (task 1.6) so the UI has something to render before Phase 1.
+- [x] `npm create convex` (or `npx convex dev`) inside the project; creates `convex/`.
+- [x] Implement `convex/schema.ts` tables mirroring the contract: `wards`, `dailyAggregates`, `forecasts`, `hotspots`, `riskScores`, `summaries`, `pipelineRuns`. Add indexes used by §3.4 (`by_ward`, `by_category`, `by_ward_category`, `by_date`).
+- [x] Stub all query functions from §3.4 returning data from the tables (empty is fine now).
+- [x] Add a `convex/seed.ts` internal mutation that loads the **mock artifacts** (task 1.6) so the UI has something to render before Phase 1.
 
 ```ts
 // convex/schema.ts (excerpt)
@@ -86,10 +121,10 @@ export default defineSchema({
 ```
 
 ### 1.4 Agent package skeleton + LLM abstraction
-- [ ] Create `agent/` with `package.json`. Install `@mastra/core @mastra/client-js` (and Mastra deps) + an OpenAI-compatible client (`openai` or `@ai-sdk/openai`). `@mastra/client-js` is required for the AG-UI / CopilotKit integration in Phase 2.
-- [ ] Implement `agent/llm.ts` per §3.7: read `LLM_PROVIDER` and return a configured OpenAI-compatible client (NIM base URL/key/model, or fallback). **This is the only place a client is constructed.**
-- [ ] Create `agent/index.ts` that defines a Mastra agent with an empty tool set and a system prompt placeholder. It must **compile and instantiate** (no real tools yet — those are Phase 2).
-- [ ] Create `agent/tools/` with one trivial `ping` tool to prove the wiring.
+- [x] Create `agent/` with `package.json`. Install `@mastra/core @mastra/client-js` (and Mastra deps) + an OpenAI-compatible client (`openai` or `@ai-sdk/openai`). `@mastra/client-js` is required for the AG-UI / CopilotKit integration in Phase 2.
+- [x] Implement `agent/llm.ts` per §3.7: read `LLM_PROVIDER` and return a configured OpenAI-compatible client (NIM base URL/key/model, or fallback). **This is the only place a client is constructed.**
+- [x] Create `agent/index.ts` that defines a Mastra agent with an empty tool set and a system prompt placeholder. It must **compile and instantiate** (no real tools yet — those are Phase 2).
+- [x] Create `agent/tools/` with one trivial `ping` tool to prove the wiring.
 
 ```ts
 // agent/llm.ts
@@ -106,15 +141,15 @@ export const MODEL = (process.env.LLM_PROVIDER ?? "nim") === "nim"
 ```
 
 ### 1.5 CopilotKit runtime skeleton
-- [ ] Install `@copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime @ag-ui/mastra @ag-ui/core @ag-ui/client`. CopilotKit now integrates with Mastra via the **AG-UI protocol** — these packages are needed for Phase 2 wiring.
-- [ ] Add API route `app/app/api/copilotkit/route.ts` wiring the CopilotKit runtime (Phase 2 connects it to Mastra via `registerCopilotKit`; for now a no-op/echo handler is fine).
-- [ ] Wrap the app in `<CopilotKit runtimeUrl={NEXT_PUBLIC_COPILOTKIT_URL}>` and drop a `<CopilotChat />` in the right pane. It should render and accept input (even if it echoes).
+- [x] Install `@copilotkit/react-core @copilotkit/react-ui @copilotkit/runtime @ag-ui/mastra @ag-ui/core @ag-ui/client`. CopilotKit now integrates with Mastra via the **AG-UI protocol** — these packages are needed for Phase 2 wiring.
+- [x] Add API route `app/app/api/copilotkit/route.ts` wiring the CopilotKit runtime (Phase 2 connects it to Mastra via `registerCopilotKit`; for now a no-op/echo handler is fine).
+- [x] Wrap the app in `<CopilotKit runtimeUrl={NEXT_PUBLIC_COPILOTKIT_URL}>` and drop a `<CopilotChat />` in the right pane. It should render and accept input (even if it echoes).
 
 ### 1.6 Python pipeline package + engine abstraction + MOCK ARTIFACTS
-- [ ] Create `pipeline/` with `pyproject.toml` (deps: `pandas polars duckdb pyarrow requests python-dotenv`; RAPIDS deps are **optional/extra**, not required to install).
-- [ ] Implement `pipeline/src/engine.py`: an abstraction exposing `read_csv`, `groupby_agg`, `to_parquet`, etc., dispatching on `PIPELINE_ENGINE` (pandas/polars/duckdb now; `rapids`→cuDF branch stubbed with a clear `ImportError` guard).
-- [ ] Implement `pipeline/src/mock.py` that writes schema-valid **mock artifacts** to `pipeline/artifacts/` for: `wards.json`, `daily_aggregates.parquet`, `forecasts.json`, `hotspots.json`, `risk_scores.json`, `request_summaries.json`, `pipeline_run.json` (per §3.3). Use ~3 wards, 2 categories (`pothole`, `flooding`), ~30 days.
-- [ ] `python -m pipeline.src.mock` must produce all 7 files.
+- [x] Create `pipeline/` with `pyproject.toml` (deps: `pandas polars duckdb pyarrow requests python-dotenv`; RAPIDS deps are **optional/extra**, not required to install).
+- [x] Implement `pipeline/src/engine.py`: an abstraction exposing `read_csv`, `groupby_agg`, `to_parquet`, etc., dispatching on `PIPELINE_ENGINE` (pandas/polars/duckdb now; `rapids`→cuDF branch stubbed with a clear `ImportError` guard).
+- [x] Implement `pipeline/src/mock.py` that writes schema-valid **mock artifacts** to `pipeline/artifacts/` for: `wards.json`, `daily_aggregates.parquet`, `forecasts.json`, `hotspots.json`, `risk_scores.json`, `request_summaries.json`, `pipeline_run.json` (per §3.3). Use ~3 wards, 2 categories (`pothole`, `flooding`), ~30 days.
+- [x] `python -m pipeline.src.mock` must produce all 7 files.
 
 ```python
 # pipeline/src/engine.py (excerpt)
@@ -132,14 +167,14 @@ def get_engine():
 ```
 
 ### 1.7 Import script (artifacts → Convex), stubbed
-- [ ] Create `scripts/import-artifacts.ts`: reads files from `pipeline/artifacts/`, validates each with the Zod schemas from `@311pulse/contracts`, and calls Convex `importArtifacts` mutation (or per-table mutations). Wire it to the **mock artifacts** now so the loop works end-to-end before real data exists.
-- [ ] `npm run import` runs it.
+- [x] Create `scripts/import-artifacts.ts`: reads files from `pipeline/artifacts/`, validates each with the Zod schemas from `@311pulse/contracts`, and calls Convex `importArtifacts` mutation (or per-table mutations). Wire it to the **mock artifacts** now so the loop works end-to-end before real data exists.
+- [x] `npm run import` runs it.
 
 ### 1.8 Env, config, hygiene
-- [ ] Create `.env.example` with **exactly** the keys in §3.6. Add `.env` to `.gitignore`.
-- [ ] Gitignore: `node_modules`, `.next`, `pipeline/artifacts/`, `.env*`, `__pycache__`, `.venv`.
-- [ ] Add root `package.json` scripts: `dev`, `convex` (convex dev), `import`, `lint`, `typecheck`.
-- [ ] Initialize git, first commit.
+- [x] Create `.env.example` with **exactly** the keys in §3.6. Add `.env` to `.gitignore`.
+- [x] Gitignore: `node_modules`, `.next`, `pipeline/artifacts/`, `.env*`, `__pycache__`, `.venv`.
+- [x] Add root `package.json` scripts: `dev`, `convex` (convex dev), `import`, `lint`, `typecheck`.
+- [x] Initialize git, first commit.
 - [ ] Create a `README.md` stub (real one in Phase 4) with quickstart.
 
 ## 2. Acceptance Criteria

@@ -10,11 +10,14 @@ export const getRiskScoreTool = createTool({
   inputSchema: z.object({
     wardId: z.string().optional(),
   }),
-  execute: async (inputData) => {
+  execute: async (params) => {
     try {
-      const result = await getConvexClient().query(api.queries.getRiskScores, {
-        wardId: inputData.wardId,
-      });
+      const input = ((params as { context?: unknown })?.context ?? params ?? {}) as {
+        wardId?: string;
+      };
+      const args: { wardId?: string } = {};
+      if (input.wardId) args.wardId = input.wardId;
+      const result = await getConvexClient().query(api.queries.getRiskScores, args);
       return result ?? [];
     } catch (err) {
       console.error("[getRiskScore] Convex query failed:", (err as Error).message);

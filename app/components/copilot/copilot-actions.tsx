@@ -10,6 +10,27 @@ import { ChartSkeleton } from "@/components/shared/chart-skeleton";
 import { severityBand } from "@/lib/severity";
 import type { Forecast, DailyAggregate, Hotspot, RiskScore } from "@311pulse/contracts";
 
+// AG-UI may deliver a tool result as a bare array, a JSON string, or an object
+// wrapping the array (e.g. { data: [...] }). Coerce defensively so a render never
+// crashes the app with "x.map is not a function".
+function asArray<T>(result: unknown): T[] {
+  if (Array.isArray(result)) return result as T[];
+  if (typeof result === "string") {
+    try {
+      const parsed = JSON.parse(result);
+      return Array.isArray(parsed) ? (parsed as T[]) : [];
+    } catch {
+      return [];
+    }
+  }
+  if (result && typeof result === "object") {
+    const inner = (result as { data?: unknown; result?: unknown }).data ??
+      (result as { data?: unknown; result?: unknown }).result;
+    if (Array.isArray(inner)) return inner as T[];
+  }
+  return [];
+}
+
 export function CopilotActions() {
   useCopilotAction({
     name: "getForecast",
@@ -31,7 +52,7 @@ export function CopilotActions() {
     ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
-      const data = result as Forecast[];
+      const data = asArray<Forecast>(result);
       const ranked = [...data].sort((a, b) => b.predictedCount - a.predictedCount);
       const topWardIds = ranked.slice(0, 3).map((d) => d.wardId);
       const category = ranked[0]?.category ?? "service";
@@ -87,7 +108,7 @@ export function CopilotActions() {
     ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
-      const data = result as DailyAggregate[];
+      const data = asArray<DailyAggregate>(result);
       return (
         <InsightCard>
           <TrendLineChart data={data} category={data[0]?.category} />
@@ -112,7 +133,7 @@ export function CopilotActions() {
       if (status !== "complete") return <ChartSkeleton />;
       return (
         <InsightCard>
-          <HotspotMapAction data={result as Hotspot[]} />
+          <HotspotMapAction data={asArray<Hotspot>(result)} />
         </InsightCard>
       );
     },
@@ -132,7 +153,7 @@ export function CopilotActions() {
     ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
-      const data = result as RiskScore[];
+      const data = asArray<RiskScore>(result);
       const top = [...data].sort((a, b) => b.score - a.score)[0];
       return (
         <>

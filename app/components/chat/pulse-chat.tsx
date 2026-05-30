@@ -99,35 +99,9 @@ export function PulseChat() {
           )}
         </div>
 
-        {/* Suggestions Strip */}
-        {!isRightCollapsed && (
-          <div className="px-5 py-3 border-b border-border/50 bg-gray-950/40 flex flex-col gap-2 shrink-0">
-            <span className="text-[9px] font-bold text-muted-foreground uppercase tracking-wider font-mono">Suggested Queries</span>
-            <div className="flex flex-col gap-1.5">
-              {SUGGESTIONS.map((s) => (
-                <button
-                  key={s}
-                  onClick={() =>
-                    sendMessage({
-                      id: typeof crypto !== "undefined" && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2),
-                      role: "user",
-                      content: s,
-                    })
-                  }
-                  className="text-left px-3 py-2 text-xs text-gray-300 hover:text-blue-400 hover:bg-blue-600/10 border border-gray-800 rounded-lg transition-all duration-200 cursor-pointer truncate"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Always mounted — hidden class instead of conditional rendering so
             CopilotKit's textarea never remounts and won't expand on reopen */}
         <div className={cn("flex-1 overflow-hidden relative min-h-0", isRightCollapsed && "hidden")}>
-          {/* Mount generative UI action hooks */}
-          <CopilotActions />
           <CopilotChat
             labels={{
               title: "311 Pulse Agent",

@@ -19,19 +19,23 @@ export const simulateWeatherTool = createTool({
     scenario: z.enum(["heavy_rain", "light_rain", "dry_spell", "heat_wave", "normal"]),
     category: z.string().optional(),
   }),
-  execute: async (inputData) => {
+  execute: async (params) => {
     try {
-      const baseline = await getConvexClient().query(api.queries.getForecast, {
-        category: inputData.category,
-      });
+      const input = ((params as { context?: unknown })?.context ?? params ?? {}) as {
+        scenario: string;
+        category?: string;
+      };
+      const args: { category?: string } = {};
+      if (input.category) args.category = input.category;
+      const baseline = await getConvexClient().query(api.queries.getForecast, args);
       if (!baseline || baseline.length === 0) return [];
-      const multiplier = MULTIPLIERS[inputData.scenario] ?? 1.0;
+      const multiplier = MULTIPLIERS[input.scenario] ?? 1.0;
       return baseline.map((f: any) => ({
         ...f,
         predictedCount: Math.round(f.predictedCount * multiplier),
         confidenceLow: Math.round(f.confidenceLow * multiplier),
         confidenceHigh: Math.round(f.confidenceHigh * multiplier),
-        method: `simulated-${inputData.scenario}`,
+        method: `simulated-${input.scenario}`,
       }));
     } catch (err) {
       console.error("[simulateWeather] failed:", (err as Error).message);

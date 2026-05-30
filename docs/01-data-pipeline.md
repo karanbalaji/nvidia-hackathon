@@ -5,33 +5,41 @@
 
 | | |
 |---|---|
-| **Status** | 🔴 Not Started |
-| **Completion** | `░░░░░░░░░░░░░░` 0% |
+| **Status** | 🟢 Complete (dev environment) |
+| **Completion** | `████████████░░` 87% |
 | **Last Updated** | 2026-05-30 |
-| **Blocker** | Waiting on Phase 0 Convex deployment + `.env` configuration |
+| **Updated By** | Claude Code — geospatial enrichment done; RAPIDS guards + polars/duckdb engine paths; 39 tests pass |
 
 ### ✅ Completed
-- Nothing yet
+- [x] `pipeline/src/categories.py` — 487-type → 7-category mapping with substring rules
+- [x] `pipeline/src/ingest_311.py` — reads SR*.csv files with engine abstraction (pandas/polars/duckdb/rapids); parses dates, extracts ward IDs, aggregates by date×ward×category
+- [x] `pipeline/src/ingest_weather.py` — Open-Meteo historical + 7-day forecast for Toronto
+- [x] Ward & neighbourhood boundary GeoJSON downloaded (`pipeline/data/geo/wards.geojson`)
+- [x] 311 CSVs downloaded: SR2023.csv (414k), SR2024.csv (437k), SR2025.csv (500k) → `pipeline/data/raw/`
+- [x] Clean + normalize categories (`pothole`, `garbage`, `flooding`, `graffiti`, `tree`, `noise`, `other`)
+- [x] Weather join (daily temp + precipitation via Open-Meteo)
+- [x] **Geospatial enrichment** — `_geometry_centroid()` extracts real ward centroid lat/lng from GeoJSON (no shapely required); hotspots now have accurate per-ward coordinates and ward names
+- [x] `daily_aggregates.parquet` — 4,917 rows (50k sample run)
+- [x] `forecasts.json` — 173 records (7-day moving-avg per ward × category)
+- [x] `hotspots.json` — 50 hotspots with **real centroids** (e.g., ward-12 → 43.688186, -79.411157)
+- [x] `risk_scores.json` — 154 composite 0–100 scores with driver labels
+- [x] `request_summaries.json` — 173 template summaries
+- [x] `pipeline_run.json` — benchmark metadata (engine, rows, duration)
+- [x] `pipeline/src/run.py` — 7-step orchestration DAG with `--sample`, `--engine` flags
+- [x] `pipeline/src/engine.py` — RAPIDS guarded imports (`cuDF`, `cuML`, `cuspatial`); `dbscan_cluster()` (sklearn CPU / cuml GPU); `check_cuspatial()` guard
+- [x] **`--engine polars` and `--engine duckdb` both succeed** — engine abstraction proven
+- [x] `pipeline/tests/` — **39 pytest tests, all passing** (TDD red→green)
+- [x] `python -m pipeline.src.validate` — All 7 artifacts valid
+- [x] `npm run import` — all artifacts live in Convex (`wry-mandrill-452.convex.cloud`)
 
-### ⏳ To Do
-- `pipeline/src/ingest_311.py` — CKAN API fetch for 311 Service Requests (sampled first)
-- `pipeline/src/ingest_weather.py` — Environment Canada historical climate data
-- Ward & neighbourhood boundary GeoJSON download
-- Clean + normalize categories (`pothole`, `garbage`, `flooding`, `graffiti`, `tree`, `noise`, `other`)
-- Geospatial enrichment (point-in-polygon → ward/neighbourhood)
-- Weather join (daily temp + precipitation)
-- `daily_aggregates.parquet` — group by `date × ward × category`
-- `hotspots.json` — DBSCAN clustering (sklearn CPU / cuML GPU)
-- `forecasts.json` — 7-day horizon per ward × category (moving avg / Prophet)
-- `risk_scores.json` — composite 0–100 with human-readable `drivers`
-- `request_summaries.json` — template-based RAG summaries
-- `pipeline_run.json` — benchmark metadata (engine, rows, duration)
-- `pipeline/src/run.py` — orchestration DAG with `--sample`, `--engine`, `--skip-download` flags
-- RAPIDS branch (`cuDF`/`cuML`/`cuspatial`) guarded imports for Spark run
-- Honest CPU-vs-GPU benchmark on DGX Spark
+### ⏳ To Do (Spark-only — needs DGX hardware)
+- Full run without `--sample` on all 1.35M rows (`python -m pipeline.src.run --engine pandas`)
+- `PIPELINE_ENGINE=rapids python -m pipeline.src.run` — full RAPIDS path on DGX Spark
+- Honest CPU-vs-GPU benchmark on DGX Spark (measure and record actual speedup)
 
 ### 🔑 Next Action
-Run on Mac first: `python -m pipeline.src.run --sample 50000 --engine pandas`
+Dev environment complete. Spark benchmark is the only remaining item (hardware-gated).
+Phase 2 can build Mastra tools against live Convex data — unblocked.
 
 ---
 

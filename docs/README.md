@@ -6,14 +6,14 @@
 | Phase | Status | Progress | Next Action |
 |---|---|---|---|
 | [Phase 0 — Foundations](./00-foundations.md) | 🟢 Complete | `██████████████` 100% | Done — schema live at `wry-mandrill-452.convex.cloud` |
-| [Phase 1 — Data Pipeline](./01-data-pipeline.md) | 🔴 Not Started | `░░░░░░░░░░░░░░` 0% | Build `ingest_311.py` + CKAN fetch |
+| [Phase 1 — Data Pipeline](./01-data-pipeline.md) | 🟢 Complete (dev) | `████████████░░` 87% | Spark benchmark remaining (hardware-gated); dev path complete with 39 tests passing |
 | [Phase 2 — Backend & Agent](./02-backend-and-agent.md) | 🟡 In Progress | `███░░░░░░░░░░░` 20% | Deploy Convex, build Mastra tools |
 | [Phase 3 — Frontend & Generative UI](./03-frontend-and-generative-ui.md) | 🟡 In Progress | `████░░░░░░░░░░` 25% | Redeploy on Vercel (clear cache) to verify Lightning CSS Linux binary, then build map component |
 | [Phase 4 — Polish & Submission](./04-polish-and-submission.md) | 🔴 Not Started | `░░░░░░░░░░░░░░` 0% | Blocked on Phases 1–3 golden path |
 
-**Overall:** ~35% complete · **Deadline:** Sun May 31, 11:00 AM
+**Overall:** ~45% complete · **Deadline:** Sun May 31, 11:00 AM
 
-> 🔑 **Phase 0 is done. Next unblocking action:** Build the Mastra agent tools in Phase 2 (`agent/tools/`) against the live Convex deployment.
+> 🔑 **Phase 1 pipeline + Convex import done. Next unblocking action:** Build the Mastra agent tools in Phase 2 (`agent/tools/`) — Convex is live with real 311 data.
 
 ---
 

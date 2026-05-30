@@ -13,14 +13,20 @@ export const queryRequestsTool = createTool({
     from: z.string().optional().describe("ISO date YYYY-MM-DD"),
     to: z.string().optional().describe("ISO date YYYY-MM-DD"),
   }),
-  execute: async (inputData) => {
+  execute: async (params) => {
     try {
-      const result = await getConvexClient().query(api.queries.getDailyAggregates, {
-        wardId: inputData.wardId,
-        category: inputData.category,
-        from: inputData.from,
-        to: inputData.to,
-      });
+      const input = ((params as { context?: unknown })?.context ?? params ?? {}) as {
+        wardId?: string;
+        category?: string;
+        from?: string;
+        to?: string;
+      };
+      const args: { wardId?: string; category?: string; from?: string; to?: string } = {};
+      if (input.wardId) args.wardId = input.wardId;
+      if (input.category) args.category = input.category;
+      if (input.from) args.from = input.from;
+      if (input.to) args.to = input.to;
+      const result = await getConvexClient().query(api.queries.getDailyAggregates, args);
       return result ?? [];
     } catch (err) {
       console.error("[queryRequests] Convex query failed:", (err as Error).message);

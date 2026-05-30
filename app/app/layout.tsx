@@ -6,7 +6,7 @@ import { SidebarProvider } from "@/context/sidebar-context";
 import { WardProvider } from "@/context/ward-context";
 import { MapProvider } from "@/context/map-context";
 import { Toaster } from "@/components/ui/sonner";
-import { ConvexClientProvider } from "./convex-client-provider";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import "./globals.css";
 
 const lexend = Lexend({ variable: "--font-lexend", subsets: ["latin"] });
@@ -23,17 +23,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className="min-h-full flex flex-col antialiased font-[family-name:var(--font-lexend)]">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           <ConvexClientProvider>
-            <CopilotKit runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"} agent="311-pulse-agent">
+            <CopilotKit
+              runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"}
+              agent="311-pulse-agent"
+            >
               <SidebarProvider>
                 <WardProvider>
-                  <MapProvider>
-                    {children}
-                  </MapProvider>
+                  <MapProvider>{children}</MapProvider>
                 </WardProvider>
               </SidebarProvider>
             </CopilotKit>
-            <Toaster />
           </ConvexClientProvider>
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

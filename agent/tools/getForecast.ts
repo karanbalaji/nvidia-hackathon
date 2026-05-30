@@ -11,12 +11,16 @@ export const getForecastTool = createTool({
     wardId: z.string().optional(),
     category: z.string().optional(),
   }),
-  execute: async (inputData) => {
+  execute: async (params) => {
     try {
-      const result = await getConvexClient().query(api.queries.getForecast, {
-        wardId: inputData.wardId,
-        category: inputData.category,
-      });
+      const input = ((params as { context?: unknown })?.context ?? params ?? {}) as {
+        wardId?: string;
+        category?: string;
+      };
+      const args: { wardId?: string; category?: string } = {};
+      if (input.wardId) args.wardId = input.wardId;
+      if (input.category) args.category = input.category;
+      const result = await getConvexClient().query(api.queries.getForecast, args);
       return result ?? [];
     } catch (err) {
       console.error("[getForecast] Convex query failed:", (err as Error).message);

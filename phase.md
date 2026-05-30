@@ -1,0 +1,123 @@
+# Phase — UI + Chat Bug Sweep (agent-browser)
+
+**Date:** 2026-05-30 · **Branch:** `Fouzan` · **Tester:** automated browser sweep via [`vercel-labs/agent-browser`](https://github.com/vercel-labs/agent-browser) (Chrome for Testing 149) driving `http://localhost:3000`.
+
+**LLM backend under test:** NVIDIA **Nemotron** (`nvidia/nemotron-3-nano-omni`) served by LM Studio on the **DGX Spark**, reached over Tailscale at `http://100.82.97.8:1234/v1`. Confirmed reachable during the run. Convex deployment: `wry-mandrill-452.convex.cloud`.
+
+> This file complements `docs/phase-bug-report.md` (earlier report). It records what the live browser sweep found **after merging `origin/main` into `Fouzan`**, including several **merge-induced regressions that have been fixed in this branch**.
+
+---
+
+## TL;DR
+
+- The merge of `origin/main` into `Fouzan` silently produced **broken source** in 4 files (mangled imports + leftover conflict markers + duplicated JSX). The home page crashed on load. **All fixed.**
+- The agent **does** reach the backend: Nemotron on the Spark reasons and calls the Convex-backed Mastra tools (observed `getForecast` → `Done`, plus a grounded recommendation).
+- Generative UI (`InsightCard` → `ForecastBarChart`) **was not rendering** due to (a) a **tool-name mismatch** and (b) tools returning **empty arrays** from a Convex `undefined`-arg bug. **Both fixed**, after which the forecast bar chart renders real bars.
+- A **non-array tool result** crashed the whole app (`data.map is not a function`). Renders are now **defensively coerced**. **Fixed.**
+
+---
+
+## Test environment / how to reproduce
+
+```bash
+# 1. Point the app LLM config at the Spark (app/.env.local — gitignored)
+LLM_PROVIDER=nim
+NIM_BASE_URL=http://100.82.97.8:1234/v1
+NIM_API_KEY=lm-studio
+NIM_MODEL=nvidia/nemotron-3-nano-omni
+
+# 2. Run the app
+cd app && npm run dev            # http://localhost:3000
+
+# 3. Drive it
+npm i -g agent-browser && agent-browser install
+agent-browser open http://localhost:3000
+# NOTE: never `agent-browser wait --load networkidle` on this app — Convex +
+# CopilotKit keep live connections so the network never goes idle (the wait hangs).
+```
+
+Screenshots from the run are in `tests/ui-screenshots/` (gitignored).
+
+---
+
+## ✅ Fixed in this branch (merge regressions + integration bugs)
+
+### BUG-A — Home page crashed on load (`ReferenceError: useWard is not defined`) — CRITICAL ✅ fixed
+- **Where:** `app/app/page.tsx`
+- **Cause:** the `origin/main` merge auto-spliced `main`'s inline-map body into this branch's `MapView`-wrapper architecture, **dropping the import block** (`useState`, `useMemo`, `useQuery`, `api`, `useWard`, `useMap311`, `EMPTY_ARRAY`) while leaving dead code that referenced them. No textual conflict was reported, so it slipped through.
+- **Fix:** restored `page.tsx` to the intended thin layout shell (`GlobalHeader` + `LeftSidebar` + self-contained `MapView` + `PulseChat`). `MapView` already owns all queries/layers/controls, so the page needs none of the dropped hooks.
+
+### BUG-B — Chat panel crashed (`SUGGESTIONS is not defined` / `sendMessage is not defined`) — CRITICAL ✅ fixed
+- **Where:** `app/components/chat/pulse-chat.tsx`
+- **Cause:** the merge **unioned two versions** — it kept this branch's correct top (`SUGGESTED_PROMPTS`, `appendMessage`, `sendPrompt`) **and** a stale "Suggestions Strip" block referencing the undefined `SUGGESTIONS` + `sendMessage`, plus a **duplicate** `<CopilotActions />`.
+- **Fix:** removed the stale strip and the duplicate `<CopilotActions />`. The redesigned stacked suggested-prompt buttons (Sparkles icon) remain.
+
+### BUG-C — Leftover merge conflict markers in source — CRITICAL ✅ fixed
+- **Where:** `app/components/copilot/copilot-actions.tsx` and `app/app/layout.tsx` (webpack reported `<<<<<<< HEAD` / `=======` / `>>>>>>> origin/main` as syntax errors).
+- **Fix:** conflicts resolved — combined `main`'s `description`/`parameters` metadata with this branch's `InsightCard` render logic and `available: "remote"`.
+
+### BUG-D — Generative UI never rendered: tool-name mismatch — HIGH ✅ fixed
+- **Where:** `agent/index.ts`
+- **Cause:** tools were registered with **object-shorthand keys** (`{ getForecastTool, getHotspotsTool, ... }`), so Mastra/AG-UI exposed the tool to the model as **`getForecastTool`**. The chat showed a generic collapsed `getForecastTool → Done` row instead of a chart, because the frontend `useCopilotAction({ name: "getForecast" })` (and the contract §3.5, and the system prompt) all use **`getForecast`** (no `Tool` suffix). The names must match for the render to fire.
+- **Fix:** keyed the registration by the contract names: `{ ping: pingTool, getForecast: getForecastTool, getHotspots: getHotspotsTool, getRiskScore: getRiskScoreTool, queryRequests: queryRequestsTool, simulateWeather: simulateWeatherTool }`. After this, the `InsightCard` mounts (verified: "Generated by 311 Pulse" eyebrow present).
+
+### BUG-E — Tools returned empty data (charts showed "No forecast data") — HIGH ✅ fixed
+- **Where:** all five tools in `agent/tools/*.ts`
+- **Cause:** the tools passed optional args straight through, e.g. `query(api.queries.getForecast, { wardId: undefined, category: undefined })`. **Convex's serializer throws on explicit `undefined` values**, so the query threw, the tool's `catch` swallowed it and returned `[]`. (The dashboard widgets were unaffected because they use the client `useQuery`, which strips `undefined`.) The tools also read input as the first positional arg, which is brittle across Mastra `execute` signatures.
+- **Fix:** every tool now reads input via `params.context ?? params` and **builds the args object with only defined keys**. After this, `getForecast` returns real rows and the `ForecastBarChart` renders bars (verified: `recharts-surface` present, 10 bar rectangles, footer "Powered by Nemotron · method: …").
+
+### BUG-F — A non-array tool result crashed the entire app — HIGH ✅ fixed
+- **Where:** `app/components/copilot/copilot-actions.tsx`
+- **Symptom:** full-screen Next.js error overlay — `TypeError: data.map is not a function` at the `getRiskScore` render (`data.map((d) => d.wardId)`).
+- **Cause:** renders assumed `result` is always a bare array (`result as RiskScore[]`), but the AG-UI bridge can deliver a result as a JSON string or an object wrapping the array. A non-array result then crashed `.map()` / spread and took down the whole page.
+- **Fix:** added an `asArray<T>(result)` coercion helper (handles array | JSON string | `{ data }` / `{ result }` wrapper, else `[]`) and routed all four data renders through it. A malformed result now degrades to an empty state instead of crashing.
+
+---
+
+## ⚠️ Found but NOT fixed (needs follow-up)
+
+### BUG-G — Chat stream intermittently fails: `agent_run_failed: TypeError: Failed to fetch` — HIGH
+- **Observed:** after the fixes, re-running the golden-path prompt sometimes aborts client-side with "Failed to fetch", even though `POST /api/copilotkit` returns `200` (each ~10s) and the Spark is reachable.
+- **Likely cause:** `nemotron-3-nano-omni` is small and slow (~10s per round-trip) and the golden path involves multiple tool round-trips; the streamed run exceeds a client/stream timeout and the fetch aborts. Earlier in the same session the identical prompt completed end-to-end (tool call + recommendation rendered), so the integration is correct — this is latency/streaming-stability.
+- **Suggested follow-up:** try a larger/faster Nemotron on the Spark, increase the CopilotKit/AG-UI request timeout, reduce tool round-trips, and add a client-side retry + visible error toast (currently it only logs to console + a generic toast).
+
+### BUG-H — Stale Phase-3 test files fail typecheck / `test:run` — MEDIUM
+- **Where:** `app/components/map/__tests__/{map-controls,map-legend,ward-detail-panel,ward-forecast-mini-chart}.test.tsx`
+- **Cause:** these tests assert old prop shapes (`dateRange`/`setDateRange`, `ward`, bare `{}`) that no longer match the current components (`activeLayer`/`onLayerChange`/`dateRangeDays`, `wardId`, required `activeLayer`, `Forecast[]`).
+- **Impact:** `npm run test:run` and a full `tsc` fail on these files. **App + agent source both typecheck clean.**
+- **Suggested follow-up:** update the four tests to the current component prop signatures (or remove if superseded).
+
+### BUG-I — `daily_aggregates` not imported → "0 records" — HIGH (data)
+- **Observed:** the map status bar shows `0 records`; the heat layer has nothing to colour and the `queryRequests`/`TrendLineChart` path has no history to plot.
+- **Cause:** the daily-aggregates artifact was not imported into Convex (matches `docs/phase-bug-report.md` BUG-03).
+- **Suggested follow-up:** import `daily_aggregates` so the heat layer + trend chart populate.
+
+### BUG-J — Dead nav routes (`/wards`, likely `/alerts`, `/settings`) → 404 — MEDIUM
+- **Observed:** `GET /wards` → **404**. "Wards", "Alert Center", "System Settings" are in the sidebar but have no pages.
+- **Suggested follow-up:** add stub pages or hide the links (matches `docs/phase-bug-report.md` BUG-10).
+
+### BUG-K — CopilotKit dev/premium chrome visible — LOW
+- **Observed:** a floating "Big update: Series A, Threads and CopilotKit Enterprise Intelligence" announcement banner + a "Web Inspector" button render over the app; repeated `GET /api/copilotkit/threads?agentId=311-pulse-agent` → **404** (thread persistence not wired, so history is not saved).
+- **Suggested follow-up:** disable the announcements/inspector for the demo and either implement or silence the threads endpoint.
+
+### BUG-L — Stale data horizon — MEDIUM (data)
+- **Observed:** forecast/risk widgets read "As of 2026-04-30"; the "next 7 days" framing points at April data, not the current week.
+- **Suggested follow-up:** re-run the pipeline so the horizon is anchored to "now".
+
+---
+
+## What works (verified live)
+
+- App boots clean after the fixes — `errors: []` on a fresh browser; `GET / 200`.
+- Full shell renders: sidebar nav, Toronto Leaflet map (dark CARTO tiles), category pills, layer toggles (Heat/Hotspots/Risk/None), date-range, legend, status bar, and the agent chat panel with the redesigned suggested prompts.
+- `/dashboard` renders and is **populated with real data**: risk assessment (ward-03 = 62 HIGH, ward-12 = 61), top-predicted-hotspots forecast bars, "Powered by Nemotron · method: movingavg".
+- Backend reachable end-to-end: Nemotron (Spark) → Mastra tool (`getForecast`) → Convex → ranked wards → agent recommendation.
+- `agent/` and `app/` source both pass `tsc --noEmit` (excluding BUG-H test files).
+
+## Priority for the demo (golden path)
+
+1. **BUG-G** — stabilise the chat stream (faster model / longer timeout) so the forecast chart reliably renders in chat.
+2. **BUG-I** — import `daily_aggregates` so the map heat layer + trend chart light up.
+3. **BUG-L** — refresh the data horizon to the current week.
+4. **BUG-J / BUG-K** — tidy dead nav links + hide CopilotKit dev chrome.
+5. **BUG-H** — fix the stale tests so `npm run test:run` is green.

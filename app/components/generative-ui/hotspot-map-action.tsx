@@ -1,108 +1,89 @@
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Flame, MapPin } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { EmptyState } from "@/components/shared/empty-state";
 import { useMap311 } from "@/context/map-context";
+import { Badge } from "@/components/ui/badge";
 import type { Hotspot } from "@311pulse/contracts";
+import { CATEGORY_COLORS } from "@/lib/category-colors";
 
-interface HotspotMapActionProps {
+type HotspotMapActionProps = {
   data: Hotspot[];
-  category?: string;
-}
+  category?: string; // reserved for future per-category filtering
+};
 
-export function HotspotMapAction({ data }: HotspotMapActionProps) {
+export function HotspotMapAction({ data, category: _category }: HotspotMapActionProps) {
   const { pushHeatLayer, setActiveLayer } = useMap311();
 
   useEffect(() => {
-    if (data && data.length > 0) {
-      pushHeatLayer(data);
-      setActiveLayer("hotspot");
-    }
-    return () => {
-      setActiveLayer("none");
-    };
+    pushHeatLayer(data);
+    setActiveLayer("hotspot");
+    return () => setActiveLayer("none");
   }, [data, pushHeatLayer, setActiveLayer]);
 
-  if (!data || data.length === 0) {
-    return (
-      <EmptyState
-        icon={<Flame className="size-8 text-amber-500" />}
-        title="No hotspots detected"
-        subtitle="No significant clusters found for this category"
-      />
-    );
-  }
-
-  // Sort and take top 5
-  const topHotspots = [...data]
+  const topFive = [...data]
     .sort((a, b) => b.intensity - a.intensity)
     .slice(0, 5);
 
   return (
-    <Card className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4 space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-500">
-            <Flame className="size-5" />
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold tracking-tight text-foreground font-sans">
-              HOTSPOT CLUSTERS
-            </h3>
-            <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">
-              Density Analysis
-            </p>
-          </div>
+    <div className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4 space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div className="size-10 rounded-xl bg-amber-500/10 flex items-center justify-center">
+          <Flame className="h-5 w-5 text-amber-500" />
         </div>
-        <Badge variant="secondary" className="font-mono text-[9px]">
-          {data.length} CLUSTERS
+        <div>
+          <p className="text-xs font-black uppercase tracking-widest text-foreground">
+            Hotspot Clusters
+          </p>
+          <p className="text-[9px] text-muted-foreground font-bold uppercase tracking-widest">
+            Spatial analysis
+          </p>
+        </div>
+        <Badge variant="secondary" className="ml-auto text-[9px] font-black">
+          {data.length} clusters
         </Badge>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-xs text-left border-collapse">
-          <thead>
-            <tr className="border-b border-border/30 text-[9px] font-black uppercase tracking-widest text-muted-foreground">
-              <th className="pb-2 font-semibold">Ward / Area</th>
-              <th className="pb-2 text-center font-semibold">Intensity</th>
-              <th className="pb-2 text-right font-semibold">Volume</th>
-            </tr>
-          </thead>
-          <tbody>
-            {topHotspots.map((h, i) => (
-              <tr key={i} className="border-b border-border/10 last:border-0 hover:bg-muted/10">
-                <td className="py-2.5">
-                  <div className="font-bold text-foreground">{h.neighbourhood || h.wardId}</div>
-                  <div className="text-[10px] text-muted-foreground uppercase font-mono">{h.wardId}</div>
-                </td>
-                <td className="py-2.5 px-4">
-                  <div className="flex items-center gap-2 justify-center">
-                    <span className="font-mono text-[10px] text-muted-foreground w-8 text-right">
-                      {(h.intensity * 100).toFixed(0)}%
-                    </span>
-                    <div className="w-16 bg-muted/40 rounded-full h-1.5 overflow-hidden shrink-0">
-                      <div
-                        className="bg-amber-500 rounded-full h-full"
-                        style={{ width: `${h.intensity * 100}%` }}
-                      />
-                    </div>
-                  </div>
-                </td>
-                <td className="py-2.5 text-right font-mono font-bold text-foreground">
-                  {h.count}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Table */}
+      <div className="space-y-2">
+        {topFive.map((h, i) => {
+          const color = CATEGORY_COLORS[h.category] ?? CATEGORY_COLORS.other;
+          return (
+            <div
+              key={`${h.wardId}-${h.category}-${i}`}
+              className="flex items-center gap-3 p-2 rounded-xl bg-muted/30 hover:bg-muted/50 transition-colors"
+            >
+              <div
+                className="size-2 rounded-full shrink-0"
+                style={{ backgroundColor: color }}
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-[10px] font-black text-foreground truncate">{h.wardId}</p>
+                {h.neighbourhood && (
+                  <p className="text-[9px] text-muted-foreground truncate">{h.neighbourhood}</p>
+                )}
+              </div>
+              <div className="w-20 shrink-0">
+                <div className="h-1.5 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full rounded-full bg-primary/60"
+                    style={{ width: `${h.intensity * 100}%` }}
+                  />
+                </div>
+              </div>
+              <span className="text-[9px] font-black text-muted-foreground w-10 text-right shrink-0">
+                {h.count}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
-      <div className="flex items-center gap-1.5 text-[9px] text-amber-500 border-t border-border/20 pt-2 font-mono uppercase tracking-widest">
-        <MapPin className="size-3.5" />
-        <span>Hotspot markers plotted on the map above</span>
-      </div>
-    </Card>
+      {/* Footer */}
+      <p className="text-[9px] text-muted-foreground font-bold flex items-center gap-1">
+        <MapPin className="h-3 w-3" />
+        Showing on map ↑
+      </p>
+    </div>
   );
 }

@@ -1,9 +1,9 @@
 "use client";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import {
   BarChart,
   Bar,
+  Cell,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -11,126 +11,117 @@ import {
   ResponsiveContainer,
   ErrorBar,
 } from "recharts";
-import { BarChart3 } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { EmptyState } from "@/components/shared/empty-state";
+import { BarChart2 } from "lucide-react";
 import type { Forecast } from "@311pulse/contracts";
+import { EmptyState } from "@/components/shared/empty-state";
+import { CHART } from "@/lib/chart-theme";
 
-interface ForecastBarChartProps {
+type ForecastBarChartProps = {
   data: Forecast[];
   title?: string;
-}
+};
 
-interface CustomTooltipProps {
-  active?: boolean;
-  payload?: any[];
-}
-
-function CustomTooltip({ active, payload }: CustomTooltipProps) {
-  if (active && payload && payload.length) {
-    const item = payload[0].payload as Forecast;
-    return (
-      <div className="rounded-xl border border-border bg-card p-3 shadow-lg font-sans text-xs space-y-1">
-        <p className="font-bold text-foreground uppercase tracking-wider font-mono">
-          {item.wardId.toUpperCase()}
-        </p>
-        <p className="text-muted-foreground flex gap-1">
-          Predicted:{" "}
-          <span className="font-mono font-bold text-foreground">
-            {item.predictedCount}
-          </span>
-        </p>
-        <p className="text-muted-foreground/80 text-[10px] flex gap-1">
-          Confidence:{" "}
-          <span className="font-mono">
-            {item.confidenceLow} - {item.confidenceHigh}
-          </span>
-        </p>
-      </div>
-    );
-  }
-  return null;
-}
-
-export function ForecastBarChart({ data, title = "7-Day Complaint Forecast" }: ForecastBarChartProps) {
+const ForecastBarChart = React.memo(function ForecastBarChart({
+  data,
+  title = "Forecast",
+}: ForecastBarChartProps) {
   if (!data || data.length === 0) {
     return (
-      <EmptyState
-        icon={<BarChart3 className="size-8" />}
-        title="No forecast data"
-        subtitle="Try a different category or ward"
-      />
+      <div className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4">
+        <EmptyState
+          icon={<BarChart2 className="h-5 w-5" />}
+          title="No forecast data"
+          subtitle="Try a different category or ward"
+        />
+      </div>
     );
   }
 
-  // Sort by predictedCount descending to display ranked list
-  const sortedData = [...data].sort((a, b) => b.predictedCount - a.predictedCount);
-
-  // Confidence interval mapper for error bar
-  // ErrorBar expects an array of numbers representing relative offsets,
-  // or a custom data structure. In Recharts, ErrorBar bound to 'predictedCount'
-  // requires an array of low/high values or error values.
-  // Alternatively, we can pass [low, high] via error range.
-  // In Recharts, ErrorBar expects dataIndex/dataKey mapping:
-  const chartData = sortedData.map((d) => ({
-    ...d,
-    errorRange: [d.confidenceLow, d.confidenceHigh],
-  }));
+  const chartData = [...data]
+    .sort((a, b) => b.predictedCount - a.predictedCount)
+    .slice(0, 8)
+    .map((d) => ({
+      wardId: d.wardId,
+      predictedCount: d.predictedCount,
+      errorY: [
+        d.predictedCount - d.confidenceLow,
+        d.confidenceHigh - d.predictedCount,
+      ] as [number, number],
+      category: d.category,
+    }));
 
   return (
-    <Card className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4 space-y-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <div className="size-9 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
-            <BarChart3 className="size-5" />
-          </div>
-          <div>
-            <h3 className="text-sm font-semibold tracking-tight text-foreground">{title}</h3>
-            <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">
-              Forecast Model
-            </p>
-          </div>
+    <div className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4 space-y-4">
+      {/* Header */}
+      <div className="flex items-center gap-3">
+        <div className="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+          <BarChart2 className="h-5 w-5 text-primary" />
         </div>
-        <Badge variant="secondary" className="font-mono text-[9px] uppercase tracking-widest">
-          7-Day Horizon
-        </Badge>
+        <div>
+          <p className="text-xs font-black uppercase tracking-widest text-foreground">{title}</p>
+          <p className="text-[9px] text-muted-foreground font-bold uppercase tracking-widest">
+            7-Day Horizon
+          </p>
+        </div>
+        <span className="ml-auto text-[9px] font-black uppercase tracking-widest bg-primary/10 text-primary px-2 py-0.5 rounded-full">
+          {data[0]?.category ?? "all"}
+        </span>
       </div>
 
-      <div className="w-full h-[220px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart
-            data={chartData}
-            layout="vertical"
-            margin={{ top: 5, right: 15, left: -25, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(156, 163, 175, 0.15)" />
-            <XAxis type="number" hide />
-            <YAxis
-              dataKey="wardId"
-              type="category"
-              axisLine={false}
-              tickLine={false}
-              tick={{ fill: "var(--color-text-muted)", fontSize: 10, fontFamily: "var(--font-jetbrains-mono)" }}
-            />
-            <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(30, 94, 255, 0.05)" }} />
-            <Bar dataKey="predictedCount" fill="#1E5EFF" radius={[0, 6, 6, 0]} barSize={12}>
-              <ErrorBar
-                dataKey="errorRange"
-                width={4}
-                stroke="#1E5EFF"
-                strokeWidth={1.5}
-                opacity={0.4}
-              />
-            </Bar>
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
+      {/* Chart */}
+      <ResponsiveContainer width="100%" height={220}>
+        <BarChart
+          data={chartData}
+          layout="vertical"
+          margin={{ top: 0, right: 20, bottom: 0, left: 0 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke={CHART.grid} />
+          <XAxis
+            type="number"
+            tick={{ fontSize: 9, fill: CHART.muted, fontWeight: 700 }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <YAxis
+            type="category"
+            dataKey="wardId"
+            width={70}
+            tick={{ fontSize: 9, fill: CHART.muted, fontWeight: 700 }}
+            axisLine={false}
+            tickLine={false}
+          />
+          <Tooltip
+            cursor={{ fill: CHART.grid }}
+            contentStyle={{
+              background: CHART.card,
+              border: `1px solid ${CHART.border}`,
+              borderRadius: "12px",
+              fontSize: "10px",
+              fontWeight: 700,
+            }}
+            formatter={(value, _name, props) => {
+              const v = Number(value ?? 0);
+              const e = (props.payload as { errorY?: [number, number] } | undefined)?.errorY;
+              const lo = e ? Math.round(v - e[0]) : "—";
+              const hi = e ? Math.round(v + e[1]) : "—";
+              return [`${v} (${lo}–${hi})`, "Predicted (CI)"];
+            }}
+          />
+          <Bar dataKey="predictedCount" radius={[0, 6, 6, 0]}>
+            {chartData.map((entry, i) => (
+              <Cell key={entry.wardId} fill={i === 0 ? CHART.primary : CHART.mutedBar} />
+            ))}
+            <ErrorBar dataKey="errorY" width={4} strokeWidth={2} stroke={CHART.primarySoft} />
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
 
-      <div className="flex items-center justify-between text-[9px] text-muted-foreground/60 border-t border-border/20 pt-2 font-mono uppercase tracking-widest">
-        <span>Powered by Nemotron (NIM)</span>
-        <span>Method: {sortedData[0]?.method || "movingavg"}</span>
-      </div>
-    </Card>
+      {/* Footer */}
+      <p className="text-[9px] text-muted-foreground font-bold">
+        Powered by Nemotron · method: {data[0]?.method ?? "—"}
+      </p>
+    </div>
   );
-}
+});
+
+export { ForecastBarChart };

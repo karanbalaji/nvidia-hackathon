@@ -35,12 +35,12 @@ export const agent = new Agent({
   instructions: systemPrompt,
   model: getMastraModelConfig() as any,
   tools: {
-    pingTool,
-    getForecastTool,
-    getHotspotsTool,
-    getRiskScoreTool,
-    queryRequestsTool,
-    simulateWeatherTool,
+    ping: pingTool,
+    getForecast: getForecastTool,
+    getHotspots: getHotspotsTool,
+    getRiskScore: getRiskScoreTool,
+    queryRequests: queryRequestsTool,
+    simulateWeather: simulateWeatherTool,
   },
 });
 

@@ -10,11 +10,14 @@ export const getHotspotsTool = createTool({
   inputSchema: z.object({
     category: z.string().optional(),
   }),
-  execute: async (inputData) => {
+  execute: async (params) => {
     try {
-      const result = await getConvexClient().query(api.queries.getHotspots, {
-        category: inputData.category,
-      });
+      const input = ((params as { context?: unknown })?.context ?? params ?? {}) as {
+        category?: string;
+      };
+      const args: { category?: string } = {};
+      if (input.category) args.category = input.category;
+      const result = await getConvexClient().query(api.queries.getHotspots, args);
       return result ?? [];
     } catch (err) {
       console.error("[getHotspots] Convex query failed:", (err as Error).message);

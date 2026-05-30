@@ -1,15 +1,6 @@
-import React from "react";
+"use client";
 import { Badge } from "@/components/ui/badge";
-
-export const CATEGORY_COLOR: Record<string, string> = {
-  pothole: "#D97706",
-  garbage: "#65A30D",
-  flooding: "#2563EB",
-  graffiti: "#DB2777",
-  tree: "#059669",
-  noise: "#7C3AED",
-  other: "#64748B",
-};
+import { CATEGORY_COLORS } from "@/lib/category-colors";
 
 const CATEGORY_LABELS: Record<string, string> = {
   pothole: "Pothole",
@@ -19,35 +10,33 @@ const CATEGORY_LABELS: Record<string, string> = {
   tree: "Tree",
   noise: "Noise",
   other: "Other",
+  all: "All",
 };
 
-interface CategoryBadgeProps {
+type CategoryBadgeProps = {
   category: string;
   size?: "sm" | "md";
-}
+};
 
 export function CategoryBadge({ category, size = "md" }: CategoryBadgeProps) {
-  const normCat = category.toLowerCase();
-  const label = CATEGORY_LABELS[normCat] || "Unknown";
-  const color = CATEGORY_COLOR[normCat] || "#64748B";
+  const color = CATEGORY_COLORS[category] ?? CATEGORY_COLORS.other;
+  const label = CATEGORY_LABELS[category] ?? category;
 
   return (
     <Badge
       variant="outline"
-      className={`font-mono inline-flex items-center gap-1.5 border-border/50 bg-background/50 hover:bg-background/80 ${
-        size === "sm" ? "text-[10px] px-1.5 h-4.5" : "text-xs px-2 h-5.5"
-      }`}
+      className={size === "sm" ? "text-[8px] px-1.5 py-0 gap-1" : "text-[9px] px-2 py-0.5 gap-1.5"}
     >
       <span
-        className="shrink-0 rounded-full"
+        className="rounded-full shrink-0"
         style={{
-          width: size === "sm" ? "6px" : "8px",
-          height: size === "sm" ? "6px" : "8px",
+          width: size === "sm" ? "5px" : "6px",
+          height: size === "sm" ? "5px" : "6px",
           backgroundColor: color,
+          display: "inline-block",
         }}
-        data-testid="category-dot"
       />
-      <span>{label}</span>
+      {label}
     </Badge>
   );
 }

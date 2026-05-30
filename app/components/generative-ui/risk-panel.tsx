@@ -1,94 +1,99 @@
 "use client";
 import React, { useState } from "react";
-import { ChevronDown, ChevronUp, ShieldAlert } from "lucide-react";
-import { Card } from "@/components/ui/card";
-import { CategoryBadge } from "@/components/shared/category-badge";
+import type { RiskScore } from "@311pulse/contracts";
 import { RiskScoreBadge } from "@/components/shared/risk-score-badge";
+import { CategoryBadge } from "@/components/shared/category-badge";
 import { EmptyState } from "@/components/shared/empty-state";
 import { Button } from "@/components/ui/button";
-import type { RiskScore } from "@311pulse/contracts";
+import { AlertTriangle } from "lucide-react";
+import { severityBand } from "@/lib/severity";
 
-interface RiskPanelProps {
+type RiskPanelProps = {
   data: RiskScore[];
   wardId?: string;
-}
+};
 
-export function RiskPanel({ data }: RiskPanelProps) {
-  const [expanded, setExpanded] = useState(false);
+const RiskPanel = React.memo(function RiskPanel({ data, wardId }: RiskPanelProps) {
+  const [showAll, setShowAll] = useState(false);
 
   if (!data || data.length === 0) {
     return (
-      <EmptyState
-        icon={<ShieldAlert className="size-8 text-emerald-500" />}
-        title="No risk scores"
-        subtitle="No risk evaluations available for the active filters"
-      />
+      <div className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4">
+        <EmptyState
+          icon={<AlertTriangle className="h-5 w-5" />}
+          title="No risk data"
+          subtitle="No risk scores available for this ward"
+        />
+      </div>
     );
   }
 
-  // Sort by score descending
-  const sortedData = [...data].sort((a, b) => b.score - a.score);
-
-  // Determine display count
-  const limit = 4;
-  const displayedData = expanded ? sortedData : sortedData.slice(0, limit);
-  const hasMore = sortedData.length > limit;
-  const extraCount = sortedData.length - limit;
+  const sorted = [...data].sort((a, b) => b.score - a.score);
+  const visible = showAll ? sorted : sorted.slice(0, 4);
+  const hiddenCount = sorted.length - 4;
+  const topBand = severityBand(sorted[0]?.score ?? 0);
 
   return (
-    <div className="space-y-3 my-4">
-      {displayedData.map((item, i) => (
-        <Card
-          key={`${item.wardId}-${item.category}-${i}`}
-          className="rounded-2xl border border-border/50 bg-card/60 p-4 flex gap-4 items-center shadow-sm"
+    <div className="rounded-3xl border border-border/50 bg-background/50 backdrop-blur p-6 my-4 space-y-3">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-2">
+        <div
+          className="size-10 rounded-xl flex items-center justify-center"
+          style={{ background: `color-mix(in srgb, ${topBand.hex} 12%, transparent)` }}
         >
-          <div className="shrink-0">
-            <RiskScoreBadge score={item.score} showLabel={false} />
-          </div>
+          <AlertTriangle className="h-5 w-5" style={{ color: topBand.hex }} />
+        </div>
+        <div>
+          <p className="text-xs font-black uppercase tracking-widest text-foreground">Risk Assessment</p>
+          {wardId ? (
+            <p className="text-[9px] text-muted-foreground font-bold">{wardId}</p>
+          ) : (
+            <p className="text-[9px] font-black uppercase tracking-widest" style={{ color: topBand.hex }}>
+              Peak: {topBand.label}
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* Risk cards */}
+      {visible.map((r, i) => (
+        <div
+          key={`${r.wardId}-${r.category}-${i}`}
+          className="rounded-2xl border border-border/50 bg-card/60 p-4 flex gap-4"
+        >
+          <RiskScoreBadge score={r.score} showLabel />
           <div className="flex-1 min-w-0 space-y-1.5">
-            <div className="flex items-center justify-between gap-2">
-              <span className="font-mono font-bold text-foreground truncate">
-                {item.wardId.toUpperCase()}
-              </span>
-              <CategoryBadge category={item.category} size="sm" />
+            <div className="flex items-center gap-2 flex-wrap">
+              <p className="text-xs font-black text-foreground">{r.wardId}</p>
+              <CategoryBadge category={r.category} size="sm" />
             </div>
             <div className="flex flex-wrap gap-1">
-              {item.drivers.map((driver, idx) => (
+              {r.drivers.map((d: string) => (
                 <span
-                  key={idx}
-                  className="text-[9px] bg-muted/80 text-muted-foreground rounded-full px-2 py-0.5 font-bold tracking-wide border border-border/10"
+                  key={d}
+                  className="text-[9px] bg-muted rounded-full px-2 py-0.5 font-bold text-muted-foreground"
                 >
-                  {driver}
+                  {d}
                 </span>
               ))}
             </div>
-            <div className="text-[9px] text-muted-foreground/60 font-mono">
-              AS OF {item.asOf}
-            </div>
+            <p className="text-[9px] text-muted-foreground font-bold">As of {r.asOf}</p>
           </div>
-        </Card>
+        </div>
       ))}
 
-      {hasMore && (
+      {!showAll && hiddenCount > 0 && (
         <Button
           variant="ghost"
           size="sm"
-          onClick={() => setExpanded(!expanded)}
-          className="w-full text-xs font-bold font-mono tracking-wider text-primary hover:text-primary/80 flex items-center justify-center gap-1.5"
+          onClick={() => setShowAll(true)}
+          className="w-full text-[9px] font-black uppercase tracking-widest"
         >
-          {expanded ? (
-            <>
-              <span>Show Less</span>
-              <ChevronUp className="size-3.5" />
-            </>
-          ) : (
-            <>
-              <span>Show {extraCount} More</span>
-              <ChevronDown className="size-3.5" />
-            </>
-          )}
+          + {hiddenCount} more
         </Button>
       )}
     </div>
   );
-}
+});
+
+export { RiskPanel };

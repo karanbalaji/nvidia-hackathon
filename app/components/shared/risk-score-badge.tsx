@@ -1,24 +1,32 @@
-import React from "react";
+"use client";
 import { severityBand } from "@/lib/severity";
 
-interface RiskScoreBadgeProps {
+type RiskScoreBadgeProps = {
   score: number;
   showLabel?: boolean;
-}
+};
 
 export function RiskScoreBadge({ score, showLabel = false }: RiskScoreBadgeProps) {
-  const band = severityBand(score);
+  const { label, hex } = severityBand(score);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-1">
+    <div className="flex flex-col items-center gap-1">
       <div
-        className={`flex items-center justify-center rounded-full ring-2 font-mono text-base font-black w-10 h-10 ${band.textClass} ${band.ringClass} bg-background/30`}
+        className="size-12 rounded-full flex items-center justify-center font-black text-lg shrink-0 tabular-nums"
+        style={{
+          color: hex,
+          boxShadow: `inset 0 0 0 2px color-mix(in srgb, ${hex} 35%, transparent)`,
+          background: `color-mix(in srgb, ${hex} 8%, transparent)`,
+        }}
       >
-        {score}
+        {Math.round(score)}
       </div>
       {showLabel && (
-        <span className="text-[9px] font-black uppercase tracking-wider text-muted-foreground">
-          {band.label} Risk
+        <span
+          className="text-[9px] font-black uppercase tracking-widest"
+          style={{ color: hex }}
+        >
+          {label}
         </span>
       )}
     </div>

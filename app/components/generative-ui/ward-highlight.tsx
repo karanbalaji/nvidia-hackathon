@@ -2,18 +2,16 @@
 import { useEffect } from "react";
 import { useMap311 } from "@/context/map-context";
 
-interface WardHighlightProps {
+type WardHighlightProps = {
   wardIds: string[];
-}
+};
 
 export function WardHighlight({ wardIds }: WardHighlightProps) {
   const { highlightWards, clearHighlights } = useMap311();
 
   useEffect(() => {
-    highlightWards(wardIds);
-    return () => {
-      clearHighlights();
-    };
+    if (wardIds.length > 0) highlightWards(wardIds);
+    return () => clearHighlights();
   }, [wardIds, highlightWards, clearHighlights]);
 
   return null;

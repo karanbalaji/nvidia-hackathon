@@ -6,8 +6,8 @@ export const pingTool = createTool({
   description: "Health-check tool. Returns pong. Used to verify agent tool wiring.",
   inputSchema: z.object({ message: z.string().optional() }),
   outputSchema: z.object({ pong: z.string(), ts: z.string() }),
-  execute: async ({ context }) => ({
-    pong: context.message ?? "pong",
+  execute: async (inputData) => ({
+    pong: inputData.message ?? "pong",
     ts: new Date().toISOString(),
   }),
 });

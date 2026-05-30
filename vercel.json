@@ -1,6 +1,6 @@
 {
-  "installCommand": "cd app && npm install --include=optional --legacy-peer-deps",
-  "buildCommand": "cd app && npm run build",
-  "outputDirectory": ".next"
+  "installCommand": "npm install --include=optional --legacy-peer-deps",
+  "buildCommand": "npm run build --workspace=app",
+  "outputDirectory": "app/.next",
+  "framework": "nextjs"
 }
-

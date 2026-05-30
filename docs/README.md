@@ -8,7 +8,7 @@
 | [Phase 0 — Foundations](./00-foundations.md) | 🟢 Complete | `██████████████` 100% | Done — schema live at `wry-mandrill-452.convex.cloud` |
 | [Phase 1 — Data Pipeline](./01-data-pipeline.md) | 🔴 Not Started | `░░░░░░░░░░░░░░` 0% | Build `ingest_311.py` + CKAN fetch |
 | [Phase 2 — Backend & Agent](./02-backend-and-agent.md) | 🟡 In Progress | `███░░░░░░░░░░░` 20% | Deploy Convex, build Mastra tools |
-| [Phase 3 — Frontend & Generative UI](./03-frontend-and-generative-ui.md) | 🟡 In Progress | `████░░░░░░░░░░` 25% | Install Leaflet, build map component |
+| [Phase 3 — Frontend & Generative UI](./03-frontend-and-generative-ui.md) | 🟡 In Progress | `████░░░░░░░░░░` 25% | Redeploy on Vercel (clear cache) to verify Lightning CSS Linux binary, then build map component |
 | [Phase 4 — Polish & Submission](./04-polish-and-submission.md) | 🔴 Not Started | `░░░░░░░░░░░░░░` 0% | Blocked on Phases 1–3 golden path |
 
 **Overall:** ~35% complete · **Deadline:** Sun May 31, 11:00 AM

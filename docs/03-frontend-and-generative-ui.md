@@ -8,7 +8,7 @@
 | **Status** | 🟡 In Progress (shell built) |
 | **Completion** | `████░░░░░░░░░░` 25% |
 | **Last Updated** | 2026-05-30 |
-| **Updated By** | Claude Code — shell + layout build + full component specs added |
+| **Updated By** | Claude Code — shell + layout build + deploy stability fix (Lightning CSS Linux optional dep) |
 
 ### ✅ Completed
 - Three-pane shell layout (Clinical Lens-style): `LeftSidebar` + main content + `PulseChat`
@@ -21,12 +21,13 @@
 - `/dashboard` page with 4 widget placeholders
 - Dark mode default · Tailwind v4 CSS-first · `motion/react` animations
 - `npm run typecheck` ✅ · `npm run lint` ✅
+- Vercel Linux deploy stability fix: added `lightningcss-linux-x64-gnu` as `optionalDependencies` in `app/package.json` and refreshed lockfile
 
 ### ⏳ To Do
 See §1–§8 task lists below — every `- [ ]` is pending.
 
 ### 🔑 Next Action
-`cd app && npm install leaflet react-leaflet @types/leaflet` then build `TorontoMap`
+Trigger a fresh Vercel redeploy (clear cache) to validate Linux Lightning CSS binary resolution, then continue map work (`TorontoMap`)
 
 **Update this tracker after every component you build.**
 

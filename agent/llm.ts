@@ -17,7 +17,8 @@ export const MODEL =
     : (process.env.FALLBACK_MODEL ?? "gpt-4o-mini");
 
 type OpenAICompatibleConfig = {
-  id: `${string}/${string}`;
+  providerId: string;
+  modelId: string;
   url?: string;
   apiKey?: string;
 };
@@ -25,19 +26,22 @@ type OpenAICompatibleConfig = {
 export function getMastraModelConfig(): OpenAICompatibleConfig {
   const useNim = (process.env.LLM_PROVIDER ?? "nim") !== "fallback";
   if (useNim) {
-    const model = process.env.NIM_MODEL ?? "nvidia/nemotron-70b-instruct";
-    const id = (model.includes("/") ? model : `nim/${model}`) as `${string}/${string}`;
+    // Use providerId="openai-compatible" so Mastra keeps the full modelId
+    // (e.g. "nvidia/llama-3.1-nemotron-nano-8b-v1") when calling the API.
+    // If we used id="nvidia/model", Mastra would strip the "nvidia/" prefix.
+    const model = process.env.NIM_MODEL ?? "nvidia/llama-3.1-nemotron-nano-8b-v1";
     return {
-      id,
+      providerId: "openai-compatible",
+      modelId: model,
       url: process.env.NIM_BASE_URL ?? "http://localhost:8000/v1",
       apiKey: process.env.NIM_API_KEY ?? "not-needed",
     };
   }
-  const model = process.env.FALLBACK_MODEL ?? "gpt-4o-mini";
-  const id = (model.includes("/") ? model : `openai/${model}`) as `${string}/${string}`;
+  const model = process.env.FALLBACK_MODEL ?? "nvidia/llama-3.1-nemotron-nano-8b-v1";
   return {
-    id,
-    url: process.env.FALLBACK_BASE_URL ?? undefined,
+    providerId: "openai-compatible",
+    modelId: model,
+    url: process.env.FALLBACK_BASE_URL ?? "https://integrate.api.nvidia.com/v1",
     apiKey: process.env.FALLBACK_API_KEY ?? "not-needed",
   };
 }

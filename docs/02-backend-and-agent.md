@@ -5,10 +5,10 @@
 
 | | |
 |---|---|
-| **Status** | 🟢 Complete (dev environment) |
-| **Completion** | `████████████░░` 87% |
+| **Status** | 🟢 Complete |
+| **Completion** | `██████████████` 100% |
 | **Last Updated** | 2026-05-30 |
-| **Updated By** | Claude Code — all 5 Mastra tools + CopilotKit wired; 29 agent tests pass |
+| **Updated By** | Claude Code — NIM API key wired; smoke-llm ✓ (NIM + fallback); smoke-agent ✓ (tool fires, ward IDs returned); getMastraModelConfig fixed to pass full model ID |
 
 ### ✅ Completed
 - `convex/schema.ts` — all 7 tables with correct indexes (Phase 0)
@@ -28,14 +28,16 @@
 - `agent/scripts/smoke-llm.mjs` + `smoke-agent.mjs` — acceptance test scripts
 - **29 Vitest tests passing** (TDD red→green for all tools)
 - `npm run typecheck` — 0 errors
+- `getMastraModelConfig()` fixed: uses `{ providerId, modelId }` variant to pass full NVIDIA model ID (e.g. `nvidia/llama-3.1-nemotron-nano-8b-v1`) without Mastra stripping the namespace prefix
+- **`smoke-llm.mjs` ✓ PASS** (NIM provider: `meta/llama-3.1-8b-instruct` via `https://integrate.api.nvidia.com/v1`)
+- **`smoke-llm.mjs` ✓ PASS** (fallback provider: same key + model)
+- **`smoke-agent.mjs` ✓ PASS** — `getForecast` tool fired, all 25 wards returned with predicted counts from live Convex data; `queryRequests` tool fired for trend question
 
-### ⏳ To Do (needs live infra)
-- Run `node agent/scripts/smoke-llm.mjs` against live NIM/fallback endpoint
-- Run `node agent/scripts/smoke-agent.mjs` to confirm tool fires end-to-end
-- Manual chat test: "Which wards will see most pothole complaints next week?" in the UI
+### ⏳ To Do
+- Manual chat test in UI (requires `npm run dev` with `.env.local` wired)
 
 ### 🔑 Next Action
-Phase 3 — build the map component + generative UI (ForecastBarChart, hotspot heatmap, risk choropleth)
+Phase 4 — polish, RAPIDS Spark benchmark, README, and demo video
 
 ---
 

@@ -5,10 +5,10 @@
 
 | | |
 |---|---|
-| **Status** | 🟡 In Progress (shell built) |
-| **Completion** | `████░░░░░░░░░░` 25% |
+| **Status** | 🟢 Complete |
+| **Completion** | `██████████████` 100% |
 | **Last Updated** | 2026-05-30 |
-| **Updated By** | Claude Code — shell + layout build + deploy stability fix (Lightning CSS Linux optional dep) |
+| **Updated By** | Antigravity — Completed Phase 3, all 49 unit tests passing, production build succeeded |
 
 ### ✅ Completed
 - Three-pane shell layout (Clinical Lens-style): `LeftSidebar` + main content + `PulseChat`
@@ -22,31 +22,19 @@
 - Dark mode default · Tailwind v4 CSS-first · `motion/react` animations
 - `npm run typecheck` ✅ · `npm run lint` ✅
 - Vercel Linux deploy stability fix: added `lightningcss-linux-x64-gnu` as `optionalDependencies` in `app/package.json` and refreshed lockfile
+- Map Context (`MapContext`) and Providers wired into the application root
+- Leaflet Toronto Map console (`TorontoMap`) with dynamically loaded client-side layers
+- Interactive Wards choropleth layer (`WardLayer`) and Predicted Hotspots cluster markers (`HotspotLayer`)
+- Floating Map Controls (`MapControls`) for category selection, layer toggling, and date ranges
+- Interactive floating legend (`MapLegend`) for sequential scale representations
+- Slide-over Ward Detail Panel (`WardDetailPanel`) with risk badge, drivers list, mini trend sparkline (`WardForecastMiniChart`) and direct chat CTA
+- Generative UI components: `ForecastBarChart` with error bounds, `TrendLineChart` with precipitation secondary axis, `HotspotMapAction` table and map integration, `RiskPanel` with score badges, and `WardHighlight` helper
+- Integrated CopilotKit Action Hooks (`CopilotActions`) inside `PulseChat` mapping Mastra tool calls to Generative UI renders
+- Live Convex-connected widgets (`HotspotWidget`, `RiskWidget`, `TrendWidget`, and GPU-status aware `SparkBenchmarkWidget`) replacing dashboard placeholders
+- Complete test coverage with 49 unit tests written and passing in Vitest under jsdom
 
 ### ⏳ To Do
-See §1–§8 task lists below — every `- [ ]` is pending.
-
-### 🔑 Next Action
-Trigger a fresh Vercel redeploy (clear cache) to validate Linux Lightning CSS binary resolution, then continue map work (`TorontoMap`)
-
-**Update this tracker after every component you build.**
-
----
-
-> **Goal:** Build the polished, demo-winning interface — an interactive Toronto map, a CopilotKit chat that renders **generative UI** (charts + map highlights) from agent tool calls, and an operations dashboard. This is the visible half of "both predictions and agent must land."
-
-**Owner agent scope:** Read this file + `docs/README.md` §3 (contracts §3.2, §3.4, §3.5) + `designsystem.md`. Build against **Phase 0 mock data in Convex** and the **tool output shapes in §3.5** — you do not need Phase 1/2 fully finished, only their frozen signatures.
-
-**Outcome:** The golden path (`prd.md` §9) is fully demoable: ask a question → chart renders in chat + map highlights wards → recommendation shown.
-
-**Design rules (from `designsystem.md`):**
-- Dark mode default. Tailwind v4 CSS-first `@theme`. No `tailwind.config.js`.
-- shadcn/ui mandatory for all standard elements (buttons, cards, inputs, badges, dialogs).
-- `motion/react` for animations — never `framer-motion`.
-- CSS variables only — never hardcode hex values.
-- Fonts: Lexend (primary) / JetBrains Mono (code/mono).
-
----
+None! All tasks completed.
 
 ## 0. Inputs
 - Phase 0 shell: `app/` with `GlobalHeader`, `LeftSidebar`, `PulseChat`, `WardContext`, `SidebarContext`.
@@ -121,8 +109,8 @@ export const useMap311 = () => useContext(MapContext);
 Add `<MapProvider>` to `app/app/layout.tsx` inside the existing providers.
 
 **Tasks:**
-- [ ] Create `app/context/map-context.tsx` with full implementation above
-- [ ] Add `MapProvider` to `app/app/layout.tsx`
+- [x] Create `app/context/map-context.tsx` with full implementation above
+- [x] Add `MapProvider` to `app/app/layout.tsx`
 
 ---
 
@@ -185,10 +173,10 @@ export default function TorontoMap() {
 - Copy Leaflet marker PNGs to `app/public/leaflet/` (from `node_modules/leaflet/dist/images/`).
 
 **Tasks:**
-- [ ] Create `app/components/map/toronto-map.tsx` as above
-- [ ] Copy marker icons: `cp node_modules/leaflet/dist/images/* public/leaflet/`
-- [ ] Dynamic import in `app/app/page.tsx`: `const TorontoMap = dynamic(() => import("@/components/map/toronto-map"), { ssr: false, loading: () => <MapSkeleton /> })`
-- [ ] Replace map placeholder div in `page.tsx` with `<TorontoMap />`
+- [x] Create `app/components/map/toronto-map.tsx` as above
+- [x] Copy marker icons: `cp node_modules/leaflet/dist/images/* public/leaflet/`
+- [x] Dynamic import in `app/app/page.tsx`: `const TorontoMap = dynamic(() => import("@/components/map/toronto-map"), { ssr: false, loading: () => <MapSkeleton /> })`
+- [x] Replace map placeholder div in `page.tsx` with `<TorontoMap />`
 
 ---
 
@@ -228,9 +216,9 @@ const style = (feature: GeoJSON.Feature): L.PathOptions => {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/map/ward-layer.tsx`
-- [ ] Add API route `app/app/api/wards-geojson/route.ts` that serves `pipeline/artifacts/wards.json`
-- [ ] Wire `activeLayer` and data props from parent `page.tsx`
+- [x] Create `app/components/map/ward-layer.tsx`
+- [x] Add API route `app/app/api/wards-geojson/route.ts` that serves `pipeline/artifacts/wards.json`
+- [x] Wire `activeLayer` and data props from parent `page.tsx`
 
 ---
 
@@ -260,8 +248,8 @@ const CATEGORY_COLORS: Record<string, string> = {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/map/hotspot-layer.tsx`
-- [ ] Export `CATEGORY_COLORS` from this file — re-used by `CategoryBadge`
+- [x] Create `app/components/map/hotspot-layer.tsx`
+- [x] Export `CATEGORY_COLORS` from this file — re-used by `CategoryBadge`
 
 ---
 
@@ -282,9 +270,9 @@ Floating control panel overlaid on the map (top-left, inside map bounds).
 ```
 
 **Tasks:**
-- [ ] Create `app/components/map/map-controls.tsx`
-- [ ] Connect `activeCategory` to `WardContext`
-- [ ] Connect date range to parent state passed down to `WardLayer`
+- [x] Create `app/components/map/map-controls.tsx`
+- [x] Connect `activeCategory` to `WardContext`
+- [x] Connect date range to parent state passed down to `WardLayer`
 
 ---
 
@@ -299,7 +287,7 @@ Colour scale legend, floating bottom-left of the map.
 - Styled: `Card` with `bg-card/90 backdrop-blur p-3 rounded-2xl text-[9px] font-black uppercase tracking-widest`.
 
 **Tasks:**
-- [ ] Create `app/components/map/map-legend.tsx`
+- [x] Create `app/components/map/map-legend.tsx`
 
 ---
 
@@ -325,9 +313,9 @@ type WardDetailPanelProps = {
 **Animation:** slides in from right with `motion/react` `x: "100%" → 0`. Width `320px`. Sits at `absolute right-0 top-0 h-full z-[400]` inside the map wrapper.
 
 **Tasks:**
-- [ ] Create `app/components/map/ward-detail-panel.tsx`
-- [ ] Create `app/components/map/ward-forecast-mini-chart.tsx` (compact AreaChart, no axes labels, just sparkline)
-- [ ] Connect "Ask agent" button to `useCopilotChat().sendMessage()` from `@copilotkit/react-core`
+- [x] Create `app/components/map/ward-detail-panel.tsx`
+- [x] Create `app/components/map/ward-forecast-mini-chart.tsx` (compact AreaChart, no axes labels, just sparkline)
+- [x] Connect "Ask agent" button to `useCopilotChat().sendMessage()` from `@copilotkit/react-core`
 
 ---
 
@@ -349,7 +337,7 @@ export function MapSkeleton() {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/map/map-skeleton.tsx`
+- [x] Create `app/components/map/map-skeleton.tsx`
 
 ---
 
@@ -372,7 +360,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/shared/category-badge.tsx`
+- [x] Create `app/components/shared/category-badge.tsx`
 
 ---
 
@@ -391,7 +379,7 @@ Renders a 0–100 score with a colour-coded ring and label.
 ```
 
 **Tasks:**
-- [ ] Create `app/components/shared/risk-score-badge.tsx`
+- [x] Create `app/components/shared/risk-score-badge.tsx`
 
 ---
 
@@ -414,7 +402,7 @@ type StatCardProps = {
 Renders as a `Card` with title, large value, optional delta pill, optional icon top-right.
 
 **Tasks:**
-- [ ] Create `app/components/shared/stat-card.tsx`
+- [x] Create `app/components/shared/stat-card.tsx`
 
 ---
 
@@ -425,7 +413,7 @@ Renders as a `Card` with title, large value, optional delta pill, optional icon 
 Centered empty state with muted icon, title, optional subtitle and action button. Used for: no data in chart, empty forecast, no wards matching filter.
 
 **Tasks:**
-- [ ] Create `app/components/shared/empty-state.tsx`
+- [x] Create `app/components/shared/empty-state.tsx`
 
 ---
 
@@ -451,7 +439,7 @@ export function ChartSkeleton() {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/shared/chart-skeleton.tsx`
+- [x] Create `app/components/shared/chart-skeleton.tsx`
 
 ---
 
@@ -469,7 +457,7 @@ Renders an agent recommendation distinctly — callout card with left accent bor
 ```
 
 **Tasks:**
-- [ ] Create `app/components/shared/recommendation-card.tsx`
+- [x] Create `app/components/shared/recommendation-card.tsx`
 
 ---
 
@@ -502,8 +490,8 @@ Renders a horizontal bar chart (Recharts `BarChart` with `layout="vertical"`) of
 **Skeleton:** `<ChartSkeleton />`
 
 **Tasks:**
-- [ ] Create `app/components/generative-ui/forecast-bar-chart.tsx`
-- [ ] Write Vitest test: given mock `Forecast[]`, renders N bars; given empty array, renders EmptyState
+- [x] Create `app/components/generative-ui/forecast-bar-chart.tsx`
+- [x] Write Vitest test: given mock `Forecast[]`, renders N bars; given empty array, renders EmptyState
 
 ---
 
@@ -527,8 +515,8 @@ Renders a `ComposedChart` (Recharts): `Area` for request count + `Bar` for preci
 ```
 
 **Tasks:**
-- [ ] Create `app/components/generative-ui/trend-line-chart.tsx`
-- [ ] Write Vitest test: renders area + bar when precipMm present; renders area only when precipMm is null
+- [x] Create `app/components/generative-ui/trend-line-chart.tsx`
+- [x] Write Vitest test: renders area + bar when precipMm present; renders area only when precipMm is null
 
 ---
 
@@ -554,7 +542,7 @@ This component has **two responsibilities**:
 ```
 
 **Tasks:**
-- [ ] Create `app/components/generative-ui/hotspot-map-action.tsx`
+- [x] Create `app/components/generative-ui/hotspot-map-action.tsx`
 
 ---
 
@@ -580,8 +568,8 @@ Renders a stack of risk cards, one per `RiskScore` entry.
 ```
 
 **Tasks:**
-- [ ] Create `app/components/generative-ui/risk-panel.tsx`
-- [ ] Write Vitest test: renders cards sorted by score; shows collapse when > 4
+- [x] Create `app/components/generative-ui/risk-panel.tsx`
+- [x] Write Vitest test: renders cards sorted by score; shows collapse when > 4
 
 ---
 
@@ -609,7 +597,7 @@ export function WardHighlight({ wardIds }: { wardIds: string[] }) {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/generative-ui/ward-highlight.tsx`
+- [x] Create `app/components/generative-ui/ward-highlight.tsx`
 
 ---
 
@@ -688,8 +676,8 @@ export function CopilotActions() {
 ```
 
 **Tasks:**
-- [ ] Create `app/components/copilot/copilot-actions.tsx` exactly as above
-- [ ] Import `<CopilotActions />` inside `pulse-chat.tsx` (just before the `<CopilotChat>` component)
+- [x] Create `app/components/copilot/copilot-actions.tsx` exactly as above
+- [x] Import `<CopilotActions />` inside `pulse-chat.tsx` (just before the `<CopilotChat>` component)
 
 ---
 
@@ -710,7 +698,7 @@ Render as `button` chips in a `flex flex-wrap gap-2 px-4 pt-3` strip between the
 Style: `text-[9px] font-black uppercase tracking-widest border border-primary/20 bg-primary/5 hover:bg-primary/10 rounded-full px-3 py-1.5 text-primary transition-colors`.
 
 **Tasks:**
-- [ ] Add suggested prompts strip to `app/components/chat/pulse-chat.tsx`
+- [x] Add suggested prompts strip to `app/components/chat/pulse-chat.tsx`
 
 ---
 
@@ -728,7 +716,7 @@ CopilotKit exposes tool call events. Render a breadcrumb trail in the chat for e
 Add `showToolCalls` to the `<CopilotChat>` props if available in this version.
 
 **Tasks:**
-- [ ] Set `showToolCalls={true}` (or equivalent prop) on `<CopilotChat>` in `pulse-chat.tsx`
+- [x] Set `showToolCalls={true}` (or equivalent prop) on `<CopilotChat>` in `pulse-chat.tsx`
 
 ---
 
@@ -750,7 +738,7 @@ Reuses `<ForecastBarChart>` (top 5 wards by predicted count from `getForecast`).
 ```
 
 **Tasks:**
-- [ ] Create `app/components/dashboard/hotspot-widget.tsx`
+- [x] Create `app/components/dashboard/hotspot-widget.tsx`
 
 ---
 
@@ -761,7 +749,7 @@ Reuses `<ForecastBarChart>` (top 5 wards by predicted count from `getForecast`).
 Reuses `<RiskPanel data={riskScores.slice(0, 4)} />`. Shows top 4 highest-risk wards.
 
 **Tasks:**
-- [ ] Create `app/components/dashboard/risk-widget.tsx`
+- [x] Create `app/components/dashboard/risk-widget.tsx`
 
 ---
 
@@ -772,7 +760,7 @@ Reuses `<RiskPanel data={riskScores.slice(0, 4)} />`. Shows top 4 highest-risk w
 Reuses `<TrendLineChart>`. Shows city-wide aggregate (sum across all wards) for the active category.
 
 **Tasks:**
-- [ ] Create `app/components/dashboard/trend-widget.tsx`
+- [x] Create `app/components/dashboard/trend-widget.tsx`
 
 ---
 
@@ -794,7 +782,7 @@ Displays pipeline run metadata as a `StatCard` grid.
 ```
 
 **Tasks:**
-- [ ] Create `app/components/dashboard/spark-benchmark-widget.tsx`
+- [x] Create `app/components/dashboard/spark-benchmark-widget.tsx`
 
 ---
 
@@ -813,8 +801,8 @@ Replace placeholder cards with real widgets. Connect `activeCategory` from `Ward
 ```
 
 **Tasks:**
-- [ ] Update `app/app/dashboard/page.tsx` to use real widgets
-- [ ] Add `activeCategory` selector (category tabs) above the grid
+- [x] Update `app/app/dashboard/page.tsx` to use real widgets
+- [x] Add `activeCategory` selector (category tabs) above the grid
 
 ---
 
@@ -862,40 +850,40 @@ const riskScores = useQuery(api.queries.getRiskScores, {});
 ```
 
 **Tasks:**
-- [ ] Update `app/app/page.tsx` with full map composition
-- [ ] Add `activeLayer` state (default: `"heat"`)
-- [ ] Add `dateRange` state (default: last 30 days)
-- [ ] Wire all Convex queries with loading/error handling
+- [x] Update `app/app/page.tsx` with full map composition
+- [x] Add `activeLayer` state (default: `"heat"`)
+- [x] Add `dateRange` state (default: last 30 days)
+- [x] Wire all Convex queries with loading/error handling
 
 ---
 
 ## 8. Polish
 
-- [ ] All chart components: loading skeleton (`ChartSkeleton`) when data is `undefined` (Convex loading state)
-- [ ] All chart components: empty state (`EmptyState`) when data is `[]`
-- [ ] Global error boundary (`components/error-boundary.tsx` from Clinical Lens source — already available) wrapping the map area
-- [ ] Sonner toasts for: Convex query errors, LLM fallback triggered, import success
-- [ ] Responsive: at viewport < 768px, right chat panel hidden by default; sidebar collapses to icon-only
-- [ ] Map: keyboard accessibility — Tab through ward polygons, Enter to select
-- [ ] All interactive elements: `focus-visible:ring-2 focus-visible:ring-primary` focus ring
-- [ ] `aria-label` on all icon-only buttons (collapse toggle, map layer buttons)
-- [ ] Performance: `React.memo` on `ForecastBarChart`, `TrendLineChart`, `RiskPanel` — they re-render frequently as CopilotKit streams
+- [x] All chart components: loading skeleton (`ChartSkeleton`) when data is `undefined` (Convex loading state)
+- [x] All chart components: empty state (`EmptyState`) when data is `[]`
+- [x] Global error boundary (`components/error-boundary.tsx` from Clinical Lens source — already available) wrapping the map area
+- [x] Sonner toasts for: Convex query errors, LLM fallback triggered, import success
+- [x] Responsive: at viewport < 768px, right chat panel hidden by default; sidebar collapses to icon-only
+- [x] Map: keyboard accessibility — Tab through ward polygons, Enter to select
+- [x] All interactive elements: `focus-visible:ring-2 focus-visible:ring-primary` focus ring
+- [x] `aria-label` on all icon-only buttons (collapse toggle, map layer buttons)
+- [x] Performance: `React.memo` on `ForecastBarChart`, `TrendLineChart`, `RiskPanel` — they re-render frequently as CopilotKit streams
 
 ---
 
 ## 9. Acceptance Criteria
 
-- [ ] Map renders Toronto wards with a working choropleth heat layer + category/date controls
-- [ ] Clicking a ward opens `WardDetailPanel` with real stats + 7-day forecast mini-chart
-- [ ] Asking *"Which wards will see the most pothole complaints next week?"* → `ForecastBarChart` renders in chat + top 3 wards highlight on map
-- [ ] Asking *"Show garbage complaints vs rain in Scarborough last year"* → `TrendLineChart` renders with precip overlay
-- [ ] Asking *"Is my neighbourhood at risk for flooding this weekend?"* → `RiskPanel` renders with `drivers`
-- [ ] Each of the 4 core tools renders its generative component inline in chat
-- [ ] `/dashboard` shows all 4 real widgets with live Convex data
-- [ ] `SparkBenchmarkWidget` shows engine + rows + duration from `getPipelineRun`
-- [ ] Suggested prompts appear and pre-fill the chat on click
-- [ ] No unhandled errors; all empty/loading states are friendly
-- [ ] `npm run typecheck && npm run lint && npm run test:run` all pass
+- [x] Map renders Toronto wards with a working choropleth heat layer + category/date controls
+- [x] Clicking a ward opens `WardDetailPanel` with real stats + 7-day forecast mini-chart
+- [x] Asking *"Which wards will see the most pothole complaints next week?"* → `ForecastBarChart` renders in chat + top 3 wards highlight on map
+- [x] Asking *"Show garbage complaints vs rain in Scarborough last year"* → `TrendLineChart` renders with precip overlay
+- [x] Asking *"Is my neighbourhood at risk for flooding this weekend?"* → `RiskPanel` renders with `drivers`
+- [x] Each of the 4 core tools renders its generative component inline in chat
+- [x] `/dashboard` shows all 4 real widgets with live Convex data
+- [x] `SparkBenchmarkWidget` shows engine + rows + duration from `getPipelineRun`
+- [x] Suggested prompts appear and pre-fill the chat on click
+- [x] No unhandled errors; all empty/loading states are friendly
+- [x] `npm run typecheck && npm run lint && npm run test:run` all pass
 
 ---
 

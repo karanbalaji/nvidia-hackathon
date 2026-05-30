@@ -1,10 +1,8 @@
 import type { NextConfig } from "next";
-import path from "path";
 
 const nextConfig: NextConfig = {
-  turbopack: {
-    root: path.resolve(__dirname),
-  },
+  // @ts-expect-error bundler is supported in Next.js 16 runtime but not yet typed in NextConfig
+  bundler: "webpack",
 };
 
 export default nextConfig;

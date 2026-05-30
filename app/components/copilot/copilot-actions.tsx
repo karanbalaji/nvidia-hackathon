@@ -14,6 +14,21 @@ export function CopilotActions() {
   useCopilotAction({
     name: "getForecast",
     available: "remote",
+    description: "Retrieve 7-day service request count forecasts for a category and optional ward.",
+    parameters: [
+      {
+        name: "category",
+        type: "string",
+        description: "Service request category (e.g. pothole, flooding, garbage)",
+        required: false,
+      },
+      {
+        name: "wardId",
+        type: "string",
+        description: "Specific Toronto Ward ID (e.g. ward-14)",
+        required: false,
+      },
+    ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
       const data = result as Forecast[];
@@ -43,6 +58,33 @@ export function CopilotActions() {
   useCopilotAction({
     name: "queryRequests",
     available: "remote",
+    description: "Get historical complaint trend lines with precipitation and temperature correlations.",
+    parameters: [
+      {
+        name: "category",
+        type: "string",
+        description: "Service request category",
+        required: false,
+      },
+      {
+        name: "wardId",
+        type: "string",
+        description: "Specific Toronto Ward ID",
+        required: false,
+      },
+      {
+        name: "from",
+        type: "string",
+        description: "Start date (YYYY-MM-DD)",
+        required: false,
+      },
+      {
+        name: "to",
+        type: "string",
+        description: "End date (YYYY-MM-DD)",
+        required: false,
+      },
+    ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
       const data = result as DailyAggregate[];
@@ -57,6 +99,15 @@ export function CopilotActions() {
   useCopilotAction({
     name: "getHotspots",
     available: "remote",
+    description: "Retrieve active service request clustering hotspots for a category.",
+    parameters: [
+      {
+        name: "category",
+        type: "string",
+        description: "Service request category",
+        required: false,
+      },
+    ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
       return (
@@ -70,6 +121,15 @@ export function CopilotActions() {
   useCopilotAction({
     name: "getRiskScore",
     available: "remote",
+    description: "Get predictive risk scoring and risk drivers for specific wards.",
+    parameters: [
+      {
+        name: "wardId",
+        type: "string",
+        description: "Specific Toronto Ward ID",
+        required: false,
+      },
+    ],
     render: ({ status, result }) => {
       if (status !== "complete") return <ChartSkeleton />;
       const data = result as RiskScore[];

@@ -1,0 +1,127 @@
+[
+  {
+    "wardId": "ward-01",
+    "wardName": "Etobicoke North",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-02",
+    "wardName": "Etobicoke Centre",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-03",
+    "wardName": "Etobicoke-Lakeshore",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-04",
+    "wardName": "Parkdale-High Park",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-05",
+    "wardName": "York South-Weston",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-06",
+    "wardName": "York Centre",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-07",
+    "wardName": "Humber River-Black Creek",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-08",
+    "wardName": "Eglinton-Lawrence",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-09",
+    "wardName": "Davenport",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-10",
+    "wardName": "Spadina-Fort York",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-11",
+    "wardName": "University-Rosedale",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-12",
+    "wardName": "Toronto-St. Paul's",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-13",
+    "wardName": "Toronto Centre",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-14",
+    "wardName": "Toronto-Danforth",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-15",
+    "wardName": "Don Valley West",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-16",
+    "wardName": "Don Valley East",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-17",
+    "wardName": "Don Valley North",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-18",
+    "wardName": "Willowdale",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-19",
+    "wardName": "Beaches-East York",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-20",
+    "wardName": "Scarborough Southwest",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-21",
+    "wardName": "Scarborough Centre",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-22",
+    "wardName": "Scarborough-Agincourt",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-23",
+    "wardName": "Scarborough North",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-24",
+    "wardName": "Scarborough-Guildwood",
+    "neighbourhoods": []
+  },
+  {
+    "wardId": "ward-25",
+    "wardName": "Scarborough-Rouge Park",
+    "neighbourhoods": []
+  }
+]

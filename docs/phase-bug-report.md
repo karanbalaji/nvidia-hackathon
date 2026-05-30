@@ -6,11 +6,11 @@
 
 ## Summary
 
-| Severity | Count | Blocking golden path? |
+|Severity|Count|Blocking golden path?|
 |---|---|---|
-| 🔴 CRITICAL | 3 | Yes — all 3 block the golden path |
-| 🟡 MEDIUM | 3 | Degraded UX, partial data loss |
-| 🟢 LOW | 3 | Cosmetic / non-functional stubs |
+|🔴 CRITICAL|4|Yes — blocking core navigation|
+|🟡 MEDIUM|6|Degraded UX, partial data loss, missing pages|
+|🟢 LOW|4|Cosmetic / non-functional stubs|
 
 ---
 
@@ -126,6 +126,14 @@ for (let i = 0; i < dailyAggregates.length; i += BATCH_SIZE) {
 
 ---
 
+### BUG-10 — Missing Pages for core navigation (Wards, Alerts, Settings)
+
+**Symptom:** Clicking "Wards", "Alert Center", or "System Settings" in the sidebar results in a Next.js 404 page.
+**Root cause:** The directories `app/app/wards`, `app/app/alerts`, and `app/app/settings` do not exist, but links are present in `app/components/layout/left-sidebar.tsx`.
+**Impact:** Users cannot access key features of the application.
+
+---
+
 ## 🟡 MEDIUM BUGS
 
 ---
@@ -202,6 +210,13 @@ ward-10  other  59  ['above-baseline request volume']
 
 ---
 
+### BUG-11 — Redundant Chat Headers and "Web Inspector" banner
+
+**Symptom:** The chat panel shows "311 Pulse Agent" twice — once in the custom header and once injected by `CopilotChat` labels. A "Web Inspector" button and premium paywall banners also clutter the UI.
+**Impact:** Cluttered UI, unprofessional appearance.
+
+---
+
 ## 🟢 LOW / COSMETIC
 
 ---
@@ -233,6 +248,13 @@ ward-10  other  59  ['above-baseline request volume']
 
 ---
 
+### BUG-12 — Dashboard "No trend data" visual state
+
+**Symptom:** The Trend Widget explicitly displays "No trend data" when `daily_aggregates` is empty.
+**Impact:** Confirms BUG-03 and provides a poor first-load experience.
+
+---
+
 ## Fix Priority Order
 
 | Order | Bug | Effort | Impact |
@@ -240,11 +262,13 @@ ward-10  other  59  ['above-baseline request volume']
 | 1 | **BUG-02** — Enable CopilotKit actions (remove `available: "disabled"`) | 5 min | Unblocks entire generative UI |
 | 2 | **BUG-01** — Replace `useCopilotChatHeadless_c` → `useCopilotChat` | 15 min | Fixes suggested queries + removes paywall banner |
 | 3 | **BUG-03** — Import `daily_aggregates` into Convex | 1–2 hrs | Fixes trend chart + historical queries |
-| 4 | **BUG-05** — Fix agent `llm.ts` test failures | 10 min | Green CI |
-| 5 | **BUG-04** — `activeCategory` guard in TrendWidget | 2 min | Prevents future regression |
-| 6 | **BUG-06** — Risk Widget category filter | 20 min | Better dashboard data quality |
-| 7 | **BUG-09** — Re-run pipeline for fresh forecasts | 5 min (run) | Stale data fix |
-| 8 | **BUG-07, BUG-08** | Low | Cosmetic polish |
+| 4 | **BUG-10** — Implement missing pages (Wards, Alerts, Settings) | 4 hrs | Restores core app functionality |
+| 5 | **BUG-05** — Fix agent `llm.ts` test failures | 10 min | Green CI |
+| 6 | **BUG-04** — `activeCategory` guard in TrendWidget | 2 min | Prevents future regression |
+| 7 | **BUG-06** — Risk Widget category filter | 20 min | Better dashboard data quality |
+| 8 | **BUG-11** — Clean up redundant chat headers | 30 min | Improved visual polish |
+| 9 | **BUG-09** — Re-run pipeline for fresh forecasts | 5 min (run) | Stale data fix |
+| 10 | **BUG-07, BUG-08, BUG-12** | Low | Cosmetic polish |
 
 ---
 
@@ -278,3 +302,4 @@ ward-10  other  59  ['above-baseline request volume']
 - ❌ Trend Widget on Dashboard (BUG-03 — no daily_aggregates in Convex)
 - ❌ Historical trend queries via agent `queryRequests` tool (BUG-03)
 - ❌ Premium CopilotKit banner polluting chat UI (BUG-01)
+- ❌ Wards, Alerts, Settings pages (404)

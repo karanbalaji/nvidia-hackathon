@@ -1,11 +1,15 @@
 "use client";
 import { useQuery } from "convex/react";
 import { api } from "@/lib/convex";
+import { useWard } from "@/context/ward-context";
 import { RiskPanel } from "@/components/generative-ui/risk-panel";
 import { ChartSkeleton } from "@/components/shared/chart-skeleton";
 
 export function RiskWidget() {
-  const riskScores = useQuery(api.queries.getRiskScores, {});
+  const { activeCategory } = useWard();
+  const riskScores = useQuery(api.queries.getRiskScores, {
+    category: activeCategory !== "all" ? activeCategory : undefined,
+  });
 
   if (riskScores === undefined) return <ChartSkeleton />;
 

@@ -41,24 +41,30 @@ describe("getMastraModelConfig", () => {
     vi.resetModules();
     const { getMastraModelConfig } = await import("../llm.js");
     const cfg = getMastraModelConfig() as any;
-    expect(cfg.id).toBe("nvidia/nemotron-70b-instruct");
+    // getMastraModelConfig returns { providerId, modelId } so Mastra passes
+    // the full model path to the API without stripping the namespace prefix
+    expect(cfg.modelId).toBe("nvidia/nemotron-70b-instruct");
+    expect(cfg.providerId).toBe("openai-compatible");
     expect(cfg.url).toBe("http://localhost:8000/v1");
   });
 
-  it("prefixes openai/ for fallback model without slash", async () => {
-    process.env = { ...savedEnv, LLM_PROVIDER: "fallback", FALLBACK_MODEL: "gpt-4o-mini" };
+  it("returns fallback config with full model id", async () => {
+    process.env = { ...savedEnv, LLM_PROVIDER: "fallback", FALLBACK_MODEL: "meta/llama-3.1-8b-instruct" };
     vi.resetModules();
     const { getMastraModelConfig } = await import("../llm.js");
     const cfg = getMastraModelConfig() as any;
-    expect(cfg.id).toBe("openai/gpt-4o-mini");
+    expect(cfg.modelId).toBe("meta/llama-3.1-8b-instruct");
+    expect(cfg.providerId).toBe("openai-compatible");
   });
 
-  it("keeps existing slash in fallback model id", async () => {
-    process.env = { ...savedEnv, LLM_PROVIDER: "fallback", FALLBACK_MODEL: "openai/gpt-4o" };
+  it("falls back to default NIM model when NIM_MODEL not set", async () => {
+    const env = { ...savedEnv, LLM_PROVIDER: "nim" };
+    delete env.NIM_MODEL;
+    process.env = env;
     vi.resetModules();
     const { getMastraModelConfig } = await import("../llm.js");
     const cfg = getMastraModelConfig() as any;
-    expect(cfg.id).toBe("openai/gpt-4o");
+    expect(cfg.modelId).toBe("nvidia/llama-3.1-nemotron-nano-8b-v1");
   });
 });
 

@@ -2,15 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@311pulse/agent", "@311pulse/contracts"],
-  webpack: (config) => {
-    // Resolve .js imports to .ts files — needed for ESM TypeScript workspace packages
-    config.resolve.extensionAlias = {
-      ...config.resolve.extensionAlias,
-      ".js": [".ts", ".tsx", ".js", ".jsx"],
-      ".mjs": [".mts", ".mjs"],
-    };
-    return config;
-  },
+  // Turbopack resolves .js imports to .ts natively — no config needed.
+  // The empty object silences the "webpack config without turbopack config" warning.
+  turbopack: {},
 };
 
 export default nextConfig;

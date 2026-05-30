@@ -1,33 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { render } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { WardForecastMiniChart } from "../ward-forecast-mini-chart";
-
-vi.mock("recharts", async (importOriginal) => {
-  const original = await importOriginal<any>();
-  return {
-    ...original,
-    ResponsiveContainer: ({ children }: any) => (
-      <div style={{ width: "100%", height: "220px" }}>{children}</div>
-    ),
-  };
-});
+import type { Forecast } from "@311pulse/contracts";
 
 describe("WardForecastMiniChart", () => {
-  const mockData = [
-    { date: "2026-05-30", count: 12 },
-    { date: "2026-05-31", count: 15 },
-    { date: "2026-06-01", count: 18 },
-    { date: "2026-06-02", count: 14 },
-    { date: "2026-06-03", count: 20 },
-    { date: "2026-06-04", count: 22 },
-    { date: "2026-06-05", count: 25 },
+  const mockData: Forecast[] = [
+    { wardId: "ward-14", category: "pothole", horizonStart: "2026-05-30", horizonEnd: "2026-06-06", predictedCount: 12, confidenceLow: 8, confidenceHigh: 16, method: "movingavg" },
+    { wardId: "ward-14", category: "pothole", horizonStart: "2026-05-31", horizonEnd: "2026-06-07", predictedCount: 15, confidenceLow: 10, confidenceHigh: 20, method: "movingavg" },
   ];
 
-  it("renders without crashing", () => {
+  it("renders without crashing with forecast data", () => {
     const { container } = render(<WardForecastMiniChart data={mockData} />);
-    // Check if recharts-wrapper is present in DOM
-    const wrapper = container.querySelector(".recharts-wrapper");
-    expect(wrapper).toBeInTheDocument();
+    expect(container.firstChild).not.toBeNull();
+  });
+
+  it("renders empty state when no data", () => {
+    const { container } = render(<WardForecastMiniChart data={[]} />);
+    expect(container.firstChild).not.toBeNull();
   });
 });

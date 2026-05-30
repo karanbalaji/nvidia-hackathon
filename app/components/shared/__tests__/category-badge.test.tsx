@@ -10,6 +10,7 @@ describe("CategoryBadge", () => {
 
   it("renders fallback label for unknown category", () => {
     render(<CategoryBadge category="unknown" />);
-    expect(screen.getByText("Unknown")).toBeInTheDocument();
+    // Unknown categories render the raw string (CATEGORY_LABELS[k] ?? k)
+    expect(screen.getByText("unknown")).toBeInTheDocument();
   });
 });

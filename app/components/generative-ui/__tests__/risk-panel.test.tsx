@@ -14,19 +14,22 @@ const mockRiskScores: RiskScore[] = [
 describe("RiskPanel", () => {
   it("renders risk scores sorted in descending order", () => {
     render(<RiskPanel data={mockRiskScores} />);
-    expect(screen.getByText("WARD-03")).toBeInTheDocument();
-    expect(screen.getByText("WARD-01")).toBeInTheDocument();
+    // Sorted descending: ward-03 (95) first, ward-01 (82) next
+    expect(screen.getByText("ward-03")).toBeInTheDocument();
+    expect(screen.getByText("ward-01")).toBeInTheDocument();
   });
 
   it('shows "+ N more" button and limits list to 4 items by default', () => {
     render(<RiskPanel data={mockRiskScores} />);
-    expect(screen.getByText(/Show 1 More/i)).toBeInTheDocument();
+    // 5 items total, 4 shown, 1 hidden → "+ 1 more"
+    expect(screen.getByText(/\+ 1 more/i)).toBeInTheDocument();
   });
 
   it("expands the list when Show More is clicked", () => {
     render(<RiskPanel data={mockRiskScores} />);
-    const button = screen.getByText(/Show 1 More/i);
+    const button = screen.getByText(/\+ 1 more/i);
     fireEvent.click(button);
-    expect(screen.getByText(/Show Less/i)).toBeInTheDocument();
+    // After expanding, ward-02 (score 45, previously hidden) should be visible
+    expect(screen.getByText("ward-02")).toBeInTheDocument();
   });
 });

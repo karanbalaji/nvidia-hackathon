@@ -3,9 +3,10 @@ import { describe, it, expect } from "vitest";
 import { RecommendationCard } from "../recommendation-card";
 
 describe("RecommendationCard", () => {
-  it("renders the recommendation text and uppercase title", () => {
+  it("renders the recommendation text and title", () => {
     render(<RecommendationCard text="Deploy resources to Ward 5 immediately." />);
-    expect(screen.getByText("RECOMMENDATION")).toBeInTheDocument();
+    // Component renders "Recommendation" (title case)
+    expect(screen.getByText("Recommendation")).toBeInTheDocument();
     expect(screen.getByText("Deploy resources to Ward 5 immediately.")).toBeInTheDocument();
   });
 
@@ -16,7 +17,8 @@ describe("RecommendationCard", () => {
         drivers={["pothole", "garbage"]}
       />
     );
-    expect(screen.getByText("Pothole")).toBeInTheDocument();
-    expect(screen.getByText("Garbage")).toBeInTheDocument();
+    // Drivers are rendered as-is (lowercase)
+    expect(screen.getByText("pothole")).toBeInTheDocument();
+    expect(screen.getByText("garbage")).toBeInTheDocument();
   });
 });

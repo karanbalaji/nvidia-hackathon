@@ -1,4 +1,4 @@
-import { mutation } from "./_generated/server";
+import { mutation, internalMutation } from "./_generated/server";
 import { v } from "convex/values";
 
 export const importArtifacts = mutation({
@@ -40,6 +40,14 @@ export const importArtifacts = mutation({
       period: v.string(),
       summary: v.string(),
     }))),
+    dailyAggregates: v.optional(v.array(v.object({
+      date: v.string(),
+      wardId: v.string(),
+      category: v.string(),
+      count: v.number(),
+      tempC: v.union(v.number(), v.null()),
+      precipMm: v.union(v.number(), v.null()),
+    }))),
     pipelineRun: v.optional(v.object({
       runId: v.string(),
       engine: v.string(),
@@ -69,9 +77,23 @@ export const importArtifacts = mutation({
       for await (const existing of ctx.db.query("summaries")) await ctx.db.delete(existing._id);
       for (const s of args.summaries) await ctx.db.insert("summaries", s);
     }
+    if (args.dailyAggregates) {
+      for (const row of args.dailyAggregates) await ctx.db.insert("dailyAggregates", row);
+    }
     if (args.pipelineRun) {
       for await (const existing of ctx.db.query("pipelineRuns")) await ctx.db.delete(existing._id);
       await ctx.db.insert("pipelineRuns", args.pipelineRun);
+    }
+    return { ok: true };
+  },
+});
+
+// Called once before batch-importing daily aggregates to clear stale rows
+export const clearDailyAggregates = mutation({
+  args: {},
+  handler: async (ctx) => {
+    for await (const row of ctx.db.query("dailyAggregates")) {
+      await ctx.db.delete(row._id);
     }
     return { ok: true };
   },

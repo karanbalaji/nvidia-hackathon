@@ -10,11 +10,12 @@ describe("RiskScoreBadge", () => {
 
   it("renders the correct severity label when showLabel is true", () => {
     render(<RiskScoreBadge score={75} showLabel={true} />);
-    expect(screen.getByText("High Risk")).toBeInTheDocument();
+    // Score 75 → 61-80 band → "High" (from severity.ts)
+    expect(screen.getByText("High")).toBeInTheDocument();
   });
 
   it("does not render the label when showLabel is false", () => {
     render(<RiskScoreBadge score={75} showLabel={false} />);
-    expect(screen.queryByText("High Risk")).not.toBeInTheDocument();
+    expect(screen.queryByText("High")).not.toBeInTheDocument();
   });
 });

@@ -28,9 +28,10 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./"),
-      // Use mocks that return lightweight stubs (no React.useContext)
+      // Use mocks that return lightweight stubs (no React.useContext / useSyncExternalStore)
       "lucide-react": path.resolve(__dirname, "./__mocks__/lucide-react.tsx"),
       "recharts": path.resolve(__dirname, "./__mocks__/recharts.tsx"),
+      "@base-ui/react/button": path.resolve(__dirname, "./__mocks__/@base-ui-button.tsx"),
       "react": path.resolve(__dirname, "../node_modules/react"),
       "react-dom": path.resolve(__dirname, "../node_modules/react-dom"),
     },

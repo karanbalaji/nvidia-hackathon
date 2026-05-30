@@ -27,7 +27,7 @@ export function HotspotWidget() {
           <p className="text-[9px] text-muted-foreground">Next 7 days</p>
         </div>
       </div>
-      <ForecastBarChart data={forecasts.slice(0, 5)} title="Top Predicted Hotspots" />
+      <ForecastBarChart data={forecasts.slice(0, 5)} />
     </div>
   );
 }

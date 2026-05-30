@@ -49,12 +49,16 @@ export const getHotspots = query({
   },
 });
 
-// getRiskScores({ wardId? }): RiskScore[]
+// getRiskScores({ wardId?, category? }): RiskScore[]
 export const getRiskScores = query({
-  args: { wardId: v.optional(v.string()) },
-  handler: async (ctx, { wardId }) => {
+  args: {
+    wardId: v.optional(v.string()),
+    category: v.optional(v.string()),
+  },
+  handler: async (ctx, { wardId, category }) => {
     let rows = await ctx.db.query("riskScores").collect();
     if (wardId) rows = rows.filter((r) => r.wardId === wardId);
+    if (category) rows = rows.filter((r) => r.category === category);
     return rows.sort((a, b) => b.score - a.score);
   },
 });

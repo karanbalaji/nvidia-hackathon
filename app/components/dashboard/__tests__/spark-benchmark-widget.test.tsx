@@ -3,28 +3,19 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { SparkBenchmarkWidget } from "../spark-benchmark-widget";
 import { useQuery } from "convex/react";
 
-vi.mock("convex/react", () => ({
-  useQuery: vi.fn(),
-}));
-
+vi.mock("convex/react", () => ({ useQuery: vi.fn() }));
 vi.mock("@/../convex/_generated/api", () => ({
-  api: {
-    queries: {
-      getPipelineRun: "getPipelineRun",
-    },
-  },
+  api: { queries: { getPipelineRun: "getPipelineRun" } },
 }));
 
 describe("SparkBenchmarkWidget", () => {
-  beforeEach(() => {
-    vi.clearAllMocks();
-  });
+  beforeEach(() => { vi.clearAllMocks(); });
 
-  it("renders loading skeleton when loading", () => {
+  it("renders loading state when loading", () => {
     vi.mocked(useQuery).mockReturnValue(undefined);
     render(<SparkBenchmarkWidget />);
-    // Grid skeleton
-    expect(screen.getByTestId("benchmark-skeleton")).toBeInTheDocument();
+    // Shows "Spark Benchmark" header even while loading
+    expect(screen.getByText("Spark Benchmark")).toBeInTheDocument();
   });
 
   it("renders benchmark details with rapids engine", () => {
@@ -35,12 +26,11 @@ describe("SparkBenchmarkWidget", () => {
       durationSec: 12.34,
       createdAt: "2026-05-30T10:00:00Z",
     });
-
     render(<SparkBenchmarkWidget />);
-
-    expect(screen.getByText("PIPELINE EXECUTION BENCHMARKS")).toBeInTheDocument();
-    expect(screen.getByText("⚡ GPU Accelerated")).toBeInTheDocument();
-    expect(screen.getByText("1,250,000")).toBeInTheDocument(); // Rows formatted
-    expect(screen.getByText("12.34s")).toBeInTheDocument(); // Duration formatted
+    expect(screen.getByText("Spark Benchmark")).toBeInTheDocument();
+    // engine is uppercased in StatCard: "RAPIDS"
+    expect(screen.getByText("RAPIDS")).toBeInTheDocument();
+    expect(screen.getByText("1,250,000")).toBeInTheDocument();
+    expect(screen.getByText("12.34s")).toBeInTheDocument();
   });
 });

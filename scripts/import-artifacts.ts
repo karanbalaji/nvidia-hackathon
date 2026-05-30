@@ -8,6 +8,7 @@
 
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 import { ConvexHttpClient } from "convex/browser";
 import {
   WardArraySchema,
@@ -57,10 +58,22 @@ async function main() {
   const pipelineRun = PipelineRunSchema.parse(rawRun);
   console.log(`  pipeline_run: ${pipelineRun.runId}`);
 
+  // Read daily_aggregates parquet via Python (pandas already installed for pipeline)
+  const parquetPath = path.join(ARTIFACTS, "daily_aggregates.parquet");
+  let dailyAggregates: { date: string; wardId: string; category: string; count: number; tempC: number | null; precipMm: number | null }[] = [];
+  if (fs.existsSync(parquetPath)) {
+    const jsonOut = execSync(
+      `python3 -c "import pandas as pd, json, sys; df=pd.read_parquet('${parquetPath}'); df['tempC']=df['tempC'].where(df['tempC'].notna(), None); df['precipMm']=df['precipMm'].where(df['precipMm'].notna(), None); print(json.dumps(df.to_dict('records')))"`,
+      { maxBuffer: 64 * 1024 * 1024 }
+    ).toString();
+    dailyAggregates = JSON.parse(jsonOut);
+    console.log(`  daily_aggregates: ${dailyAggregates.length} records`);
+  } else {
+    console.warn("  daily_aggregates.parquet not found — skipping");
+  }
+
   console.log("\nImporting into Convex...");
 
-  // Note: daily_aggregates are large — imported separately in Phase 2 in batches.
-  // For Phase 0, we import everything except the big parquet file.
   await (client as any).mutation("mutations:importArtifacts", {
     wards,
     forecasts,
@@ -69,6 +82,20 @@ async function main() {
     summaries: rawSummaries,
     pipelineRun,
   });
+
+  // Batch-import daily aggregates to stay within Convex's 8MB mutation limit
+  if (dailyAggregates.length > 0) {
+    console.log("  clearing existing dailyAggregates...");
+    await (client as any).mutation("mutations:clearDailyAggregates", {});
+    const BATCH = 2000;
+    const total = dailyAggregates.length;
+    for (let i = 0; i < total; i += BATCH) {
+      const slice = dailyAggregates.slice(i, i + BATCH);
+      await (client as any).mutation("mutations:importArtifacts", { dailyAggregates: slice });
+      process.stdout.write(`\r  daily_aggregates: ${Math.min(i + BATCH, total)}/${total}`);
+    }
+    console.log("\n  ✓ daily_aggregates imported");
+  }
 
   console.log("✓ Import complete");
 }

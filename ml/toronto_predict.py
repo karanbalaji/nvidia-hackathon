@@ -201,36 +201,6 @@ def main(data_dir, output_dir):
         pred = predict_snow_event(model_snow, start_month=1, start_day_of_week=0, snow_depth_cm=snow_cm, duration_days=1)
         print(f' - Snow Depth {snow_cm}cm: {pred} requests')
 
-    # --- 5. Geospatial Analysis and Plotting ---
-    print("\n--- Generating Geospatial Plots ---")
-    pothole_ward = train_df[train_df['Service Request Type'].str.contains('Pot hole', case=False, na=False)].copy()
-    ward_counts = pothole_ward['Ward'].value_counts().reset_index()
-    ward_counts.columns = ['Ward_Name', 'Pothole_Request_Count']
-
-    geojson_url = "https://raw.githubusercontent.com/jdupuis/toronto_ward_boundaries/master/toronto_wards_2018_25.geojson"
-    try:
-        response = requests.get(geojson_url)
-        if response.status_code == 200:
-            geojson_data = response.json()
-            m = folium.Map(location=[43.7181, -79.3760], zoom_start=11, tiles='CartoDB positron')
-            folium.Choropleth(
-                geo_data=geojson_data,
-                name='choropleth',
-                data=ward_counts,
-                columns=['Ward_Name', 'Pothole_Request_Count'],
-                key_on='feature.properties.AREA_NAME',
-                fill_color='YlOrRd',
-                fill_opacity=0.7,
-                line_opacity=0.2,
-                legend_name='Pothole Requests (Toronto Wards)'
-            ).add_to(m)
-            map_path = os.path.join(plots_dir, 'pothole_ward_map.html')
-            m.save(map_path)
-            print(f"Pothole map saved to {map_path}")
-        else:
-            print(f"Could not reach GeoJSON mirror (Status {response.status_code}).")
-    except Exception as e:
-        print(f"Map generation failed: {e}")
 
     print("\nScript finished successfully.")
 

@@ -1,0 +1,10 @@
+pandas
+matplotlib
+seaborn
+pytest
+ruff
+scikit-learn
+requests
+folium
+Flask
+flasgger

@@ -49,3 +49,11 @@ coverage/
 
 # Convex local dev
 .convex/
+
+
+data/
+
+*.png
+*.csv
+*.zip
+*.csv

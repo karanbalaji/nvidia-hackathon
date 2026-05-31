@@ -85,20 +85,31 @@ def prepare_snow_model(df, weather_path):
     merged[['snow_depth', 'snow_precipitation']] = merged[['snow_depth', 'snow_precipitation']].fillna(0)
     return merged
 
-def predict_snow_event(model, start_month, start_day_of_week, snow_depth_cm, duration_days):
+def predict_snow_event(model, start_month, start_day_of_month, snow_depth_cm, duration_days):
+    # Add a domain-knowledge guardrail: no snow requests in non-winter months.
+    if 5 <= start_month <= 11: # May to November
+        print(f'Predicting for a non-winter month ({start_month}). Snow requests are 0 by definition.')
+        return 0
+
+    # Use a generic non-leap year to handle date calculations correctly
+    start_date = pd.to_datetime(f'2023-{start_month}-{start_day_of_month}')
+
     total_predicted = 0
     print(f'Predicting for a {duration_days}-day event with {snow_depth_cm}cm snow depth:')
     for day in range(duration_days):
-        current_day_of_week = (start_day_of_week + day) % 7
+        current_date = start_date + pd.Timedelta(days=day)
+        current_month = current_date.month
+        current_day_of_month = current_date.day
+
         input_data = pd.DataFrame([[
-            start_month,
-            current_day_of_week,
+            current_month,
+            current_day_of_month,
             snow_depth_cm,
             snow_depth_cm / 5
-        ]], columns=['Month', 'DayOfWeek', 'snow_depth', 'snow_precipitation'])
+        ]], columns=['Month', 'Day', 'snow_depth', 'snow_precipitation'])
         daily_pred = model.predict(input_data)[0]
         total_predicted += max(0, daily_pred)
-        print(f' - Day {day+1} (DoW {current_day_of_week}): {round(daily_pred)} requests')
+        print(f' - Day {day+1} ({current_date.strftime("%Y-%m-%d")}): {round(daily_pred)} requests')
     return round(total_predicted)
 
 def train_pothole_model_v2(df, weather_path):
@@ -117,7 +128,7 @@ def train_pothole_model_v2(df, weather_path):
     merged = pd.merge(pothole_data, w_df[weather_cols], left_on='Date', right_on='date', how='inner')
     merged = merged.fillna(0)
 
-    features = ['Month', 'DayOfWeek', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3']
+    features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3']
     X = merged[features]
     y = merged['Request_Count']
 
@@ -155,6 +166,19 @@ def main(data_dir, output_dir):
     if not os.path.exists(weather_path):
         raise FileNotFoundError(f"Weather data not found at {weather_path}")
 
+    # --- DEMONSTRATE prepare_category_data output ---
+    print("\n--- Demonstrating prepare_category_data for 'Pot hole' ---")
+    pothole_daily_data = prepare_category_data(train_df, 'Pot hole')
+    print("Head of the DataFrame returned by prepare_category_data:")
+    print(pothole_daily_data.head())
+    # --- END DEMONSTRATION ---
+
+    # --- DEMONSTRATE prepare_category_data for snow ---
+    print("\n--- Demonstrating prepare_category_data for 'Snow' ---")
+    snow_daily_data = prepare_category_data(train_df, 'Snow')
+    print("Head of the DataFrame returned by prepare_category_data for Snow:")
+    print(snow_daily_data.head())
+
     # --- 2. Train Pothole Model ---
     print("\n--- Training Pothole Model (with rain lag) ---")
     model_pothole_lagged = train_pothole_model_v2(train_df, weather_path)
@@ -165,7 +189,7 @@ def main(data_dir, output_dir):
     # --- 3. Train Snow Model ---
     print("\n--- Training Snow Clearing Model ---")
     snow_merged_data = prepare_snow_model(train_df, weather_path)
-    features_snow = ['Month', 'DayOfWeek', 'snow_depth', 'snow_precipitation']
+    features_snow = ['Month', 'Day', 'snow_depth', 'snow_precipitation']
     X_snow = snow_merged_data[features_snow]
     y_snow = snow_merged_data['Request_Count']
     model_snow = CatBoostRegressor(iterations=300, verbose=0)
@@ -191,15 +215,21 @@ def main(data_dir, output_dir):
     print('\n--- ROAD POTHOLES (Rain Impact Scenarios) ---')
     for rain_cm in range(10, 60, 10):
         daily_mm = (rain_cm * 10) / 3
-        test_input = pd.DataFrame([[5, 2, daily_mm, daily_mm, daily_mm, daily_mm]],
-                                  columns=['Month', 'DayOfWeek', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3'])
+        test_input = pd.DataFrame([[5, 15, daily_mm, daily_mm, daily_mm, daily_mm]],
+                                  columns=['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3'])
         pred = model_pothole_lagged.predict(test_input)[0]
         print(f' - Total Rain {rain_cm}cm (over 3 days): {round(pred)} requests')
 
     print('\n--- SNOW CLEARING (Snow Impact Scenarios) ---')
     for snow_cm in range(10, 60, 10):
-        pred = predict_snow_event(model_snow, start_month=1, start_day_of_week=0, snow_depth_cm=snow_cm, duration_days=1)
+        pred = predict_snow_event(model_snow, start_month=1, start_day_of_month=15, snow_depth_cm=snow_cm, duration_days=1)
         print(f' - Snow Depth {snow_cm}cm: {pred} requests')
+    for month, season in [(1, "Winter"), (7, "Summer")]:
+        print(f"\n-- Testing for {season} (Month: {month}) --")
+        for snow_cm in range(10, 60, 10):
+            # A hypothetical snow event in a given month
+            pred = predict_snow_event(model_snow, start_month=month, start_day_of_month=15, snow_depth_cm=snow_cm, duration_days=1)
+            print(f' - Snow Depth {snow_cm}cm: {pred} requests')
 
 
     print("\nScript finished successfully.")

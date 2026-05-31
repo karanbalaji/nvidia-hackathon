@@ -7,3 +7,5 @@ catboost
 scikit-learn
 requests
 folium
+Flask
+flasgger

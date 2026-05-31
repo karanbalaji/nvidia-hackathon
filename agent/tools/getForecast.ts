@@ -18,8 +18,8 @@ export const getForecastTool = createTool({
         category?: string;
       };
       const args: { wardId?: string; category?: string } = {};
-      if (input.wardId) args.wardId = input.wardId;
-      if (input.category) args.category = input.category;
+      if (input.wardId && input.wardId !== "null") args.wardId = input.wardId;
+      if (input.category && input.category !== "null") args.category = input.category;
       const result = await getConvexClient().query(api.queries.getForecast, args);
       return result ?? [];
     } catch (err) {

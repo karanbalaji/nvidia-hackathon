@@ -4,27 +4,29 @@ import path from "path";
 
 export async function GET() {
   try {
-    const artifactsPath = path.join(process.cwd(), "..", "pipeline", "artifacts", "wards.json");
-    const raw = await readFile(artifactsPath, "utf-8");
-    const wards = JSON.parse(raw) as Array<{
-      wardId: string;
-      wardName: string;
-      neighbourhoods: string[];
-    }>;
+    // Real ward boundaries live in pipeline/data/geo/wards.geojson
+    const geoPath = path.join(process.cwd(), "..", "pipeline", "data", "geo", "wards.geojson");
+    const raw = await readFile(geoPath, "utf-8");
+    const fc = JSON.parse(raw) as GeoJSON.FeatureCollection;
 
-    // Convert Ward[] to a minimal GeoJSON FeatureCollection
-    // Real GeoJSON boundaries come from pipeline; if this file is a Ward schema (no geometry),
-    // return an empty FeatureCollection so the map degrades gracefully
-    if (wards.length > 0 && "wardId" in wards[0] && !("geometry" in wards[0])) {
-      return NextResponse.json({
-        type: "FeatureCollection",
-        features: [],
-      });
-    }
+    // Normalise properties: add wardId in "ward-XX" format from AREA_SHORT_CODE
+    const normalised: GeoJSON.FeatureCollection = {
+      ...fc,
+      features: fc.features.map((f) => {
+        const code = String(f.properties?.AREA_SHORT_CODE ?? "").padStart(2, "0");
+        return {
+          ...f,
+          properties: {
+            ...f.properties,
+            wardId: `ward-${code}`,
+            wardName: f.properties?.AREA_NAME ?? `Ward ${code}`,
+          },
+        };
+      }),
+    };
 
-    return NextResponse.json(JSON.parse(raw));
+    return NextResponse.json(normalised);
   } catch {
-    // Return empty FeatureCollection when artifacts aren't present
     return NextResponse.json({ type: "FeatureCollection", features: [] });
   }
 }

@@ -62,12 +62,18 @@ async function main() {
   const parquetPath = path.join(ARTIFACTS, "daily_aggregates.parquet");
   let dailyAggregates: { date: string; wardId: string; category: string; count: number; tempC: number | null; precipMm: number | null }[] = [];
   if (fs.existsSync(parquetPath)) {
-    const jsonOut = execSync(
-      `python3 -c "import pandas as pd, json, sys; df=pd.read_parquet('${parquetPath}'); df['tempC']=df['tempC'].where(df['tempC'].notna(), None); df['precipMm']=df['precipMm'].where(df['precipMm'].notna(), None); print(json.dumps(df.to_dict('records')))"`,
-      { maxBuffer: 64 * 1024 * 1024 }
-    ).toString();
-    dailyAggregates = JSON.parse(jsonOut);
-    console.log(`  daily_aggregates: ${dailyAggregates.length} records`);
+    try {
+      const safePath = parquetPath.replace(/\\/g, "/");
+      const jsonOut = execSync(
+        `python3 -c "import pandas as pd, json, sys; df=pd.read_parquet('${safePath}'); df['tempC']=df['tempC'].where(df['tempC'].notna(), None); df['precipMm']=df['precipMm'].where(df['precipMm'].notna(), None); print(json.dumps(df.to_dict('records')))"`,
+        { maxBuffer: 64 * 1024 * 1024 }
+      ).toString();
+      dailyAggregates = JSON.parse(jsonOut);
+      console.log(`  daily_aggregates: ${dailyAggregates.length} records`);
+    } catch (err) {
+      console.warn("  daily_aggregates.parquet read failed — skipping trend data");
+      console.warn(" ", (err as Error).message.split("\n")[0]);
+    }
   } else {
     console.warn("  daily_aggregates.parquet not found — skipping");
   }

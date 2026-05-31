@@ -6,10 +6,10 @@ import { api } from "../../convex/_generated/api";
 export const getForecastTool = createTool({
   id: "getForecast",
   description:
-    "Predicted 311 request counts per ward for the next 7 days. Use when asked which wards will see the most complaints next week, or for crew planning and staffing questions.",
+    "Predicted 311 request counts per ward for the next 7 days. Use when asked which wards will see the most complaints next week, or for crew planning and staffing questions. Valid category values: pothole, flooding, garbage, graffiti, noise, tree, other. Always use singular form (e.g. 'pothole' not 'potholes').",
   inputSchema: z.object({
     wardId: z.string().optional(),
-    category: z.string().optional(),
+    category: z.string().optional().describe("One of: pothole, flooding, garbage, graffiti, noise, tree, other"),
   }),
   execute: async (params) => {
     try {
@@ -18,8 +18,8 @@ export const getForecastTool = createTool({
         category?: string;
       };
       const args: { wardId?: string; category?: string } = {};
-      if (input.wardId) args.wardId = input.wardId;
-      if (input.category) args.category = input.category;
+      if (input.wardId && input.wardId !== "null") args.wardId = input.wardId;
+      if (input.category && input.category !== "null") args.category = input.category;
       const result = await getConvexClient().query(api.queries.getForecast, args);
       return result ?? [];
     } catch (err) {

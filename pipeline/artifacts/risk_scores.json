@@ -1,1528 +1,1352 @@
 [
   {
-    "wardId": "ward-03",
-    "category": "other",
-    "score": 62,
+    "wardId": "ward-01",
+    "category": "pothole",
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-12",
-    "category": "other",
-    "score": 61,
+    "wardId": "ward-01",
+    "category": "flooding",
+    "score": 10,
     "drivers": [
-      "rising 14-day trend",
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-14",
-    "category": "other",
-    "score": 60,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "other",
-    "score": 59,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-20",
-    "category": "other",
-    "score": 59,
-    "drivers": [
-      "rising 14-day trend",
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-19",
-    "category": "other",
-    "score": 58,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
-    "category": "other",
-    "score": 55,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "other",
-    "score": 55,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "other",
-    "score": 53,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "other",
-    "score": 53,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-14",
+    "wardId": "ward-01",
     "category": "garbage",
-    "score": 53,
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-20",
-    "category": "garbage",
-    "score": 53,
+    "wardId": "ward-01",
+    "category": "graffiti",
+    "score": 10,
     "drivers": [
-      "rising 14-day trend",
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-09",
-    "category": "garbage",
-    "score": 52,
+    "wardId": "ward-01",
+    "category": "tree",
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-24",
-    "category": "other",
-    "score": 52,
+    "wardId": "ward-01",
+    "category": "noise",
+    "score": 13,
     "drivers": [
-      "rising 14-day trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "other",
-    "score": 51,
-    "drivers": [
-      "rising 14-day trend",
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-02",
-    "category": "other",
-    "score": 49,
+    "category": "pothole",
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-11",
-    "category": "garbage",
-    "score": 49,
+    "wardId": "ward-02",
+    "category": "flooding",
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-19",
+    "wardId": "ward-02",
     "category": "garbage",
-    "score": 49,
+    "score": 10,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-02",
+    "category": "graffiti",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-02",
+    "category": "tree",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-02",
+    "category": "noise",
+    "score": 13,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "pothole",
+    "score": 17,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "flooding",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "garbage",
+    "score": 12,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "graffiti",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "tree",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-03",
+    "category": "noise",
+    "score": 22,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "pothole",
+    "score": 20,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "flooding",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "garbage",
+    "score": 15,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "graffiti",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "tree",
+    "score": 10,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-04",
+    "category": "noise",
+    "score": 25,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "pothole",
+    "score": 35,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "flooding",
+    "score": 20,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "garbage",
+    "score": 30,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "graffiti",
+    "score": 25,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "tree",
+    "score": 15,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-05",
+    "category": "noise",
+    "score": 40,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "pothole",
+    "score": 37,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "flooding",
+    "score": 22,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "garbage",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "graffiti",
+    "score": 27,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "tree",
+    "score": 17,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-06",
+    "category": "noise",
+    "score": 42,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "pothole",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "flooding",
+    "score": 17,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "garbage",
+    "score": 27,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "graffiti",
+    "score": 22,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "tree",
+    "score": 12,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-07",
+    "category": "noise",
+    "score": 37,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-08",
+    "category": "pothole",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-08",
+    "category": "flooding",
+    "score": 17,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-08",
     "category": "garbage",
+    "score": 27,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-08",
+    "category": "graffiti",
+    "score": 22,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-08",
+    "category": "tree",
+    "score": 12,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-08",
+    "category": "noise",
+    "score": 37,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "pothole",
+    "score": 42,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "flooding",
+    "score": 27,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "garbage",
+    "score": 37,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "graffiti",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "tree",
+    "score": 22,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-09",
+    "category": "noise",
     "score": 47,
     "drivers": [
-      "rising 14-day trend",
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-05",
-    "category": "other",
-    "score": 46,
+    "wardId": "ward-10",
+    "category": "pothole",
+    "score": 49,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-04",
+    "wardId": "ward-10",
+    "category": "flooding",
+    "score": 34,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-10",
     "category": "garbage",
     "score": 44,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-15",
+    "wardId": "ward-10",
+    "category": "graffiti",
+    "score": 39,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-10",
+    "category": "tree",
+    "score": 29,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-10",
+    "category": "noise",
+    "score": 54,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-11",
+    "category": "pothole",
+    "score": 48,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-11",
+    "category": "flooding",
+    "score": 33,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-11",
     "category": "garbage",
     "score": 43,
     "drivers": [
-      "rising 14-day trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-21",
-    "category": "other",
-    "score": 43,
+    "wardId": "ward-11",
+    "category": "graffiti",
+    "score": 38,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-06",
-    "category": "other",
+    "wardId": "ward-11",
+    "category": "tree",
+    "score": 28,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-11",
+    "category": "noise",
+    "score": 53,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-12",
+    "category": "pothole",
+    "score": 52,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-12",
+    "category": "flooding",
+    "score": 37,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-12",
+    "category": "garbage",
+    "score": 47,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-12",
+    "category": "graffiti",
     "score": 42,
     "drivers": [
-      "above-baseline request volume"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-15",
-    "category": "other",
-    "score": 41,
-    "drivers": [
-      "above-baseline request volume"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "other",
-    "score": 41,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "garbage",
-    "score": 40,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "garbage",
-    "score": 39,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-12",
+    "category": "tree",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-12",
+    "category": "noise",
+    "score": 57,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-13",
+    "category": "pothole",
+    "score": 48,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-13",
+    "category": "flooding",
+    "score": 33,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-13",
     "category": "garbage",
-    "score": 39,
+    "score": 43,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-17",
-    "category": "other",
-    "score": 39,
+    "wardId": "ward-13",
+    "category": "graffiti",
+    "score": 38,
     "drivers": [
-      "rising 14-day trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-23",
-    "category": "other",
+    "wardId": "ward-13",
+    "category": "tree",
+    "score": 28,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-13",
+    "category": "noise",
+    "score": 53,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-14",
+    "category": "pothole",
+    "score": 46,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-14",
+    "category": "flooding",
+    "score": 31,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-14",
+    "category": "garbage",
+    "score": 41,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-14",
+    "category": "graffiti",
     "score": 36,
     "drivers": [
-      "rising 14-day trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-24",
-    "category": "garbage",
-    "score": 35,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-01",
-    "category": "other",
-    "score": 34,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-02",
-    "category": "garbage",
-    "score": 33,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-05",
-    "category": "garbage",
-    "score": 33,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-21",
-    "category": "garbage",
-    "score": 33,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "other",
-    "score": 32,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "other",
-    "score": 32,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-15",
-    "category": "flooding",
-    "score": 28,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-16",
-    "category": "other",
-    "score": 28,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
-    "category": "other",
-    "score": 28,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-06",
-    "category": "garbage",
-    "score": 27,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-06",
-    "category": "noise",
-    "score": 27,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "graffiti",
-    "score": 27,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "garbage",
-    "score": 27,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "garbage",
+    "wardId": "ward-14",
+    "category": "tree",
     "score": 26,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "graffiti",
-    "score": 26,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "noise",
-    "score": 25,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-17",
-    "category": "garbage",
-    "score": 25,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "garbage",
-    "score": 25,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-20",
-    "category": "noise",
-    "score": 25,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-01",
-    "category": "garbage",
-    "score": 24,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "graffiti",
-    "score": 24,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "tree",
-    "score": 24,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "graffiti",
-    "score": 24,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "noise",
-    "score": 24,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
-    "category": "garbage",
-    "score": 24,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-23",
-    "category": "garbage",
-    "score": 24,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-06",
-    "category": "graffiti",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "noise",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-17",
-    "category": "tree",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
-    "category": "graffiti",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
-    "category": "noise",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-23",
-    "category": "tree",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "tree",
-    "score": 23,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "garbage",
-    "score": 22,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "graffiti",
-    "score": 22,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "noise",
-    "score": 20,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "tree",
-    "score": 20,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "graffiti",
-    "score": 19,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "flooding",
-    "score": 18,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-05",
-    "category": "noise",
-    "score": 18,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-16",
-    "category": "garbage",
-    "score": 18,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
-    "category": "tree",
-    "score": 16,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
-    "category": "noise",
-    "score": 15,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "noise",
-    "score": 14,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-01",
-    "category": "noise",
-    "score": 13,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-05",
-    "category": "flooding",
-    "score": 13,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "noise",
-    "score": 13,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-01",
-    "category": "flooding",
-    "score": 12,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-17",
-    "category": "flooding",
-    "score": 12,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "graffiti",
-    "score": 11,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-14",
-    "category": "flooding",
-    "score": 11,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-19",
-    "category": "tree",
-    "score": 11,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-02",
-    "category": "flooding",
-    "score": 10,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "noise",
-    "score": 10,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "flooding",
-    "score": 10,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-14",
     "category": "noise",
-    "score": 10,
+    "score": 51,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-19",
-    "category": "flooding",
-    "score": 10,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-24",
-    "category": "flooding",
-    "score": 10,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
-    "category": "flooding",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-06",
-    "category": "pothole",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "flooding",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "flooding",
-    "score": 9,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "flooding",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-12",
-    "category": "pothole",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-20",
-    "category": "flooding",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
-    "category": "pothole",
-    "score": 9,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-24",
-    "category": "tree",
-    "score": 9,
-    "drivers": [
-      "rising 14-day trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "pothole",
-    "score": 8,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
-    "category": "pothole",
-    "score": 8,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-12",
-    "category": "flooding",
-    "score": 8,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-12",
-    "category": "tree",
-    "score": 8,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "graffiti",
-    "score": 8,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-06",
-    "category": "flooding",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "flooding",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-08",
-    "category": "pothole",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "noise",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "pothole",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-14",
-    "category": "pothole",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-15",
     "category": "pothole",
-    "score": 7,
+    "score": 52,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-20",
-    "category": "tree",
-    "score": 7,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-21",
+    "wardId": "ward-15",
     "category": "flooding",
-    "score": 7,
+    "score": 37,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-23",
-    "category": "pothole",
-    "score": 7,
+    "wardId": "ward-15",
+    "category": "garbage",
+    "score": 47,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-01",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-02",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-05",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-12",
-    "category": "noise",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-16",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "flooding",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-18",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-21",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "flooding",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-25",
-    "category": "pothole",
-    "score": 6,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-09",
-    "category": "pothole",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-10",
-    "category": "tree",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "pothole",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-11",
-    "category": "tree",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
-    "category": "flooding",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-14",
+    "wardId": "ward-15",
     "category": "graffiti",
-    "score": 5,
+    "score": 42,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-15",
+    "category": "tree",
+    "score": 32,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-15",
+    "category": "noise",
+    "score": 57,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-16",
+    "category": "pothole",
+    "score": 60,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-16",
     "category": "flooding",
-    "score": 5,
+    "score": 45,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-16",
+    "category": "garbage",
+    "score": 55,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-16",
+    "category": "graffiti",
+    "score": 50,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-16",
+    "category": "tree",
+    "score": 40,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-16",
+    "category": "noise",
+    "score": 65,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-17",
     "category": "pothole",
-    "score": 5,
+    "score": 68,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-18",
-    "category": "tree",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-19",
-    "category": "noise",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-19",
-    "category": "pothole",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-20",
-    "category": "pothole",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-22",
+    "wardId": "ward-17",
     "category": "flooding",
-    "score": 5,
+    "score": 53,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-23",
-    "category": "flooding",
-    "score": 5,
+    "wardId": "ward-17",
+    "category": "garbage",
+    "score": 63,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-24",
-    "category": "pothole",
-    "score": 5,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-02",
-    "category": "noise",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-03",
-    "category": "tree",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-04",
+    "wardId": "ward-17",
     "category": "graffiti",
-    "score": 4,
+    "score": 58,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-12",
-    "category": "graffiti",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-13",
+    "wardId": "ward-17",
     "category": "tree",
-    "score": 4,
+    "score": 48,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-14",
-    "category": "tree",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-15",
-    "category": "noise",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-15",
-    "category": "tree",
-    "score": 4,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-17",
     "category": "noise",
-    "score": 4,
+    "score": 73,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-21",
-    "category": "noise",
-    "score": 4,
+    "wardId": "ward-18",
+    "category": "pothole",
+    "score": 60,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-24",
-    "category": "noise",
-    "score": 4,
+    "wardId": "ward-18",
+    "category": "flooding",
+    "score": 45,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-25",
-    "category": "noise",
-    "score": 4,
+    "wardId": "ward-18",
+    "category": "garbage",
+    "score": 55,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-01",
-    "category": "tree",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-02",
-    "category": "tree",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-05",
+    "wardId": "ward-18",
     "category": "graffiti",
-    "score": 3,
+    "score": 50,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-05",
+    "wardId": "ward-18",
     "category": "tree",
-    "score": 3,
+    "score": 40,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-06",
-    "category": "tree",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-07",
-    "category": "tree",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-15",
-    "category": "graffiti",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-16",
-    "category": "graffiti",
-    "score": 3,
-    "drivers": [
-      "stable trend"
-    ],
-    "asOf": "2026-04-30"
-  },
-  {
-    "wardId": "ward-16",
+    "wardId": "ward-18",
     "category": "noise",
-    "score": 3,
+    "score": 65,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-16",
-    "category": "tree",
-    "score": 3,
+    "wardId": "ward-19",
+    "category": "pothole",
+    "score": 59,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-19",
+    "category": "flooding",
+    "score": 44,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-19",
+    "category": "garbage",
+    "score": 54,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-19",
     "category": "graffiti",
-    "score": 3,
+    "score": 49,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-19",
+    "category": "tree",
+    "score": 39,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-19",
+    "category": "noise",
+    "score": 64,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "pothole",
+    "score": 65,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "flooding",
+    "score": 50,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "garbage",
+    "score": 60,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "graffiti",
+    "score": 55,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "tree",
+    "score": 45,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-20",
+    "category": "noise",
+    "score": 70,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-21",
+    "category": "pothole",
+    "score": 69,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-21",
+    "category": "flooding",
+    "score": 54,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-21",
+    "category": "garbage",
+    "score": 64,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-21",
+    "category": "graffiti",
+    "score": 59,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-21",
     "category": "tree",
-    "score": 3,
+    "score": 49,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-21",
+    "category": "noise",
+    "score": 74,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-22",
+    "category": "pothole",
+    "score": 71,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-22",
+    "category": "flooding",
+    "score": 56,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-22",
+    "category": "garbage",
+    "score": 66,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-22",
+    "category": "graffiti",
+    "score": 61,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-22",
     "category": "tree",
-    "score": 3,
+    "score": 51,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-22",
+    "category": "noise",
+    "score": 76,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-23",
+    "category": "pothole",
+    "score": 79,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-23",
+    "category": "flooding",
+    "score": 64,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-23",
+    "category": "garbage",
+    "score": 74,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-23",
+    "category": "graffiti",
+    "score": 69,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-23",
+    "category": "tree",
+    "score": 59,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-23",
     "category": "noise",
-    "score": 3,
+    "score": 84,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-24",
+    "category": "pothole",
+    "score": 85,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-24",
+    "category": "flooding",
+    "score": 70,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-24",
+    "category": "garbage",
+    "score": 80,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   },
   {
     "wardId": "ward-24",
     "category": "graffiti",
-    "score": 3,
+    "score": 75,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
   },
   {
-    "wardId": "ward-02",
-    "category": "graffiti",
-    "score": 2,
+    "wardId": "ward-24",
+    "category": "tree",
+    "score": 65,
     "drivers": [
-      "stable trend"
+      "synthetic mock data"
     ],
-    "asOf": "2026-04-30"
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-24",
+    "category": "noise",
+    "score": 90,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "pothole",
+    "score": 88,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "flooding",
+    "score": 73,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "garbage",
+    "score": 83,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "graffiti",
+    "score": 78,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "tree",
+    "score": 68,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
+  },
+  {
+    "wardId": "ward-25",
+    "category": "noise",
+    "score": 93,
+    "drivers": [
+      "synthetic mock data"
+    ],
+    "asOf": "2026-05-30"
   }
 ]

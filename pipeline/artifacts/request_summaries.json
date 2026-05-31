@@ -1,2102 +1,902 @@
 [
   {
-    "category": "other",
-    "wardId": "ward-09",
-    "period": "2026Q1",
-    "summary": "ward-09 received 5219 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-14",
-    "period": "2026Q1",
-    "summary": "ward-14 received 5202 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-19",
-    "period": "2026Q1",
-    "summary": "ward-19 received 4901 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-12",
-    "period": "2026Q1",
-    "summary": "ward-12 received 4386 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-08",
-    "period": "2026Q1",
-    "summary": "ward-08 received 4371 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-05",
-    "period": "2026Q1",
-    "summary": "ward-05 received 4046 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-04",
-    "period": "2026Q1",
-    "summary": "ward-04 received 3934 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-14",
-    "period": "2024Q3",
-    "summary": "ward-14 received 3796 other requests in 2024Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-03",
-    "period": "2023Q2",
-    "summary": "ward-03 received 3741 other requests in 2023Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-09",
-    "period": "2025Q1",
-    "summary": "ward-09 received 3738 other requests in 2025Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-11",
-    "period": "2026Q1",
-    "summary": "ward-11 received 3684 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-20",
-    "period": "2026Q1",
-    "summary": "ward-20 received 3532 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-03",
-    "period": "2026Q1",
-    "summary": "ward-03 received 3484 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-19",
-    "period": "2024Q3",
-    "summary": "ward-19 received 3435 other requests in 2024Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-20",
-    "period": "2023Q1",
-    "summary": "ward-20 received 3257 other requests in 2023Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-09",
-    "period": "2025Q3",
-    "summary": "ward-09 received 3247 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-10",
-    "period": "2023Q2",
-    "summary": "ward-10 received 3244 other requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-14",
-    "period": "2025Q3",
-    "summary": "ward-14 received 3240 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-08",
-    "period": "2025Q1",
-    "summary": "ward-08 received 3233 other requests in 2025Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-02",
-    "period": "2026Q1",
-    "summary": "ward-02 received 3198 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-10",
-    "period": "2023Q3",
-    "summary": "ward-10 received 3187 other requests in 2023Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-11",
-    "period": "2025Q3",
-    "summary": "ward-11 received 3177 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-11",
-    "period": "2025Q1",
-    "summary": "ward-11 received 3150 other requests in 2025Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-04",
-    "period": "2023Q2",
-    "summary": "ward-04 received 3150 other requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-19",
-    "period": "2025Q3",
-    "summary": "ward-19 received 3123 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-02",
-    "period": "2023Q2",
-    "summary": "ward-02 received 3090 other requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-14",
-    "period": "2025Q2",
-    "summary": "ward-14 received 3062 garbage requests in 2025Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-21",
-    "period": "2023Q1",
-    "summary": "ward-21 received 2984 other requests in 2023Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-13",
-    "period": "2026Q1",
-    "summary": "ward-13 received 2917 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-12",
-    "period": "2025Q1",
-    "summary": "ward-12 received 2892 other requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-04",
-    "period": "2025Q3",
-    "summary": "ward-04 received 2818 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-21",
-    "period": "2026Q1",
-    "summary": "ward-21 received 2810 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-09",
-    "period": "2025Q2",
-    "summary": "ward-09 received 2792 garbage requests in 2025Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-06",
-    "period": "2024Q4",
-    "summary": "ward-06 received 2773 other requests in 2024Q4."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-19",
-    "period": "2025Q2",
-    "summary": "ward-19 received 2757 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-11",
-    "period": "2024Q3",
-    "summary": "ward-11 received 2654 garbage requests in 2024Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-15",
-    "period": "2026Q1",
-    "summary": "ward-15 received 2622 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-05",
-    "period": "2025Q1",
-    "summary": "ward-05 received 2532 other requests in 2025Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-25",
-    "period": "2026Q1",
-    "summary": "ward-25 received 2516 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-08",
-    "period": "2025Q3",
-    "summary": "ward-08 received 2511 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-13",
-    "period": "2025Q3",
-    "summary": "ward-13 received 2510 other requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-06",
-    "period": "2026Q1",
-    "summary": "ward-06 received 2507 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-20",
-    "period": "2025Q3",
-    "summary": "ward-20 received 2484 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-25",
-    "period": "2025Q3",
-    "summary": "ward-25 received 2457 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-24",
-    "period": "2023Q1",
-    "summary": "ward-24 received 2426 other requests in 2023Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-20",
-    "period": "2025Q1",
-    "summary": "ward-20 received 2406 garbage requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-04",
-    "period": "2025Q2",
-    "summary": "ward-04 received 2346 garbage requests in 2025Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-15",
-    "period": "2024Q3",
-    "summary": "ward-15 received 2339 other requests in 2024Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-25",
-    "period": "2025Q2",
-    "summary": "ward-25 received 2327 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-03",
-    "period": "2023Q3",
-    "summary": "ward-03 received 2247 garbage requests in 2023Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-03",
-    "period": "2023Q2",
-    "summary": "ward-03 received 2235 garbage requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-08",
-    "period": "2025Q2",
-    "summary": "ward-08 received 2180 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-12",
-    "period": "2025Q3",
-    "summary": "ward-12 received 2142 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-25",
-    "period": "2023Q1",
-    "summary": "ward-25 received 2132 other requests in 2023Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-24",
-    "period": "2026Q1",
-    "summary": "ward-24 received 2109 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-18",
-    "period": "2024Q2",
-    "summary": "ward-18 received 2053 other requests in 2024Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-05",
-    "period": "2025Q3",
-    "summary": "ward-05 received 2034 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-18",
-    "period": "2024Q3",
-    "summary": "ward-18 received 2027 other requests in 2024Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-22",
-    "period": "2023Q1",
-    "summary": "ward-22 received 1994 other requests in 2023Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-22",
-    "period": "2026Q1",
-    "summary": "ward-22 received 1987 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-12",
-    "period": "2024Q3",
-    "summary": "ward-12 received 1985 garbage requests in 2024Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-01",
-    "period": "2026Q1",
-    "summary": "ward-01 received 1980 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-01",
-    "period": "2023Q2",
-    "summary": "ward-01 received 1965 other requests in 2023Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-07",
-    "period": "2023Q2",
-    "summary": "ward-07 received 1959 other requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-21",
-    "period": "2025Q2",
-    "summary": "ward-21 received 1899 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-15",
-    "period": "2025Q1",
-    "summary": "ward-15 received 1884 garbage requests in 2025Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-16",
-    "period": "2026Q1",
-    "summary": "ward-16 received 1880 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-21",
-    "period": "2025Q1",
-    "summary": "ward-21 received 1879 garbage requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-15",
-    "period": "2025Q2",
-    "summary": "ward-15 received 1847 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-05",
-    "period": "2024Q3",
-    "summary": "ward-05 received 1813 garbage requests in 2024Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-13",
-    "period": "2025Q3",
-    "summary": "ward-13 received 1812 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-17",
-    "period": "2023Q2",
-    "summary": "ward-17 received 1787 other requests in 2023Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-06",
-    "period": "2025Q3",
-    "summary": "ward-06 received 1781 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-07",
-    "period": "2026Q1",
-    "summary": "ward-07 received 1759 other requests in 2026Q1."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-23",
-    "period": "2026Q1",
-    "summary": "ward-23 received 1747 other requests in 2026Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-02",
-    "period": "2025Q3",
-    "summary": "ward-02 received 1737 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-02",
-    "period": "2025Q4",
-    "summary": "ward-02 received 1698 garbage requests in 2025Q4."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-06",
-    "period": "2025Q2",
-    "summary": "ward-06 received 1697 garbage requests in 2025Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-17",
-    "period": "2024Q2",
-    "summary": "ward-17 received 1687 other requests in 2024Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-24",
-    "period": "2025Q3",
-    "summary": "ward-24 received 1684 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-18",
-    "period": "2025Q2",
-    "summary": "ward-18 received 1678 garbage requests in 2025Q2."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-23",
-    "period": "2023Q1",
-    "summary": "ward-23 received 1637 other requests in 2023Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-24",
-    "period": "2025Q1",
-    "summary": "ward-24 received 1581 garbage requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-18",
-    "period": "2025Q3",
-    "summary": "ward-18 received 1572 garbage requests in 2025Q3."
-  },
-  {
-    "category": "other",
-    "wardId": "ward-16",
-    "period": "2024Q2",
-    "summary": "ward-16 received 1548 other requests in 2024Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-17",
-    "period": "2025Q3",
-    "summary": "ward-17 received 1521 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-01",
-    "period": "2025Q3",
-    "summary": "ward-01 received 1472 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-07",
-    "period": "2025Q3",
-    "summary": "ward-07 received 1456 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-13",
-    "period": "2024Q3",
-    "summary": "ward-13 received 1448 garbage requests in 2024Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-17",
-    "period": "2025Q1",
-    "summary": "ward-17 received 1445 garbage requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-23",
-    "period": "2025Q4",
-    "summary": "ward-23 received 1416 garbage requests in 2025Q4."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-23",
-    "period": "2025Q2",
-    "summary": "ward-23 received 1393 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-01",
-    "period": "2023Q1",
-    "summary": "ward-01 received 1385 garbage requests in 2023Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-10",
-    "period": "2025Q3",
-    "summary": "ward-10 received 1362 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-07",
-    "period": "2025Q2",
-    "summary": "ward-07 received 1358 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-10",
-    "period": "2024Q3",
-    "summary": "ward-10 received 1334 garbage requests in 2024Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-22",
-    "period": "2025Q2",
-    "summary": "ward-22 received 1289 garbage requests in 2025Q2."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-22",
-    "period": "2025Q3",
-    "summary": "ward-22 received 1254 garbage requests in 2025Q3."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-16",
-    "period": "2025Q1",
-    "summary": "ward-16 received 1127 garbage requests in 2025Q1."
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-16",
-    "period": "2025Q2",
-    "summary": "ward-16 received 1058 garbage requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-06",
-    "period": "2026Q1",
-    "summary": "ward-06 received 1026 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-03",
-    "period": "2026Q1",
-    "summary": "ward-03 received 1025 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-06",
-    "period": "2025Q2",
-    "summary": "ward-06 received 1019 noise requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-12",
-    "period": "2026Q1",
-    "summary": "ward-12 received 798 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-02",
-    "period": "2024Q3",
-    "summary": "ward-02 received 767 flooding requests in 2024Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-15",
-    "period": "2026Q1",
-    "summary": "ward-15 received 739 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-08",
-    "period": "2026Q1",
-    "summary": "ward-08 received 737 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-22",
-    "period": "2026Q1",
-    "summary": "ward-22 received 731 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-14",
-    "period": "2026Q1",
-    "summary": "ward-14 received 709 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-10",
-    "period": "2025Q3",
-    "summary": "ward-10 received 674 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-03",
-    "period": "2024Q3",
-    "summary": "ward-03 received 669 flooding requests in 2024Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-06",
-    "period": "2025Q1",
-    "summary": "ward-06 received 669 noise requests in 2025Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-14",
-    "period": "2026Q1",
-    "summary": "ward-14 received 659 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-10",
-    "period": "2023Q3",
-    "summary": "ward-10 received 643 noise requests in 2023Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-25",
-    "period": "2026Q1",
-    "summary": "ward-25 received 635 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-14",
-    "period": "2024Q3",
-    "summary": "ward-14 received 621 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-03",
-    "period": "2026Q1",
-    "summary": "ward-03 received 614 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-09",
-    "period": "2026Q1",
-    "summary": "ward-09 received 604 flooding requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-23",
-    "period": "2026Q1",
-    "summary": "ward-23 received 597 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-16",
-    "period": "2026Q1",
-    "summary": "ward-16 received 593 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-21",
-    "period": "2026Q1",
-    "summary": "ward-21 received 580 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-05",
-    "period": "2024Q3",
-    "summary": "ward-05 received 576 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-05",
-    "period": "2026Q1",
-    "summary": "ward-05 received 566 flooding requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-07",
-    "period": "2026Q1",
-    "summary": "ward-07 received 565 pothole requests in 2026Q1."
-  },
-  {
     "category": "pothole",
     "wardId": "ward-01",
-    "period": "2026Q1",
-    "summary": "ward-01 received 560 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-02",
-    "period": "2026Q1",
-    "summary": "ward-02 received 559 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-08",
-    "period": "2026Q1",
-    "summary": "ward-08 received 550 flooding requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-05",
-    "period": "2026Q1",
-    "summary": "ward-05 received 545 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-08",
-    "period": "2024Q3",
-    "summary": "ward-08 received 544 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-19",
-    "period": "2025Q4",
-    "summary": "ward-19 received 541 flooding requests in 2025Q4."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-02",
-    "period": "2025Q1",
-    "summary": "ward-02 received 540 flooding requests in 2025Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-20",
-    "period": "2026Q1",
-    "summary": "ward-20 received 534 pothole requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-22",
-    "period": "2026Q2",
-    "summary": "ward-22 received 526 pothole requests in 2026Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-04",
-    "period": "2026Q1",
-    "summary": "ward-04 received 507 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-14",
-    "period": "2025Q4",
-    "summary": "ward-14 received 502 noise requests in 2025Q4."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-10",
-    "period": "2026Q1",
-    "summary": "ward-10 received 499 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-11",
-    "period": "2023Q3",
-    "summary": "ward-11 received 496 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-11",
-    "period": "2025Q3",
-    "summary": "ward-11 received 495 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-19",
-    "period": "2026Q1",
-    "summary": "ward-19 received 475 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-09",
-    "period": "2024Q2",
-    "summary": "ward-09 received 470 flooding requests in 2024Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-19",
-    "period": "2026Q1",
-    "summary": "ward-19 received 466 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-20",
-    "period": "2026Q1",
-    "summary": "ward-20 received 466 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-04",
-    "period": "2026Q1",
-    "summary": "ward-04 received 456 flooding requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-18",
-    "period": "2026Q1",
-    "summary": "ward-18 received 447 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-15",
-    "period": "2024Q3",
-    "summary": "ward-15 received 441 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-15",
-    "period": "2026Q1",
-    "summary": "ward-15 received 438 flooding requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-09",
-    "period": "2026Q1",
-    "summary": "ward-09 received 434 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-04",
-    "period": "2023Q2",
-    "summary": "ward-04 received 432 flooding requests in 2023Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-11",
-    "period": "2025Q1",
-    "summary": "ward-11 received 430 flooding requests in 2025Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-10",
-    "period": "2023Q2",
-    "summary": "ward-10 received 429 graffiti requests in 2023Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-20",
-    "period": "2025Q3",
-    "summary": "ward-20 received 428 flooding requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-03",
-    "period": "2025Q1",
-    "summary": "ward-03 received 426 pothole requests in 2025Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-12",
-    "period": "2026Q1",
-    "summary": "ward-12 received 420 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-14",
-    "period": "2025Q3",
-    "summary": "ward-14 received 418 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-06",
-    "period": "2026Q2",
-    "summary": "ward-06 received 417 pothole requests in 2026Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-11",
-    "period": "2023Q2",
-    "summary": "ward-11 received 411 flooding requests in 2023Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-13",
-    "period": "2025Q2",
-    "summary": "ward-13 received 407 noise requests in 2025Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-21",
-    "period": "2026Q1",
-    "summary": "ward-21 received 401 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-09",
-    "period": "2024Q2",
-    "summary": "ward-09 received 395 noise requests in 2024Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-24",
-    "period": "2026Q1",
-    "summary": "ward-24 received 394 pothole requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-11",
-    "period": "2025Q2",
-    "summary": "ward-11 received 388 tree requests in 2025Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-13",
-    "period": "2023Q3",
-    "summary": "ward-13 received 387 noise requests in 2023Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-06",
-    "period": "2026Q1",
-    "summary": "ward-06 received 375 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-09",
-    "period": "2023Q3",
-    "summary": "ward-09 received 373 noise requests in 2023Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-08",
-    "period": "2025Q1",
-    "summary": "ward-08 received 371 pothole requests in 2025Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-21",
-    "period": "2025Q1",
-    "summary": "ward-21 received 370 flooding requests in 2025Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-06",
-    "period": "2024Q3",
-    "summary": "ward-06 received 368 flooding requests in 2024Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-12",
-    "period": "2025Q1",
-    "summary": "ward-12 received 361 pothole requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-12",
-    "period": "2023Q3",
-    "summary": "ward-12 received 348 noise requests in 2023Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-12",
-    "period": "2024Q3",
-    "summary": "ward-12 received 345 flooding requests in 2024Q3."
+    "period": "2025-Q1",
+    "summary": "Etobicoke North pothole requests rose 28% following the February thaw, with 34 hotspot clusters in the Humber Summit area."
   },
   {
     "category": "flooding",
     "wardId": "ward-01",
-    "period": "2024Q3",
-    "summary": "ward-01 received 344 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-07",
-    "period": "2024Q3",
-    "summary": "ward-07 received 343 flooding requests in 2024Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-12",
-    "period": "2025Q3",
-    "summary": "ward-12 received 343 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-01",
-    "period": "2026Q1",
-    "summary": "ward-01 received 341 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-04",
-    "period": "2025Q3",
-    "summary": "ward-04 received 338 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-07",
-    "period": "2023Q2",
-    "summary": "ward-07 received 335 flooding requests in 2023Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-13",
-    "period": "2026Q1",
-    "summary": "ward-13 received 334 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-08",
-    "period": "2023Q3",
-    "summary": "ward-08 received 332 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-03",
-    "period": "2025Q3",
-    "summary": "ward-03 received 330 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-15",
-    "period": "2026Q2",
-    "summary": "ward-15 received 328 pothole requests in 2026Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-11",
-    "period": "2026Q1",
-    "summary": "ward-11 received 327 pothole requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-04",
-    "period": "2023Q2",
-    "summary": "ward-04 received 316 noise requests in 2023Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-09",
-    "period": "2026Q1",
-    "summary": "ward-09 received 315 tree requests in 2026Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-10",
-    "period": "2025Q2",
-    "summary": "ward-10 received 312 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-14",
-    "period": "2025Q2",
-    "summary": "ward-14 received 308 pothole requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-11",
-    "period": "2026Q2",
-    "summary": "ward-11 received 304 graffiti requests in 2026Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-24",
-    "period": "2026Q1",
-    "summary": "ward-24 received 303 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-18",
-    "period": "2026Q1",
-    "summary": "ward-18 received 303 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-17",
-    "period": "2024Q3",
-    "summary": "ward-17 received 302 flooding requests in 2024Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-24",
-    "period": "2023Q2",
-    "summary": "ward-24 received 302 flooding requests in 2023Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-03",
-    "period": "2023Q3",
-    "summary": "ward-03 received 302 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-01",
-    "period": "2025Q3",
-    "summary": "ward-01 received 293 noise requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-20",
-    "period": "2023Q3",
-    "summary": "ward-20 received 293 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-05",
-    "period": "2025Q3",
-    "summary": "ward-05 received 289 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-17",
-    "period": "2026Q1",
-    "summary": "ward-17 received 287 pothole requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-25",
-    "period": "2023Q3",
-    "summary": "ward-25 received 286 flooding requests in 2023Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-11",
-    "period": "2025Q3",
-    "summary": "ward-11 received 282 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-07",
-    "period": "2026Q2",
-    "summary": "ward-07 received 278 pothole requests in 2026Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-10",
-    "period": "2025Q1",
-    "summary": "ward-10 received 278 pothole requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-05",
-    "period": "2023Q3",
-    "summary": "ward-05 received 277 noise requests in 2023Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-04",
-    "period": "2026Q1",
-    "summary": "ward-04 received 275 tree requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-01",
-    "period": "2025Q2",
-    "summary": "ward-01 received 270 pothole requests in 2025Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-25",
-    "period": "2023Q2",
-    "summary": "ward-25 received 269 flooding requests in 2023Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-08",
-    "period": "2025Q3",
-    "summary": "ward-08 received 266 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-21",
-    "period": "2025Q2",
-    "summary": "ward-21 received 263 pothole requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-19",
-    "period": "2025Q2",
-    "summary": "ward-19 received 262 pothole requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-14",
-    "period": "2026Q1",
-    "summary": "ward-14 received 260 tree requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-18",
-    "period": "2024Q3",
-    "summary": "ward-18 received 254 flooding requests in 2024Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-15",
-    "period": "2025Q3",
-    "summary": "ward-15 received 249 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-17",
-    "period": "2026Q1",
-    "summary": "ward-17 received 248 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-10",
-    "period": "2024Q3",
-    "summary": "ward-10 received 246 flooding requests in 2024Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-12",
-    "period": "2025Q2",
-    "summary": "ward-12 received 246 tree requests in 2025Q2."
+    "period": "2025-Q2",
+    "summary": "Flooding complaints in Rexdale correlated strongly (r=0.81) with rainfall events above 15mm."
   },
   {
     "category": "pothole",
     "wardId": "ward-02",
-    "period": "2026Q2",
-    "summary": "ward-02 received 246 pothole requests in 2026Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-25",
-    "period": "2023Q3",
-    "summary": "ward-25 received 243 noise requests in 2023Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-08",
-    "period": "2025Q2",
-    "summary": "ward-08 received 243 tree requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-23",
-    "period": "2026Q2",
-    "summary": "ward-23 received 242 pothole requests in 2026Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-18",
-    "period": "2025Q2",
-    "summary": "ward-18 received 242 pothole requests in 2025Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-19",
-    "period": "2025Q3",
-    "summary": "ward-19 received 242 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-09",
-    "period": "2025Q1",
-    "summary": "ward-09 received 241 pothole requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-19",
-    "period": "2023Q2",
-    "summary": "ward-19 received 240 noise requests in 2023Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-16",
-    "period": "2024Q3",
-    "summary": "ward-16 received 239 flooding requests in 2024Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-12",
-    "period": "2026Q1",
-    "summary": "ward-12 received 239 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-11",
-    "period": "2026Q1",
-    "summary": "ward-11 received 238 tree requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-20",
-    "period": "2023Q2",
-    "summary": "ward-20 received 238 noise requests in 2023Q2."
+    "period": "2025-Q1",
+    "summary": "Scarborough Southwest saw elevated pothole reports near Birchcliffe following road salt application in January."
   },
   {
     "category": "graffiti",
-    "wardId": "ward-09",
-    "period": "2024Q3",
-    "summary": "ward-09 received 237 graffiti requests in 2024Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-04",
-    "period": "2025Q1",
-    "summary": "ward-04 received 234 pothole requests in 2025Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-11",
-    "period": "2025Q1",
-    "summary": "ward-11 received 233 pothole requests in 2025Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-05",
-    "period": "2025Q1",
-    "summary": "ward-05 received 232 pothole requests in 2025Q1."
+    "wardId": "ward-01",
+    "period": "2025-Q2",
+    "summary": "Etobicoke North graffiti requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "tree",
-    "wardId": "ward-10",
-    "period": "2025Q2",
-    "summary": "ward-10 received 231 tree requests in 2025Q2."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-10",
-    "period": "2026Q1",
-    "summary": "ward-10 received 231 flooding requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-22",
-    "period": "2026Q1",
-    "summary": "ward-22 received 225 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-25",
-    "period": "2025Q3",
-    "summary": "ward-25 received 220 noise requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-02",
-    "period": "2025Q3",
-    "summary": "ward-02 received 220 noise requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-07",
-    "period": "2025Q3",
-    "summary": "ward-07 received 218 noise requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-15",
-    "period": "2025Q2",
-    "summary": "ward-15 received 215 tree requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-08",
-    "period": "2025Q1",
-    "summary": "ward-08 received 213 tree requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-21",
-    "period": "2023Q3",
-    "summary": "ward-21 received 210 noise requests in 2023Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-13",
-    "period": "2026Q1",
-    "summary": "ward-13 received 210 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-21",
-    "period": "2025Q3",
-    "summary": "ward-21 received 209 noise requests in 2025Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-16",
-    "period": "2023Q2",
-    "summary": "ward-16 received 208 flooding requests in 2023Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-19",
-    "period": "2026Q1",
-    "summary": "ward-19 received 201 tree requests in 2026Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-13",
-    "period": "2025Q3",
-    "summary": "ward-13 received 200 flooding requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-17",
-    "period": "2025Q1",
-    "summary": "ward-17 received 200 pothole requests in 2025Q1."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-22",
-    "period": "2024Q2",
-    "summary": "ward-22 received 199 flooding requests in 2024Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-15",
-    "period": "2023Q3",
-    "summary": "ward-15 received 198 noise requests in 2023Q3."
-  },
-  {
-    "category": "flooding",
-    "wardId": "ward-23",
-    "period": "2025Q2",
-    "summary": "ward-23 received 193 flooding requests in 2025Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-25",
-    "period": "2025Q1",
-    "summary": "ward-25 received 192 pothole requests in 2025Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-14",
-    "period": "2025Q3",
-    "summary": "ward-14 received 189 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-13",
-    "period": "2026Q2",
-    "summary": "ward-13 received 187 pothole requests in 2026Q2."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-20",
-    "period": "2025Q2",
-    "summary": "ward-20 received 186 pothole requests in 2025Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-07",
-    "period": "2024Q3",
-    "summary": "ward-07 received 186 noise requests in 2024Q3."
+    "wardId": "ward-01",
+    "period": "2025-Q2",
+    "summary": "Etobicoke North tree requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "noise",
     "wardId": "ward-01",
-    "period": "2023Q3",
-    "summary": "ward-01 received 185 noise requests in 2023Q3."
+    "period": "2025-Q2",
+    "summary": "Etobicoke North noise requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-14",
-    "period": "2025Q2",
-    "summary": "ward-14 received 182 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-14",
-    "period": "2025Q2",
-    "summary": "ward-14 received 181 tree requests in 2025Q2."
+    "category": "pothole",
+    "wardId": "ward-02",
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre pothole requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "flooding",
-    "wardId": "ward-23",
-    "period": "2026Q1",
-    "summary": "ward-23 received 181 flooding requests in 2026Q1."
-  },
-  {
-    "category": "noise",
     "wardId": "ward-02",
-    "period": "2023Q3",
-    "summary": "ward-02 received 179 noise requests in 2023Q3."
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre flooding requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "tree",
-    "wardId": "ward-03",
-    "period": "2025Q1",
-    "summary": "ward-03 received 176 tree requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-18",
-    "period": "2025Q3",
-    "summary": "ward-18 received 176 noise requests in 2025Q3."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-16",
-    "period": "2026Q2",
-    "summary": "ward-16 received 173 pothole requests in 2026Q2."
+    "category": "garbage",
+    "wardId": "ward-02",
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
-    "wardId": "ward-13",
-    "period": "2025Q3",
-    "summary": "ward-13 received 170 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-24",
-    "period": "2023Q3",
-    "summary": "ward-24 received 168 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-18",
-    "period": "2024Q3",
-    "summary": "ward-18 received 167 noise requests in 2024Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-10",
-    "period": "2025Q1",
-    "summary": "ward-10 received 166 tree requests in 2025Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-13",
-    "period": "2025Q2",
-    "summary": "ward-13 received 164 tree requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-13",
-    "period": "2025Q2",
-    "summary": "ward-13 received 162 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-03",
-    "period": "2026Q1",
-    "summary": "ward-03 received 162 tree requests in 2026Q1."
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-24",
-    "period": "2025Q1",
-    "summary": "ward-24 received 159 pothole requests in 2025Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-17",
-    "period": "2025Q3",
-    "summary": "ward-17 received 156 noise requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-09",
-    "period": "2025Q2",
-    "summary": "ward-09 received 153 tree requests in 2025Q2."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-17",
-    "period": "2023Q3",
-    "summary": "ward-17 received 144 noise requests in 2023Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-24",
-    "period": "2025Q3",
-    "summary": "ward-24 received 144 noise requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-13",
-    "period": "2025Q3",
-    "summary": "ward-13 received 141 tree requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-20",
-    "period": "2026Q1",
-    "summary": "ward-20 received 138 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-15",
-    "period": "2025Q1",
-    "summary": "ward-15 received 138 tree requests in 2025Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-03",
-    "period": "2023Q2",
-    "summary": "ward-03 received 137 graffiti requests in 2023Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-19",
-    "period": "2025Q3",
-    "summary": "ward-19 received 136 tree requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-16",
-    "period": "2025Q3",
-    "summary": "ward-16 received 131 noise requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-16",
-    "period": "2023Q3",
-    "summary": "ward-16 received 131 noise requests in 2023Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-12",
-    "period": "2024Q3",
-    "summary": "ward-12 received 129 graffiti requests in 2024Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-04",
-    "period": "2025Q3",
-    "summary": "ward-04 received 128 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-05",
-    "period": "2026Q1",
-    "summary": "ward-05 received 126 tree requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-23",
-    "period": "2024Q3",
-    "summary": "ward-23 received 124 noise requests in 2024Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-23",
-    "period": "2025Q3",
-    "summary": "ward-23 received 124 noise requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-12",
-    "period": "2024Q2",
-    "summary": "ward-12 received 118 graffiti requests in 2024Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-09",
-    "period": "2025Q3",
-    "summary": "ward-09 received 116 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-18",
-    "period": "2025Q2",
-    "summary": "ward-18 received 116 tree requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-18",
-    "period": "2026Q1",
-    "summary": "ward-18 received 114 tree requests in 2026Q1."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-22",
-    "period": "2025Q3",
-    "summary": "ward-22 received 114 noise requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-05",
-    "period": "2025Q1",
-    "summary": "ward-05 received 113 tree requests in 2025Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-25",
-    "period": "2026Q1",
-    "summary": "ward-25 received 110 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-04",
-    "period": "2025Q3",
-    "summary": "ward-04 received 107 tree requests in 2025Q3."
-  },
-  {
-    "category": "noise",
-    "wardId": "ward-22",
-    "period": "2023Q2",
-    "summary": "ward-22 received 102 noise requests in 2023Q2."
+    "wardId": "ward-02",
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre graffiti requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "tree",
     "wardId": "ward-02",
-    "period": "2025Q1",
-    "summary": "ward-02 received 100 tree requests in 2025Q1."
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-02",
+    "period": "2025-Q2",
+    "summary": "Etobicoke Centre noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore graffiti requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "tree",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-03",
+    "period": "2025-Q2",
+    "summary": "Etobicoke-Lakeshore noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-04",
+    "period": "2025-Q2",
+    "summary": "Parkdale-High Park noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-05",
+    "period": "2025-Q2",
+    "summary": "York South-Weston noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
     "wardId": "ward-06",
-    "period": "2025Q1",
-    "summary": "ward-06 received 97 tree requests in 2025Q1."
+    "period": "2025-Q2",
+    "summary": "York Centre pothole requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "tree",
-    "wardId": "ward-20",
-    "period": "2025Q3",
-    "summary": "ward-20 received 93 tree requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-18",
-    "period": "2024Q2",
-    "summary": "ward-18 received 92 graffiti requests in 2024Q2."
-  },
-  {
-    "category": "tree",
+    "category": "flooding",
     "wardId": "ward-06",
-    "period": "2025Q2",
-    "summary": "ward-06 received 89 tree requests in 2025Q2."
+    "period": "2025-Q2",
+    "summary": "York Centre flooding requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-18",
-    "period": "2025Q2",
-    "summary": "ward-18 received 88 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-23",
-    "period": "2026Q1",
-    "summary": "ward-23 received 88 tree requests in 2026Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-04",
-    "period": "2026Q2",
-    "summary": "ward-04 received 85 graffiti requests in 2026Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-02",
-    "period": "2026Q1",
-    "summary": "ward-02 received 85 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-01",
-    "period": "2025Q1",
-    "summary": "ward-01 received 78 tree requests in 2025Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-21",
-    "period": "2025Q2",
-    "summary": "ward-21 received 77 tree requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-03",
-    "period": "2025Q3",
-    "summary": "ward-03 received 75 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-21",
-    "period": "2026Q1",
-    "summary": "ward-21 received 75 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-01",
-    "period": "2025Q3",
-    "summary": "ward-01 received 71 tree requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-07",
-    "period": "2025Q3",
-    "summary": "ward-07 received 69 tree requests in 2025Q3."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-07",
-    "period": "2025Q2",
-    "summary": "ward-07 received 68 tree requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-17",
-    "period": "2026Q1",
-    "summary": "ward-17 received 68 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-17",
-    "period": "2025Q1",
-    "summary": "ward-17 received 68 tree requests in 2025Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-25",
-    "period": "2025Q2",
-    "summary": "ward-25 received 65 tree requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-16",
-    "period": "2026Q1",
-    "summary": "ward-16 received 60 tree requests in 2026Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-08",
-    "period": "2025Q2",
-    "summary": "ward-08 received 58 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-23",
-    "period": "2025Q4",
-    "summary": "ward-23 received 56 tree requests in 2025Q4."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-08",
-    "period": "2024Q2",
-    "summary": "ward-08 received 55 graffiti requests in 2024Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-24",
-    "period": "2026Q1",
-    "summary": "ward-24 received 55 tree requests in 2026Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-16",
-    "period": "2025Q2",
-    "summary": "ward-16 received 54 tree requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-22",
-    "period": "2025Q1",
-    "summary": "ward-22 received 54 tree requests in 2025Q1."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-24",
-    "period": "2025Q2",
-    "summary": "ward-24 received 51 tree requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-05",
-    "period": "2025Q3",
-    "summary": "ward-05 received 48 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-15",
-    "period": "2025Q2",
-    "summary": "ward-15 received 43 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "tree",
-    "wardId": "ward-22",
-    "period": "2025Q3",
-    "summary": "ward-22 received 41 tree requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-02",
-    "period": "2025Q3",
-    "summary": "ward-02 received 40 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-24",
-    "period": "2025Q2",
-    "summary": "ward-24 received 38 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-19",
-    "period": "2024Q2",
-    "summary": "ward-19 received 37 graffiti requests in 2024Q2."
+    "category": "garbage",
+    "wardId": "ward-06",
+    "period": "2025-Q2",
+    "summary": "York Centre garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-06",
-    "period": "2024Q3",
-    "summary": "ward-06 received 36 graffiti requests in 2024Q3."
+    "period": "2025-Q2",
+    "summary": "York Centre graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-06",
+    "period": "2025-Q2",
+    "summary": "York Centre tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-06",
+    "period": "2025-Q2",
+    "summary": "York Centre noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-07",
+    "period": "2025-Q2",
+    "summary": "Humber River-Black Creek noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-08",
+    "period": "2025-Q2",
+    "summary": "Eglinton-Lawrence noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-09",
+    "period": "2025-Q2",
+    "summary": "Davenport noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-10",
+    "period": "2025-Q2",
+    "summary": "Spadina-Fort York noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-11",
+    "period": "2025-Q2",
+    "summary": "University-Rosedale noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-12",
+    "period": "2025-Q2",
+    "summary": "Toronto-St. Paul's noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-13",
+    "period": "2025-Q2",
+    "summary": "Toronto Centre noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-14",
+    "period": "2025-Q2",
+    "summary": "Toronto-Danforth noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-15",
+    "period": "2025-Q2",
+    "summary": "Don Valley West pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-15",
+    "period": "2025-Q2",
+    "summary": "Don Valley West flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-15",
+    "period": "2025-Q2",
+    "summary": "Don Valley West garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-15",
-    "period": "2024Q3",
-    "summary": "ward-15 received 35 graffiti requests in 2024Q3."
+    "period": "2025-Q2",
+    "summary": "Don Valley West graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-15",
+    "period": "2025-Q2",
+    "summary": "Don Valley West tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-15",
+    "period": "2025-Q2",
+    "summary": "Don Valley West noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-16",
+    "period": "2025-Q2",
+    "summary": "Don Valley East pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-16",
+    "period": "2025-Q2",
+    "summary": "Don Valley East flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-16",
+    "period": "2025-Q2",
+    "summary": "Don Valley East garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-16",
-    "period": "2025Q2",
-    "summary": "ward-16 received 34 graffiti requests in 2025Q2."
+    "period": "2025-Q2",
+    "summary": "Don Valley East graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-16",
+    "period": "2025-Q2",
+    "summary": "Don Valley East tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-16",
+    "period": "2025-Q2",
+    "summary": "Don Valley East noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-17",
+    "period": "2025-Q2",
+    "summary": "Don Valley North noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-18",
+    "period": "2025-Q2",
+    "summary": "Willowdale noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-19",
+    "period": "2025-Q2",
+    "summary": "Beaches-East York pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-19",
+    "period": "2025-Q2",
+    "summary": "Beaches-East York flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-19",
+    "period": "2025-Q2",
+    "summary": "Beaches-East York garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-19",
-    "period": "2025Q2",
-    "summary": "ward-19 received 34 graffiti requests in 2025Q2."
+    "period": "2025-Q2",
+    "summary": "Beaches-East York graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-19",
+    "period": "2025-Q2",
+    "summary": "Beaches-East York tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-19",
+    "period": "2025-Q2",
+    "summary": "Beaches-East York noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
-    "wardId": "ward-05",
-    "period": "2025Q2",
-    "summary": "ward-05 received 30 graffiti requests in 2025Q2."
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-20",
+    "period": "2025-Q2",
+    "summary": "Scarborough Southwest noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-21",
+    "period": "2025-Q2",
+    "summary": "Scarborough Centre noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-22",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Agincourt noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North garbage requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "graffiti",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North graffiti requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "tree",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North tree requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "noise",
+    "wardId": "ward-23",
+    "period": "2025-Q2",
+    "summary": "Scarborough North noise requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "pothole",
+    "wardId": "ward-24",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood pothole requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-24",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood flooding requests \u2014 synthetic mock data for Phase 0 testing."
+  },
+  {
+    "category": "garbage",
+    "wardId": "ward-24",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-24",
-    "period": "2025Q3",
-    "summary": "ward-24 received 30 graffiti requests in 2025Q3."
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood graffiti requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-22",
-    "period": "2025Q2",
-    "summary": "ward-22 received 30 graffiti requests in 2025Q2."
+    "category": "tree",
+    "wardId": "ward-24",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood tree requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-17",
-    "period": "2025Q2",
-    "summary": "ward-17 received 27 graffiti requests in 2025Q2."
+    "category": "noise",
+    "wardId": "ward-24",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Guildwood noise requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-17",
-    "period": "2025Q3",
-    "summary": "ward-17 received 27 graffiti requests in 2025Q3."
+    "category": "pothole",
+    "wardId": "ward-25",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park pothole requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-20",
-    "period": "2024Q1",
-    "summary": "ward-20 received 26 graffiti requests in 2024Q1."
+    "category": "flooding",
+    "wardId": "ward-25",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park flooding requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-06",
-    "period": "2024Q2",
-    "summary": "ward-06 received 25 graffiti requests in 2024Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-02",
-    "period": "2025Q2",
-    "summary": "ward-02 received 25 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-22",
-    "period": "2025Q3",
-    "summary": "ward-22 received 24 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-16",
-    "period": "2024Q2",
-    "summary": "ward-16 received 23 graffiti requests in 2024Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-01",
-    "period": "2025Q2",
-    "summary": "ward-01 received 21 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-20",
-    "period": "2025Q3",
-    "summary": "ward-20 received 21 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-07",
-    "period": "2025Q1",
-    "summary": "ward-07 received 19 graffiti requests in 2025Q1."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-01",
-    "period": "2025Q3",
-    "summary": "ward-01 received 18 graffiti requests in 2025Q3."
+    "category": "garbage",
+    "wardId": "ward-25",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park garbage requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
     "category": "graffiti",
     "wardId": "ward-25",
-    "period": "2025Q3",
-    "summary": "ward-25 received 17 graffiti requests in 2025Q3."
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park graffiti requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-07",
-    "period": "2025Q2",
-    "summary": "ward-07 received 17 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-21",
-    "period": "2025Q2",
-    "summary": "ward-21 received 15 graffiti requests in 2025Q2."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-21",
-    "period": "2025Q3",
-    "summary": "ward-21 received 13 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-23",
-    "period": "2025Q3",
-    "summary": "ward-23 received 12 graffiti requests in 2025Q3."
-  },
-  {
-    "category": "graffiti",
+    "category": "tree",
     "wardId": "ward-25",
-    "period": "2025Q2",
-    "summary": "ward-25 received 9 graffiti requests in 2025Q2."
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park tree requests \u2014 synthetic mock data for Phase 0 testing."
   },
   {
-    "category": "graffiti",
-    "wardId": "ward-23",
-    "period": "2025Q2",
-    "summary": "ward-23 received 7 graffiti requests in 2025Q2."
+    "category": "noise",
+    "wardId": "ward-25",
+    "period": "2025-Q2",
+    "summary": "Scarborough-Rouge Park noise requests \u2014 synthetic mock data for Phase 0 testing."
   }
 ]

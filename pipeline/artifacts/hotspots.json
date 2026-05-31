@@ -1,452 +1,92 @@
 [
   {
-    "category": "other",
-    "wardId": "ward-10",
-    "neighbourhood": "Spadina-Fort York",
-    "centroidLat": 43.630118,
-    "centroidLng": -79.392856,
-    "intensity": 1.0,
-    "count": 969
+    "category": "pothole",
+    "wardId": "ward-01",
+    "neighbourhood": "Humber Summit",
+    "centroidLat": 43.74,
+    "centroidLng": -79.59,
+    "intensity": 0.88,
+    "count": 34
   },
   {
-    "category": "other",
-    "wardId": "ward-03",
-    "neighbourhood": "Etobicoke-Lakeshore",
-    "centroidLat": 43.614193,
-    "centroidLng": -79.503582,
-    "intensity": 0.985,
-    "count": 954
-  },
-  {
-    "category": "other",
-    "wardId": "ward-14",
-    "neighbourhood": "Toronto-Danforth",
-    "centroidLat": 43.639031,
-    "centroidLng": -79.334395,
-    "intensity": 0.93,
-    "count": 901
-  },
-  {
-    "category": "other",
-    "wardId": "ward-11",
-    "neighbourhood": "University-Rosedale",
-    "centroidLat": 43.676629,
-    "centroidLng": -79.380424,
-    "intensity": 0.909,
-    "count": 881
-  },
-  {
-    "category": "other",
-    "wardId": "ward-20",
-    "neighbourhood": "Scarborough Southwest",
-    "centroidLat": 43.702899,
-    "centroidLng": -79.242206,
-    "intensity": 0.858,
-    "count": 831
-  },
-  {
-    "category": "other",
-    "wardId": "ward-13",
-    "neighbourhood": "Toronto Centre",
-    "centroidLat": 43.662045,
-    "centroidLng": -79.364893,
-    "intensity": 0.854,
-    "count": 828
-  },
-  {
-    "category": "other",
+    "category": "pothole",
     "wardId": "ward-02",
-    "neighbourhood": "Etobicoke Centre",
-    "centroidLat": 43.654809,
-    "centroidLng": -79.558146,
-    "intensity": 0.851,
-    "count": 825
-  },
-  {
-    "category": "other",
-    "wardId": "ward-19",
-    "neighbourhood": "Beaches-East York",
-    "centroidLat": 43.671336,
-    "centroidLng": -79.301856,
-    "intensity": 0.846,
-    "count": 820
-  },
-  {
-    "category": "other",
-    "wardId": "ward-09",
-    "neighbourhood": "Davenport",
-    "centroidLat": 43.667522,
-    "centroidLng": -79.443695,
-    "intensity": 0.832,
-    "count": 806
-  },
-  {
-    "category": "other",
-    "wardId": "ward-04",
-    "neighbourhood": "Parkdale-High Park",
-    "centroidLat": 43.641475,
-    "centroidLng": -79.464086,
-    "intensity": 0.811,
-    "count": 786
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-11",
-    "neighbourhood": "University-Rosedale",
-    "centroidLat": 43.676629,
-    "centroidLng": -79.380424,
-    "intensity": 0.799,
-    "count": 774
-  },
-  {
-    "category": "other",
-    "wardId": "ward-21",
-    "neighbourhood": "Scarborough Centre",
-    "centroidLat": 43.757135,
-    "centroidLng": -79.280356,
-    "intensity": 0.768,
-    "count": 744
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-14",
-    "neighbourhood": "Toronto-Danforth",
-    "centroidLat": 43.639031,
-    "centroidLng": -79.334395,
+    "neighbourhood": "Birchcliffe",
+    "centroidLat": 43.69,
+    "centroidLng": -79.26,
     "intensity": 0.72,
-    "count": 698
+    "count": 28
   },
   {
-    "category": "other",
-    "wardId": "ward-12",
-    "neighbourhood": "Toronto-St. Paul's",
-    "centroidLat": 43.688186,
-    "centroidLng": -79.411157,
-    "intensity": 0.709,
-    "count": 687
+    "category": "pothole",
+    "wardId": "ward-07",
+    "neighbourhood": "Jane-Finch",
+    "centroidLat": 43.76,
+    "centroidLng": -79.51,
+    "intensity": 0.84,
+    "count": 31
   },
   {
-    "category": "other",
-    "wardId": "ward-25",
-    "neighbourhood": "Scarborough-Rouge Park",
-    "centroidLat": 43.788606,
-    "centroidLng": -79.157047,
-    "intensity": 0.704,
-    "count": 682
+    "category": "pothole",
+    "wardId": "ward-13",
+    "neighbourhood": "Regent Park",
+    "centroidLat": 43.66,
+    "centroidLng": -79.36,
+    "intensity": 0.67,
+    "count": 22
   },
   {
-    "category": "garbage",
-    "wardId": "ward-09",
-    "neighbourhood": "Davenport",
-    "centroidLat": 43.667522,
-    "centroidLng": -79.443695,
-    "intensity": 0.698,
-    "count": 676
+    "category": "pothole",
+    "wardId": "ward-14",
+    "neighbourhood": "Riverdale",
+    "centroidLat": 43.67,
+    "centroidLng": -79.34,
+    "intensity": 0.71,
+    "count": 26
   },
   {
-    "category": "garbage",
-    "wardId": "ward-04",
-    "neighbourhood": "Parkdale-High Park",
-    "centroidLat": 43.641475,
-    "centroidLng": -79.464086,
-    "intensity": 0.686,
-    "count": 665
-  },
-  {
-    "category": "other",
-    "wardId": "ward-08",
-    "neighbourhood": "Eglinton-Lawrence",
-    "centroidLat": 43.72517,
-    "centroidLng": -79.43085,
-    "intensity": 0.677,
-    "count": 656
-  },
-  {
-    "category": "other",
-    "wardId": "ward-05",
-    "neighbourhood": "York South-Weston",
-    "centroidLat": 43.693882,
-    "centroidLng": -79.49671,
-    "intensity": 0.674,
-    "count": 653
-  },
-  {
-    "category": "other",
-    "wardId": "ward-15",
-    "neighbourhood": "Don Valley West",
-    "centroidLat": 43.721848,
-    "centroidLng": -79.367851,
-    "intensity": 0.66,
-    "count": 640
-  },
-  {
-    "category": "other",
-    "wardId": "ward-18",
-    "neighbourhood": "Willowdale",
-    "centroidLat": 43.768021,
-    "centroidLng": -79.415975,
-    "intensity": 0.659,
-    "count": 639
-  },
-  {
-    "category": "other",
-    "wardId": "ward-06",
-    "neighbourhood": "York Centre",
-    "centroidLat": 43.749757,
-    "centroidLng": -79.462625,
-    "intensity": 0.655,
-    "count": 635
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-19",
-    "neighbourhood": "Beaches-East York",
-    "centroidLat": 43.671336,
-    "centroidLng": -79.301856,
-    "intensity": 0.625,
-    "count": 606
-  },
-  {
-    "category": "other",
-    "wardId": "ward-24",
-    "neighbourhood": "Scarborough-Guildwood",
-    "centroidLat": 43.752486,
-    "centroidLng": -79.207782,
-    "intensity": 0.624,
-    "count": 605
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-12",
-    "neighbourhood": "Toronto-St. Paul's",
-    "centroidLat": 43.688186,
-    "centroidLng": -79.411157,
-    "intensity": 0.618,
-    "count": 599
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-08",
-    "neighbourhood": "Eglinton-Lawrence",
-    "centroidLat": 43.72517,
-    "centroidLng": -79.43085,
+    "category": "flooding",
+    "wardId": "ward-01",
+    "neighbourhood": "Rexdale",
+    "centroidLat": 43.73,
+    "centroidLng": -79.58,
     "intensity": 0.61,
-    "count": 591
+    "count": 15
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-10",
+    "neighbourhood": "Fort York",
+    "centroidLat": 43.64,
+    "centroidLng": -79.4,
+    "intensity": 0.55,
+    "count": 12
+  },
+  {
+    "category": "flooding",
+    "wardId": "ward-19",
+    "neighbourhood": "The Beaches",
+    "centroidLat": 43.68,
+    "centroidLng": -79.29,
+    "intensity": 0.59,
+    "count": 14
   },
   {
     "category": "garbage",
     "wardId": "ward-20",
-    "neighbourhood": "Scarborough Southwest",
-    "centroidLat": 43.702899,
-    "centroidLng": -79.242206,
-    "intensity": 0.572,
-    "count": 554
+    "neighbourhood": "Cliffside",
+    "centroidLat": 43.71,
+    "centroidLng": -79.24,
+    "intensity": 0.45,
+    "count": 18
   },
   {
-    "category": "other",
-    "wardId": "ward-01",
-    "neighbourhood": "Etobicoke North",
-    "centroidLat": 43.721415,
-    "centroidLng": -79.573871,
-    "intensity": 0.562,
-    "count": 545
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-25",
-    "neighbourhood": "Scarborough-Rouge Park",
-    "centroidLat": 43.788606,
-    "centroidLng": -79.157047,
-    "intensity": 0.553,
-    "count": 536
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-03",
-    "neighbourhood": "Etobicoke-Lakeshore",
-    "centroidLat": 43.614193,
-    "centroidLng": -79.503582,
-    "intensity": 0.552,
-    "count": 535
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-22",
-    "neighbourhood": "Scarborough-Agincourt",
-    "centroidLat": 43.790356,
-    "centroidLng": -79.306938,
-    "intensity": 0.543,
-    "count": 526
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-05",
-    "neighbourhood": "York South-Weston",
-    "centroidLat": 43.693882,
-    "centroidLng": -79.49671,
-    "intensity": 0.52,
-    "count": 504
-  },
-  {
-    "category": "other",
-    "wardId": "ward-17",
-    "neighbourhood": "Don Valley North",
-    "centroidLat": 43.781615,
-    "centroidLng": -79.360165,
-    "intensity": 0.506,
-    "count": 490
-  },
-  {
-    "category": "other",
-    "wardId": "ward-22",
-    "neighbourhood": "Scarborough-Agincourt",
-    "centroidLat": 43.790356,
-    "centroidLng": -79.306938,
-    "intensity": 0.487,
-    "count": 472
-  },
-  {
-    "category": "other",
-    "wardId": "ward-07",
-    "neighbourhood": "Humber River-Black Creek",
-    "centroidLat": 43.745612,
-    "centroidLng": -79.537828,
-    "intensity": 0.458,
-    "count": 444
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-13",
-    "neighbourhood": "Toronto Centre",
-    "centroidLat": 43.662045,
-    "centroidLng": -79.364893,
-    "intensity": 0.454,
-    "count": 440
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-06",
-    "neighbourhood": "York Centre",
-    "centroidLat": 43.749757,
-    "centroidLng": -79.462625,
-    "intensity": 0.453,
-    "count": 439
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-06",
-    "neighbourhood": "York Centre",
-    "centroidLat": 43.749757,
-    "centroidLng": -79.462625,
-    "intensity": 0.451,
-    "count": 437
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-02",
-    "neighbourhood": "Etobicoke Centre",
-    "centroidLat": 43.654809,
-    "centroidLng": -79.558146,
-    "intensity": 0.449,
-    "count": 435
-  },
-  {
-    "category": "garbage",
+    "category": "noise",
     "wardId": "ward-10",
-    "neighbourhood": "Spadina-Fort York",
-    "centroidLat": 43.630118,
-    "centroidLng": -79.392856,
-    "intensity": 0.449,
-    "count": 435
-  },
-  {
-    "category": "other",
-    "wardId": "ward-16",
-    "neighbourhood": "Don Valley East",
-    "centroidLat": 43.728577,
-    "centroidLng": -79.337027,
-    "intensity": 0.441,
-    "count": 427
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-15",
-    "neighbourhood": "Don Valley West",
-    "centroidLat": 43.721848,
-    "centroidLng": -79.367851,
-    "intensity": 0.44,
-    "count": 426
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-18",
-    "neighbourhood": "Willowdale",
-    "centroidLat": 43.768021,
-    "centroidLng": -79.415975,
-    "intensity": 0.4,
-    "count": 388
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-21",
-    "neighbourhood": "Scarborough Centre",
-    "centroidLat": 43.757135,
-    "centroidLng": -79.280356,
-    "intensity": 0.391,
-    "count": 379
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-24",
-    "neighbourhood": "Scarborough-Guildwood",
-    "centroidLat": 43.752486,
-    "centroidLng": -79.207782,
-    "intensity": 0.384,
-    "count": 372
-  },
-  {
-    "category": "other",
-    "wardId": "ward-23",
-    "neighbourhood": "Scarborough North",
-    "centroidLat": 43.808231,
-    "centroidLng": -79.241844,
-    "intensity": 0.352,
-    "count": 341
-  },
-  {
-    "category": "pothole",
-    "wardId": "ward-15",
-    "neighbourhood": "Don Valley West",
-    "centroidLat": 43.721848,
-    "centroidLng": -79.367851,
-    "intensity": 0.347,
-    "count": 336
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-01",
-    "neighbourhood": "Etobicoke North",
-    "centroidLat": 43.721415,
-    "centroidLng": -79.573871,
-    "intensity": 0.334,
-    "count": 324
-  },
-  {
-    "category": "garbage",
-    "wardId": "ward-22",
-    "neighbourhood": "Scarborough-Agincourt",
-    "centroidLat": 43.790356,
-    "centroidLng": -79.306938,
-    "intensity": 0.317,
-    "count": 307
-  },
-  {
-    "category": "graffiti",
-    "wardId": "ward-11",
-    "neighbourhood": "University-Rosedale",
-    "centroidLat": 43.676629,
-    "centroidLng": -79.380424,
-    "intensity": 0.316,
-    "count": 306
+    "neighbourhood": "Spadina",
+    "centroidLat": 43.65,
+    "centroidLng": -79.4,
+    "intensity": 0.78,
+    "count": 42
   }
 ]

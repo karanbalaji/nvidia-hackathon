@@ -2,7 +2,10 @@
   "name": "@311pulse/agent",
   "version": "0.1.0",
   "type": "module",
+  "main": "index.ts",
+  "types": "index.ts",
   "scripts": {
+    "build": "tsc",
     "typecheck": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",

@@ -26,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             <CopilotKit
               runtimeUrl={process.env.NEXT_PUBLIC_COPILOTKIT_URL ?? "/api/copilotkit"}
               agent="311-pulse-agent"
+              showDevConsole={false}
             >
               <SidebarProvider>
                 <WardProvider>

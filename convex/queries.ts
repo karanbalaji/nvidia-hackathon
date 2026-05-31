@@ -16,12 +16,26 @@ export const getDailyAggregates = query({
     to: v.optional(v.string()),
   },
   handler: async (ctx, { wardId, category, from, to }) => {
-    let rows = await ctx.db.query("dailyAggregates").collect();
+    // Default to last 90 days to stay well under Convex's 32k doc read limit.
+    // With 140k rows spanning 3 years, 90 days ≈ ~11k rows (all wards/categories).
+    const defaultFrom = new Date(Date.now() - 90 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .slice(0, 10);
+    const dateFrom = from ?? defaultFrom;
+
+    // Use the by_date index to scan only the requested window — avoids full
+    // table scan which exceeds Convex's 32k document limit on 140k rows.
+    let q = ctx.db
+      .query("dailyAggregates")
+      .withIndex("by_date", (idx) =>
+        to ? idx.gte("date", dateFrom).lte("date", to) : idx.gte("date", dateFrom)
+      );
+
+    let rows = await q.take(8192);
+
     if (wardId) rows = rows.filter((r) => r.wardId === wardId);
     if (category) rows = rows.filter((r) => r.category === category);
-    if (from) rows = rows.filter((r) => r.date >= from);
-    if (to) rows = rows.filter((r) => r.date <= to);
-    return rows.sort((a, b) => a.date.localeCompare(b.date));
+    return rows.sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4096);
   },
 });
 

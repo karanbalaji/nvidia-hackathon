@@ -58,7 +58,7 @@ describe("getMastraModelConfig", () => {
   });
 
   it("falls back to default NIM model when NIM_MODEL not set", async () => {
-    const env = { ...savedEnv, LLM_PROVIDER: "nim" };
+    const env: NodeJS.ProcessEnv = { ...savedEnv, LLM_PROVIDER: "nim" };
     delete env.NIM_MODEL;
     process.env = env;
     vi.resetModules();

@@ -43,12 +43,12 @@ export function WardLayer({ activeLayer, heatData, riskData, onWardClick }: Ward
 
   const riskMap = new Map(riskData.map((r) => [r.wardId, r.score]));
 
-  const maxCount = Math.max(1, ...heatData.map((d) => d.count));
   const heatMap = new Map<string, number>();
   heatData.forEach((d) => {
     const cur = heatMap.get(d.wardId) ?? 0;
     heatMap.set(d.wardId, cur + d.count);
   });
+  const maxCount = Math.max(1, ...heatMap.values());
 
   const style = useCallback(
     (feature: GeoJsonFeature): PathOptions => {

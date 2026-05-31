@@ -113,8 +113,8 @@ export function MapProvider({ children }: { children: React.ReactNode }) {
 
   // HotspotLayer renders data reactively via props; these imperative hooks are
   // exposed for agent generative UI but layer state lives in MapView.
-  const pushHeatLayer = useCallback((_data: Hotspot[]) => {}, []); // eslint-disable-line @typescript-eslint/no-unused-vars
-  const setActiveLayer = useCallback((_layer: ActiveLayer) => {}, []); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const pushHeatLayer = useCallback((_data: Hotspot[]) => {}, []);
+  const setActiveLayer = useCallback((_layer: ActiveLayer) => {}, []);
 
   return (
     <MapContext.Provider

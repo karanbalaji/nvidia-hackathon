@@ -89,12 +89,19 @@ export const importArtifacts = mutation({
 });
 
 // Called once before batch-importing daily aggregates to clear stale rows
+// Uses pagination to stay under Convex's 4096-read limit.
 export const clearDailyAggregates = mutation({
   args: {},
   handler: async (ctx) => {
-    for await (const row of ctx.db.query("dailyAggregates")) {
-      await ctx.db.delete(row._id);
+    let count = 0;
+    while (true) {
+      const rows = await ctx.db.query("dailyAggregates").take(1000);
+      if (rows.length === 0) break;
+      for (const row of rows) {
+        await ctx.db.delete(row._id);
+        count++;
+      }
     }
-    return { ok: true };
+    return { ok: true, deleted: count };
   },
 });

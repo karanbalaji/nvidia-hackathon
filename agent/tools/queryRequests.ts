@@ -27,7 +27,9 @@ export const queryRequestsTool = createTool({
       if (input.from) args.from = input.from;
       if (input.to) args.to = input.to;
       const result = await getConvexClient().query(api.queries.getDailyAggregates, args);
-      return result ?? [];
+      // Cap at 200 records — returning thousands of rows causes oversized TOOL_CALL_RESULT
+      // payloads that break the CopilotKit SSE stream and leave the thread stuck.
+      return (result ?? []).slice(0, 200);
     } catch (err) {
       console.error("[queryRequests] Convex query failed:", (err as Error).message);
       return [];

@@ -28,8 +28,8 @@ export function WardForecastMiniChart({ data }: WardForecastMiniChartProps) {
   }));
 
   return (
-    <div className="h-[120px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
+    <div className="h-[120px] w-full min-w-0">
+      <ResponsiveContainer width="100%" height="100%" minHeight={120}>
         <AreaChart data={chartData} margin={{ top: 4, right: 4, bottom: 0, left: 0 }}>
           <defs>
             <linearGradient id="miniGrad" x1="0" y1="0" x2="0" y2="1">

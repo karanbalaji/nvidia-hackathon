@@ -15,7 +15,7 @@ snow_model = None
 def predict_potholes():
     """
     Predicts pothole requests based on weather conditions.
-    Expects JSON: {"Month": 5, "Day": 15, "precipitation": 10.0, "precip_lag1": 5.0, "precip_lag2": 0, "precip_lag3": 15.0}
+    Expects JSON: {"Month": 5, "Day": 15, "DayOfWeek": 2, "ward_num": 12, "precipitation": 10.0, "precip_lag1": 5.0, "precip_lag2": 0, "precip_lag3": 15.0, "snow_depth": 0, "snow_precipitation": 0}
     ---
     tags:
       - Predictions
@@ -31,6 +31,7 @@ def predict_potholes():
           properties:
             Month: {type: integer, example: 5}
             Day: {type: integer, example: 15}
+            DayOfWeek: {type: integer, example: 2, description: "Day of week (0=Monday, 6=Sunday)"}
             ward_num: {type: integer, example: 12}
             precipitation: {type: number, example: 10.0}
             precip_lag1: {type: number, example: 33.0}
@@ -59,10 +60,11 @@ def predict_potholes():
         return jsonify({"error": "Invalid JSON payload"}), 400
 
     try:
-        features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
+        features = ['Month', 'Day', 'DayOfWeek', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
         input_df = pd.DataFrame([[
             data['Month'],
             data['Day'],
+            data['DayOfWeek'],
             data['precipitation'],
             data['precip_lag1'],
             data['precip_lag2'],
@@ -83,7 +85,7 @@ def predict_potholes():
 def predict_snow():
     """
     Predicts snow clearing requests for a weather event.
-    Expects JSON: {"Month": 1, "Day": 15, "snow_depth": 50, "snow_precipitation": 10}
+    Expects JSON: {"Month": 1, "Day": 15, "DayOfWeek": 2, "ward_num": 4, "snow_depth": 50, "snow_precipitation": 10}
     ---
     tags:
       - Predictions
@@ -99,6 +101,7 @@ def predict_snow():
           properties:
             Month: {type: integer, example: 1}
             Day: {type: integer, example: 15}
+            DayOfWeek: {type: integer, example: 2, description: "Day of week (0=Monday, 6=Sunday)"}
             ward_num: {type: integer, example: 4}
             snow_depth: {type: number, example: 50}
             snow_precipitation: {type: number, example: 10}
@@ -130,10 +133,11 @@ def predict_snow():
                 "note": "Prediction is 0 for non-winter months (May-October)."
             })
 
-        features = ['Month', 'Day', 'snow_depth', 'snow_precipitation', 'ward_num']
+        features = ['Month', 'Day', 'DayOfWeek', 'snow_depth', 'snow_precipitation', 'ward_num']
         input_df = pd.DataFrame([[
             data['Month'],
             data['Day'],
+            data['DayOfWeek'],
             data['snow_depth'],
             data['snow_precipitation'],
             data['ward_num']

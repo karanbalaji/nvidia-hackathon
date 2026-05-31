@@ -4,8 +4,7 @@ This document provides instructions on how to train the machine learning models 
 
 ## 1. Training the Models (`ml/toronto_predict.py`)
 
-The `ml/toronto_predict.py` script is responsible for training the `pothole` and `snow` prediction models using historical 311 and weather data. It also benchmarks the `CatBoost` models against a standard `LinearRegression` model to validate their effectiveness.
-The `ml/toronto_predict.py` script is responsible for training the `pothole` and `snow` prediction models using historical 311 and weather data. It also benchmarks the `RandomForestRegressor` (RF) and `LinearRegression` (MLR) models to evaluate their effectiveness.
+The `ml/toronto_predict.py` script is responsible for training the `pothole` and `snow` prediction models using historical 311 and weather data. It also benchmarks a `RandomForestClassifier` (RF) against a `LinearRegression` (MLR) model to evaluate its effectiveness.
 
 ### How to Run
 
@@ -24,12 +23,23 @@ The `ml/toronto_predict.py` script is responsible for training the `pothole` and
 
 When you run the script, you will see output in your terminal, including:
 
-*   **R-squared comparison**: A direct comparison of the performance between the CatBoost and Linear Regression models for both potholes and snow. A higher R² score (closer to 1.0) indicates a better fit.
-*   **R-squared comparison**: A direct comparison of the performance between the Random Forest and Linear Regression models. A higher R² score (closer to 1.0) indicates a better fit.
+*   **Model Performance**: The script prints performance metrics for both the Random Forest Classifier (Accuracy) and a baseline Linear Regression model (R-squared) on both training and test data.
     ```text
-    Pothole Model R-squared (training data):
-     - Random Forest: 0.9123
-     - Linear Regression: 0.6234
+    --- Training Pothole Model (with rain lag) ---
+    Pothole Model Performance (training data):
+     - Random Forest Accuracy: 0.5819
+     - Linear Regression R-squared: 0.0752
+    Pothole Model Performance (test data):
+     - Random Forest Accuracy: 0.7944
+     - Linear Regression R-squared: -1.3112
+
+    --- Training Snow Clearing Model ---
+    Snow Model Performance (training data):
+     - Random Forest Accuracy: 0.4020
+     - Linear Regression R-squared: 0.2297
+    Snow Model Performance (test data):
+     - Random Forest Accuracy: 0.5753
+     - Linear Regression R-squared: -1.9431
     ```
 *   **Saved model files**: The script will save the trained models to the specified output directory.
     *   `./models/pothole_model.joblib`
@@ -62,7 +72,7 @@ The server provides two endpoints for predictions:
     ```bash
     curl -X POST http://localhost:5001/predict/potholes \
          -H "Content-Type: application/json" \
-         -d '{"Month": 5, "Day": 15, "ward_num": 12, "precipitation": 10.0, "precip_lag1": 33.0, "precip_lag2": 33.0, "precip_lag3": 0, "snow_depth": 0, "snow_precipitation": 0}'
+         -d '{"Month": 5, "Day": 15, "DayOfWeek": 2, "ward_num": 12, "precipitation": 10.0, "precip_lag1": 33.0, "precip_lag2": 33.0, "precip_lag3": 0, "snow_depth": 0, "snow_precipitation": 0}'
     ```
 
 #### B. Snow Clearing Prediction
@@ -73,5 +83,5 @@ The server provides two endpoints for predictions:
     ```bash
     curl -X POST http://localhost:5001/predict/snow \
          -H "Content-Type: application/json" \
-         -d '{"Month": 1, "Day": 15, "ward_num": 4, "snow_depth": 50, "snow_precipitation": 10}'
+         -d '{"Month": 1, "Day": 15, "DayOfWeek": 2, "ward_num": 4, "snow_depth": 50, "snow_precipitation": 10}'
     ```

@@ -7,9 +7,9 @@ import numpy as np
 import joblib
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestRegressor
+from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, accuracy_score
 import seaborn as sns
 import requests
 import folium
@@ -85,6 +85,7 @@ def prepare_category_data_with_geo(df, category_keyword):
     # Feature Engineering
     daily_counts['Month'] = daily_counts['Date'].dt.month
     daily_counts['Day'] = daily_counts['Date'].dt.day
+    daily_counts['DayOfWeek'] = daily_counts['Date'].dt.dayofweek
     return daily_counts
 
 def prepare_snow_model(df, weather_path):
@@ -152,11 +153,11 @@ def prepare_pothole_data(df, weather_path):
 def train_pothole_model_v2(df, weather_path):
     merged = prepare_pothole_data(df, weather_path)
 
-    features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
+    features = ['Month', 'Day', 'DayOfWeek', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
     X = merged[features]
-    y = merged['Request_Count']
+    y = merged['Request_Count'].astype(int)
 
-    model = RandomForestRegressor(
+    model = RandomForestClassifier(
         n_estimators=100,
         max_depth=4,            # Limit tree depth to prevent memorization
         min_samples_leaf=15,       # Require more samples per leaf to smooth predictions
@@ -166,17 +167,17 @@ def train_pothole_model_v2(df, weather_path):
     model.fit(X, y)
 
     # --- Model Comparison ---
-    # Train a standard Linear Regression model for comparison
+    # Train a standard Linear Regression model for R-squared comparison
     lr_model = LinearRegression()
     lr_model.fit(X, y)
 
-    # Compare models using R-squared score on the training data
-    rf_r2 = r2_score(y, model.predict(X))
+    # Compare models using appropriate metrics
+    rf_accuracy = accuracy_score(y, model.predict(X))
     lr_r2 = r2_score(y, lr_model.predict(X))
 
-    print(f"Pothole Model R-squared (training data):")
-    print(f" - Random Forest: {rf_r2:.4f}")
-    print(f" - Linear Regression: {lr_r2:.4f}")
+    print(f"Pothole Model Performance (training data):")
+    print(f" - Random Forest Accuracy: {rf_accuracy:.4f}")
+    print(f" - Linear Regression R-squared: {lr_r2:.4f}")
     return model, lr_model, features
 
 def train_snow_model(df, weather_path):
@@ -190,11 +191,11 @@ def train_snow_model(df, weather_path):
     # - snow_precipitation: The amount of new snowfall is also a direct cause for requests.
     # - ward_num: The city ward, as a numeric feature.
     # - postal_fsa_encoded: The postal code area, as a categorical feature.
-    features_snow = ['Month', 'Day', 'snow_depth', 'snow_precipitation', 'ward_num']
+    features_snow = ['Month', 'Day', 'DayOfWeek', 'snow_depth', 'snow_precipitation', 'ward_num']
     X_snow = snow_merged_data[features_snow]
-    y_snow = snow_merged_data['Request_Count']
+    y_snow = snow_merged_data['Request_Count'].astype(int)
     
-    model_snow_rf = RandomForestRegressor(
+    model_snow_rf = RandomForestClassifier(
         n_estimators=100,
         max_depth=4,            # Limit tree depth to prevent memorization
         min_samples_leaf=15,       # Require more samples per leaf to smooth predictions
@@ -203,18 +204,15 @@ def train_snow_model(df, weather_path):
         n_jobs=-1)
     model_snow_rf.fit(X_snow, y_snow)
 
-    # --- Model Comparison for Snow ---
+    # --- Model Comparison ---
     lr_model_snow = LinearRegression()
     lr_model_snow.fit(X_snow, y_snow)
 
-    rf_pred_snow = model_snow_rf.predict(X_snow)
-    lr_pred_snow = lr_model_snow.predict(X_snow)
-
-    rf_r2_snow = r2_score(y_snow, rf_pred_snow)
-    lr_r2_snow = r2_score(y_snow, lr_pred_snow)
-    print(f"Snow Model R-squared (training data):")
-    print(f" - Random Forest: {rf_r2_snow:.4f}")
-    print(f" - Linear Regression: {lr_r2_snow:.4f}")
+    rf_accuracy_snow = accuracy_score(y_snow, model_snow_rf.predict(X_snow))
+    lr_r2_snow = r2_score(y_snow, lr_model_snow.predict(X_snow))
+    print(f"Snow Model Performance (training data):")
+    print(f" - Random Forest Accuracy: {rf_accuracy_snow:.4f}")
+    print(f" - Linear Regression R-squared: {lr_r2_snow:.4f}")
 
     return model_snow_rf, lr_model_snow, features_snow
 
@@ -244,10 +242,10 @@ def main(data_dir, output_dir):
         if col not in pothole_test_data.columns:
             pothole_test_data[col] = 0
     X_test_pothole = pothole_test_data[features_pothole]
-    y_test_pothole = pothole_test_data['Request_Count']
-    print(f"Pothole Model R-squared (test data):")
-    print(f" - Random Forest: {r2_score(y_test_pothole, model_pothole_rf.predict(X_test_pothole)):.4f}")
-    print(f" - Linear Regression: {r2_score(y_test_pothole, model_pothole_lr.predict(X_test_pothole)):.4f}")
+    y_test_pothole = pothole_test_data['Request_Count'].astype(int)
+    print(f"Pothole Model Performance (test data):")
+    print(f" - Random Forest Accuracy: {accuracy_score(y_test_pothole, model_pothole_rf.predict(X_test_pothole)):.4f}")
+    print(f" - Linear Regression R-squared: {r2_score(y_test_pothole, model_pothole_lr.predict(X_test_pothole)):.4f}")
 
     pothole_model_path = os.path.join(output_dir, 'pothole_model.joblib')
     joblib.dump(model_pothole_rf, pothole_model_path)
@@ -269,10 +267,10 @@ def main(data_dir, output_dir):
             snow_test_data[col] = 0
 
     X_test_snow = snow_test_data[features_snow]
-    y_test_snow = snow_test_data['Request_Count']
-    print(f"Snow Model R-squared (test data):")
-    print(f" - Random Forest: {r2_score(y_test_snow, model_snow_rf.predict(X_test_snow)):.4f}")
-    print(f" - Linear Regression: {r2_score(y_test_snow, lr_model_snow.predict(X_test_snow)):.4f}")
+    y_test_snow = snow_test_data['Request_Count'].astype(int)
+    print(f"Snow Model Performance (test data):")
+    print(f" - Random Forest Accuracy: {accuracy_score(y_test_snow, model_snow_rf.predict(X_test_snow)):.4f}")
+    print(f" - Linear Regression R-squared: {r2_score(y_test_snow, lr_model_snow.predict(X_test_snow)):.4f}")
 
     print("\nScript finished successfully.")
 

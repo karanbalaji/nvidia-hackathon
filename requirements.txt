@@ -3,3 +3,7 @@ matplotlib
 seaborn
 pytest
 ruff
+catboost
+scikit-learn
+requests
+folium

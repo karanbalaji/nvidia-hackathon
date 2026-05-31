@@ -370,3 +370,17 @@ Did you discover new work?                →  Add to ⏳ To Do and adjust % dow
 | TDD rules + Vitest config | `CLAUDE.md` — TDD section |
 | Vitest docs | https://vitest.dev/ |
 | React Testing Library | https://testing-library.com/docs/react-testing-library/intro/ |
+
+<!-- convex-ai-start -->
+
+This project uses [Convex](https://convex.dev) as its backend.
+
+When working on Convex code, **always read
+`convex/_generated/ai/guidelines.md` first** for important guidelines on
+how to correctly use Convex APIs and patterns. The file contains rules that
+override what you may have learned about Convex from training data.
+
+Convex agent skills for common tasks can be installed by running
+`npx convex ai-files install`.
+
+<!-- convex-ai-end -->

@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, "../../app/.env.local") });
 
-import { getLLM, MODEL } from "../llm.js";
+const { getLLM, MODEL } = await import("../llm.ts");
 
 const provider = process.env.LLM_PROVIDER ?? "nim";
 console.log(`[smoke-llm] provider=${provider} model=${MODEL}`);

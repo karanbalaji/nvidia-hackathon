@@ -91,8 +91,13 @@ async function main() {
 
   // Batch-import daily aggregates to stay within Convex's 8MB mutation limit
   if (dailyAggregates.length > 0) {
-    console.log("  clearing existing dailyAggregates...");
-    await (client as any).mutation("mutations:clearDailyAggregates", {});
+    // Best-effort clear; may fail on large tables — import proceeds regardless
+    try {
+      console.log("  clearing existing dailyAggregates...");
+      await (client as any).mutation("mutations:clearDailyAggregates", {});
+    } catch (e) {
+      console.warn("  clearDailyAggregates failed (may be too many rows), proceeding with import...");
+    }
     const BATCH = 2000;
     const total = dailyAggregates.length;
     for (let i = 0; i < total; i += BATCH) {

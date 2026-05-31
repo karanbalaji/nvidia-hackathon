@@ -104,7 +104,9 @@ export function PulseChat() {
         <div className={cn("flex-1 overflow-hidden relative min-h-0", isRightCollapsed && "hidden")}>
           <CopilotChat
             labels={{
-              title: "311 Pulse Agent",
+              // No title — our custom header already shows "311 Pulse Agent".
+              // Passing an empty string hides CopilotKit's built-in title bar.
+              title: "",
               initial: selectedWardId
                 ? `Analyzing ${selectedWardId}. Ask me about forecasts, risk scores, or hotspots for this ward.`
                 : "I'm your 311 intelligence partner. Ask me about Toronto service request patterns, forecasts, or risk scores.",

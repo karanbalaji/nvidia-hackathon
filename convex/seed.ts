@@ -55,7 +55,7 @@ export const seedMockData = internalMutation({
     for await (const r of ctx.db.query("pipelineRuns")) await ctx.db.delete(r._id);
     await ctx.db.insert("pipelineRuns", {
       runId: "mock-run-001",
-      engine: "mock",
+      engine: "pandas",
       rowsProcessed: 150,
       durationSec: 0.1,
       createdAt: new Date().toISOString(),

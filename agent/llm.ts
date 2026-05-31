@@ -37,7 +37,7 @@ export function getMastraModelConfig(): OpenAICompatibleConfig {
       apiKey: process.env.NIM_API_KEY ?? "not-needed",
     };
   }
-  const model = process.env.FALLBACK_MODEL ?? "nvidia/llama-3.1-nemotron-nano-8b-v1";
+  const model = process.env.FALLBACK_MODEL ?? "meta/llama-3.1-70b-instruct";
   return {
     providerId: "openai-compatible",
     modelId: model,

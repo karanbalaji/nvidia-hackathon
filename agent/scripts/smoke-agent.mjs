@@ -10,7 +10,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 config({ path: resolve(__dirname, "../../app/.env.local") });
 
-import { agent } from "../index.js";
+const { agent } = await import("../index.ts");
 
 const question = process.argv[2] ?? "Which wards will see the most pothole complaints next week?";
 console.log(`[smoke-agent] question: ${question}`);

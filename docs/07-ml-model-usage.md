@@ -5,6 +5,7 @@ This document provides instructions on how to train the machine learning models 
 ## 1. Training the Models (`ml/toronto_predict.py`)
 
 The `ml/toronto_predict.py` script is responsible for training the `pothole` and `snow` prediction models using historical 311 and weather data. It also benchmarks the `CatBoost` models against a standard `LinearRegression` model to validate their effectiveness.
+The `ml/toronto_predict.py` script is responsible for training the `pothole` and `snow` prediction models using historical 311 and weather data. It also benchmarks the `RandomForestRegressor` (RF) and `LinearRegression` (MLR) models to evaluate their effectiveness.
 
 ### How to Run
 
@@ -17,21 +18,22 @@ The `ml/toronto_predict.py` script is responsible for training the `pothole` and
     ```
 
     *   `--data-dir`: The directory containing your input CSV files.
-    *   `--output-dir`: The directory where the trained models (`.cbm` files) and any generated plots will be saved.
+    *   `--output-dir`: The directory where the trained models (`.joblib` files) and any generated plots will be saved.
 
 ### Expected Output
 
 When you run the script, you will see output in your terminal, including:
 
 *   **R-squared comparison**: A direct comparison of the performance between the CatBoost and Linear Regression models for both potholes and snow. A higher R² score (closer to 1.0) indicates a better fit.
+*   **R-squared comparison**: A direct comparison of the performance between the Random Forest and Linear Regression models. A higher R² score (closer to 1.0) indicates a better fit.
     ```text
     Pothole Model R-squared (training data):
-     - CatBoost: 0.8512
+     - Random Forest: 0.9123
      - Linear Regression: 0.6234
     ```
 *   **Saved model files**: The script will save the trained models to the specified output directory.
-    *   `./models/pothole_model.cbm`
-    *   `./models/snow_model.cbm`
+    *   `./models/pothole_model.joblib`
+    *   `./models/snow_model.joblib`
 
 ## 2. Running the Prediction API (`ml/prediction_api.py`)
 
@@ -45,7 +47,7 @@ The `ml/prediction_api.py` script starts a Flask web server that loads the train
     
     python ml/prediction_api.py --models-dir ./models --port 5001```
 
-    *   `--models-dir`: The directory containing the `.cbm` model files.
+    *   `--models-dir`: The directory containing the `.joblib` model files.
     *   `--port`: The network port on which the server will listen for requests.
 
 ### API Endpoints
@@ -60,16 +62,16 @@ The server provides two endpoints for predictions:
     ```bash
     curl -X POST http://localhost:5001/predict/potholes \
          -H "Content-Type: application/json" \
-         -d '{"month": 5, "day_of_week": 2, "precip_today": 33, "precip_lag1": 33, "precip_lag2": 33, "precip_lag3": 0}'
+         -d '{"Month": 5, "Day": 15, "ward_num": 12, "precipitation": 10.0, "precip_lag1": 33.0, "precip_lag2": 33.0, "precip_lag3": 0, "snow_depth": 0, "snow_precipitation": 0}'
     ```
 
 #### B. Snow Clearing Prediction
 
 *   **Endpoint**: `POST /predict/snow`
-*   **Description**: Predicts the total number of snow clearing requests for a multi-day weather event.
+*   **Description**: Predicts the number of snow clearing requests for a single day based on weather conditions.
 *   **Example Call**:
     ```bash
     curl -X POST http://localhost:5001/predict/snow \
          -H "Content-Type: application/json" \
-         -d '{"month": 1, "day_of_week": 0, "snow_depth_cm": 50, "duration_days": 3}'
+         -d '{"Month": 1, "Day": 15, "ward_num": 4, "snow_depth": 50, "snow_precipitation": 10}'
     ```

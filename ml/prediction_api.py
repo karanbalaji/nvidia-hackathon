@@ -2,8 +2,8 @@ import os
 import argparse
 import pandas as pd
 from flask import Flask, request, jsonify
-from catboost import CatBoostRegressor
 from flasgger import Swagger
+import joblib
 
 # --- Globals ---
 app = Flask(__name__)
@@ -11,12 +11,11 @@ swagger = Swagger(app)
 pothole_model = None
 snow_model = None
 
-
 @app.route('/predict/potholes', methods=['POST'])
 def predict_potholes():
     """
     Predicts pothole requests based on weather conditions.
-    Expects JSON: {"month": 5, "day_of_week": 2, "precip_today": 10, "precip_lag1": 5, "precip_lag2": 0, "precip_lag3": 15}
+    Expects JSON: {"Month": 5, "Day": 15, "precipitation": 10.0, "precip_lag1": 5.0, "precip_lag2": 0, "precip_lag3": 15.0}
     ---
     tags:
       - Predictions
@@ -31,11 +30,14 @@ def predict_potholes():
           type: object
           properties:
             Month: {type: integer, example: 5}
-            DayOfWeek: {type: integer, example: 2}
-            precipitation: {type: number, example: 33.0}
+            Day: {type: integer, example: 15}
+            ward_num: {type: integer, example: 12}
+            precipitation: {type: number, example: 10.0}
             precip_lag1: {type: number, example: 33.0}
             precip_lag2: {type: number, example: 33.0}
             precip_lag3: {type: number, example: 0}
+            snow_depth: {type: number, example: 0}
+            snow_precipitation: {type: number, example: 0}
     responses:
       200:
         description: A successful prediction.
@@ -57,14 +59,17 @@ def predict_potholes():
         return jsonify({"error": "Invalid JSON payload"}), 400
 
     try:
-        features = ['Month', 'DayOfWeek', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3']
+        features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
         input_df = pd.DataFrame([[
             data['Month'],
-            data['DayOfWeek'],
+            data['Day'],
             data['precipitation'],
             data['precip_lag1'],
             data['precip_lag2'],
-            data['precip_lag3']
+            data['precip_lag3'],
+            data['ward_num'],
+            data.get('snow_depth', 0),
+            data.get('snow_precipitation', 0)
         ]], columns=features)
 
         prediction = pothole_model.predict(input_df)[0]
@@ -78,7 +83,7 @@ def predict_potholes():
 def predict_snow():
     """
     Predicts snow clearing requests for a weather event.
-    Expects JSON: {"Month": 1, "DayOfWeek": 0, "snow_depth": 50, "snow_precipitation": 10}
+    Expects JSON: {"Month": 1, "Day": 15, "snow_depth": 50, "snow_precipitation": 10}
     ---
     tags:
       - Predictions
@@ -93,7 +98,8 @@ def predict_snow():
           type: object
           properties:
             Month: {type: integer, example: 1}
-            DayOfWeek: {type: integer, example: 0}
+            Day: {type: integer, example: 15}
+            ward_num: {type: integer, example: 4}
             snow_depth: {type: number, example: 50}
             snow_precipitation: {type: number, example: 10}
     responses:
@@ -116,12 +122,21 @@ def predict_snow():
         return jsonify({"error": "Invalid JSON payload"}), 400
 
     try:
-        features = ['Month', 'DayOfWeek', 'snow_depth', 'snow_precipitation']
+        # Add a domain-knowledge guardrail: no snow requests in summer months.
+        month = data.get('Month')
+        if month and 5 <= month <= 10: # May to October
+            return jsonify({
+                "predicted_requests": 0,
+                "note": "Prediction is 0 for non-winter months (May-October)."
+            })
+
+        features = ['Month', 'Day', 'snow_depth', 'snow_precipitation', 'ward_num']
         input_df = pd.DataFrame([[
             data['Month'],
-            data['DayOfWeek'],
+            data['Day'],
             data['snow_depth'],
-            data['snow_precipitation']
+            data['snow_precipitation'],
+            data['ward_num']
         ]], columns=features)
 
         prediction = snow_model.predict(input_df)[0]
@@ -136,11 +151,14 @@ if __name__ == '__main__':
     parser.add_argument('--port', type=int, default=5001, help="Port to run the API server on.")
     args = parser.parse_args()
 
-    pothole_model_path = os.path.join(args.models_dir, 'pothole_model.cbm')
-    snow_model_path = os.path.join(args.models_dir, 'snow_model.cbm')
+    global pothole_model, snow_model
 
-    pothole_model = CatBoostRegressor().load_model(pothole_model_path)
-    snow_model = CatBoostRegressor().load_model(snow_model_path)
+    pothole_model_path = os.path.join(args.models_dir, 'pothole_model.joblib')
+    snow_model_path = os.path.join(args.models_dir, 'snow_model.joblib')
+
+    pothole_model = joblib.load(pothole_model_path)
+    snow_model = joblib.load(snow_model_path)
+
     print("✅ Models loaded successfully.")
 
     app.run(host='0.0.0.0', port=args.port)

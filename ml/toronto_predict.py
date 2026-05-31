@@ -2,10 +2,12 @@
 import pandas as pd
 import os
 import argparse
+import re
 import numpy as np
+import joblib
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from catboost import CatBoostRegressor
+from sklearn.ensemble import RandomForestRegressor
 import matplotlib.pyplot as plt
 from sklearn.metrics import r2_score
 import seaborn as sns
@@ -55,64 +57,68 @@ def prepare_category_data(df, category_keyword):
 
     return daily_counts
 
+def prepare_category_data_with_geo(df, category_keyword):
+    """Filters data by category and aggregates counts by date and ward."""
+    df_copy = df.copy()
+    df_copy['Creation Date'] = pd.to_datetime(df_copy['Creation Date'], errors='coerce')
+
+    # Filter for the specific category
+    filtered_df = df_copy[df_copy['Service Request Type'].str.contains(category_keyword, case=False, na=False)].copy()
+
+    # Extract ward number from 'Ward' column
+    _WARD_NUM_RE = re.compile(r"\((\d+)\)")
+    def _extract_ward_num(ward_str):
+        if not isinstance(ward_str, str): return 0
+        m = _WARD_NUM_RE.search(ward_str)
+        return int(m.group(1)) if m else 0
+    
+    filtered_df['ward_num'] = filtered_df['Ward'].apply(_extract_ward_num)
+    
+    # Filter out rows with invalid ward for more focused modeling
+    filtered_df = filtered_df[filtered_df['ward_num'] > 0]
+
+    # Aggregate by date and ward
+    daily_counts = filtered_df.groupby([filtered_df['Creation Date'].dt.date, 'ward_num']).size().reset_index(name='Request_Count')
+    daily_counts = daily_counts.rename(columns={'Creation Date': 'Date'})
+    daily_counts['Date'] = pd.to_datetime(daily_counts['Date'])
+
+    # Feature Engineering
+    daily_counts['Month'] = daily_counts['Date'].dt.month
+    daily_counts['Day'] = daily_counts['Date'].dt.day
+    return daily_counts
 
 def prepare_snow_model(df, weather_path):
-    # 1. Load weather
+    """Prepares snow data with snow depth and precipitation features."""
     w_df = pd.read_csv(weather_path, low_memory=False)
     w_df['date'] = pd.to_datetime(w_df['date'])
 
-    # Identify correct snow columns
-    snow_cols = [c for c in w_df.columns if 'snow' in c.lower()]
-    print(f"Found snow-related columns: {snow_cols}")
+    # Directly use 'snow_on_ground' for depth and 'snow' for precipitation.
+    depth_col = 'snow_on_ground'
+    precip_col = 'snow'
 
-    depth_col = next((c for c in snow_cols if 'ground' in c.lower() or 'depth' in c.lower()), None)
-    precip_col = next((c for c in snow_cols if 'fall' in c.lower() or 'precip' in c.lower()), 'precipitation')
+    if depth_col not in w_df.columns:
+        print(f"Warning: '{depth_col}' column not found in weather data. Using 0 for snow_depth.")
+        w_df[depth_col] = 0
+    if precip_col not in w_df.columns:
+        print(f"Warning: '{precip_col}' column not found in weather data. Using 0 for snow_precipitation.")
+        w_df[precip_col] = 0
 
-    # 2. Prepare Snow requests
-    snow_requests = prepare_category_data(df, 'Snow')
+    snow_requests = prepare_category_data_with_geo(df, 'Snow')
 
-    # 3. Merge
-    weather_cols = list(set(['date', 'precipitation', depth_col, precip_col]))
-    weather_cols = [c for c in weather_cols if c in w_df.columns]
+    weather_cols = ['date', depth_col, precip_col]
     merged = pd.merge(snow_requests, w_df[weather_cols], left_on='Date', right_on='date', how='inner')
 
     # Normalize names for model
-    if depth_col: merged = merged.rename(columns={depth_col: 'snow_depth'})
-    else: merged['snow_depth'] = 0
-    if precip_col and precip_col != 'precipitation': merged = merged.rename(columns={precip_col: 'snow_precipitation'})
-    else: merged['snow_precipitation'] = merged.get('precipitation', 0)
+    merged = merged.rename(columns={
+        depth_col: 'snow_depth',
+        precip_col: 'snow_precipitation'
+    })
 
     merged[['snow_depth', 'snow_precipitation']] = merged[['snow_depth', 'snow_precipitation']].fillna(0)
     return merged
 
-def predict_snow_event(model, start_month, start_day_of_month, snow_depth_cm, duration_days):
-    # Add a domain-knowledge guardrail: no snow requests in non-winter months.
-    if 5 <= start_month <= 11: # May to November
-        print(f'Predicting for a non-winter month ({start_month}). Snow requests are 0 by definition.')
-        return 0
-
-    # Use a generic non-leap year to handle date calculations correctly
-    start_date = pd.to_datetime(f'2023-{start_month}-{start_day_of_month}')
-
-    total_predicted = 0
-    print(f'Predicting for a {duration_days}-day event with {snow_depth_cm}cm snow depth:')
-    for day in range(duration_days):
-        current_date = start_date + pd.Timedelta(days=day)
-        current_month = current_date.month
-        current_day_of_month = current_date.day
-
-        input_data = pd.DataFrame([[
-            current_month,
-            current_day_of_month,
-            snow_depth_cm,
-            snow_depth_cm / 5
-        ]], columns=['Month', 'Day', 'snow_depth', 'snow_precipitation'])
-        daily_pred = model.predict(input_data)[0]
-        total_predicted += max(0, daily_pred)
-        print(f' - Day {day+1} ({current_date.strftime("%Y-%m-%d")}): {round(daily_pred)} requests')
-    return round(total_predicted)
-
-def train_pothole_model_v2(df, weather_path):
+def prepare_pothole_data(df, weather_path):
+    """Prepares pothole data with lagged precipitation features."""
     w_df = pd.read_csv(weather_path, low_memory=False)
     w_df['date'] = pd.to_datetime(w_df['date'])
 
@@ -123,16 +129,40 @@ def train_pothole_model_v2(df, weather_path):
     w_df['precip_lag2'] = w_df['precipitation'].shift(2)
     w_df['precip_lag3'] = w_df['precipitation'].shift(3)
 
-    pothole_data = prepare_category_data(df, 'Pot hole')
-    weather_cols = ['date', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3']
-    merged = pd.merge(pothole_data, w_df[weather_cols], left_on='Date', right_on='date', how='inner')
-    merged = merged.fillna(0)
+    # Add snow features, which can contribute to freeze-thaw cycles
+    depth_col = 'snow_on_ground'
+    precip_col = 'snow'
+    if depth_col not in w_df.columns:
+        w_df[depth_col] = 0
+    if precip_col not in w_df.columns:
+        w_df[precip_col] = 0
 
-    features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3']
+    pothole_data = prepare_category_data_with_geo(df, 'Pot hole')
+    weather_cols = ['date', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', depth_col, precip_col]
+    merged = pd.merge(pothole_data, w_df[weather_cols], left_on='Date', right_on='date', how='inner')
+
+    # Rename for consistency
+    merged = merged.rename(columns={
+        depth_col: 'snow_depth',
+        precip_col: 'snow_precipitation'
+    })
+
+    return merged.fillna(0)
+
+def train_pothole_model_v2(df, weather_path):
+    merged = prepare_pothole_data(df, weather_path)
+
+    features = ['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3', 'ward_num', 'snow_depth', 'snow_precipitation']
     X = merged[features]
     y = merged['Request_Count']
 
-    model = CatBoostRegressor(iterations=300, verbose=0)
+    model = RandomForestRegressor(
+        n_estimators=100,
+        max_depth=4,            # Limit tree depth to prevent memorization
+        min_samples_leaf=15,       # Require more samples per leaf to smooth predictions
+        max_features="sqrt",      # Reduce feature correlation per tree
+        random_state=42,
+        n_jobs=-1)
     model.fit(X, y)
 
     # --- Model Comparison ---
@@ -141,14 +171,52 @@ def train_pothole_model_v2(df, weather_path):
     lr_model.fit(X, y)
 
     # Compare models using R-squared score on the training data
-    catboost_r2 = r2_score(y, model.predict(X))
+    rf_r2 = r2_score(y, model.predict(X))
     lr_r2 = r2_score(y, lr_model.predict(X))
 
     print(f"Pothole Model R-squared (training data):")
-    print(f" - CatBoost: {catboost_r2:.4f}")
+    print(f" - Random Forest: {rf_r2:.4f}")
     print(f" - Linear Regression: {lr_r2:.4f}")
+    return model, lr_model, features
 
-    return model
+def train_snow_model(df, weather_path):
+    """Prepares data and trains the snow prediction model."""
+    snow_merged_data = prepare_snow_model(df, weather_path)
+
+    # Feature selection for the snow model:
+    # - Month: Captures the strong seasonal nature of snow events.
+    # - Day: Captures any patterns within a month.
+    # - snow_depth: The amount of snow on the ground is a primary driver for clearing requests.
+    # - snow_precipitation: The amount of new snowfall is also a direct cause for requests.
+    # - ward_num: The city ward, as a numeric feature.
+    # - postal_fsa_encoded: The postal code area, as a categorical feature.
+    features_snow = ['Month', 'Day', 'snow_depth', 'snow_precipitation', 'ward_num']
+    X_snow = snow_merged_data[features_snow]
+    y_snow = snow_merged_data['Request_Count']
+    
+    model_snow_rf = RandomForestRegressor(
+        n_estimators=100,
+        max_depth=4,            # Limit tree depth to prevent memorization
+        min_samples_leaf=15,       # Require more samples per leaf to smooth predictions
+        max_features="sqrt",      # Reduce feature correlation per tree
+        random_state=42,
+        n_jobs=-1)
+    model_snow_rf.fit(X_snow, y_snow)
+
+    # --- Model Comparison for Snow ---
+    lr_model_snow = LinearRegression()
+    lr_model_snow.fit(X_snow, y_snow)
+
+    rf_pred_snow = model_snow_rf.predict(X_snow)
+    lr_pred_snow = lr_model_snow.predict(X_snow)
+
+    rf_r2_snow = r2_score(y_snow, rf_pred_snow)
+    lr_r2_snow = r2_score(y_snow, lr_pred_snow)
+    print(f"Snow Model R-squared (training data):")
+    print(f" - Random Forest: {rf_r2_snow:.4f}")
+    print(f" - Linear Regression: {lr_r2_snow:.4f}")
+
+    return model_snow_rf, lr_model_snow, features_snow
 
 def main(data_dir, output_dir):
     """Main function to run the training and analysis script."""
@@ -159,78 +227,52 @@ def main(data_dir, output_dir):
     os.makedirs(plots_dir, exist_ok=True)
 
     combined_df = load_311_data(data_dir)
-    train_df, _ = train_test_split(combined_df, test_size=0.2, random_state=42)
+    train_df, test_df = train_test_split(combined_df, test_size=0.2, random_state=42)
     print(f"Loaded and split data. Using {len(train_df)} rows for training.")
 
     weather_path = os.path.join(data_dir, 'weatherstats_toronto_daily.csv')
     if not os.path.exists(weather_path):
         raise FileNotFoundError(f"Weather data not found at {weather_path}")
 
-    # --- DEMONSTRATE prepare_category_data output ---
-    print("\n--- Demonstrating prepare_category_data for 'Pot hole' ---")
-    pothole_daily_data = prepare_category_data(train_df, 'Pot hole')
-    print("Head of the DataFrame returned by prepare_category_data:")
-    print(pothole_daily_data.head())
-    # --- END DEMONSTRATION ---
-
-    # --- DEMONSTRATE prepare_category_data for snow ---
-    print("\n--- Demonstrating prepare_category_data for 'Snow' ---")
-    snow_daily_data = prepare_category_data(train_df, 'Snow')
-    print("Head of the DataFrame returned by prepare_category_data for Snow:")
-    print(snow_daily_data.head())
-
     # --- 2. Train Pothole Model ---
     print("\n--- Training Pothole Model (with rain lag) ---")
-    model_pothole_lagged = train_pothole_model_v2(train_df, weather_path)
-    pothole_model_path = os.path.join(output_dir, 'pothole_model.cbm')
-    model_pothole_lagged.save_model(pothole_model_path)
+    model_pothole_rf, model_pothole_lr, features_pothole = train_pothole_model_v2(train_df, weather_path)
+
+    # Evaluate on test data
+    pothole_test_data = prepare_pothole_data(test_df, weather_path)
+    for col in features_pothole:
+        if col not in pothole_test_data.columns:
+            pothole_test_data[col] = 0
+    X_test_pothole = pothole_test_data[features_pothole]
+    y_test_pothole = pothole_test_data['Request_Count']
+    print(f"Pothole Model R-squared (test data):")
+    print(f" - Random Forest: {r2_score(y_test_pothole, model_pothole_rf.predict(X_test_pothole)):.4f}")
+    print(f" - Linear Regression: {r2_score(y_test_pothole, model_pothole_lr.predict(X_test_pothole)):.4f}")
+
+    pothole_model_path = os.path.join(output_dir, 'pothole_model.joblib')
+    joblib.dump(model_pothole_rf, pothole_model_path)
     print(f"Pothole model saved to: {pothole_model_path}")
 
     # --- 3. Train Snow Model ---
     print("\n--- Training Snow Clearing Model ---")
-    snow_merged_data = prepare_snow_model(train_df, weather_path)
-    features_snow = ['Month', 'Day', 'snow_depth', 'snow_precipitation']
-    X_snow = snow_merged_data[features_snow]
-    y_snow = snow_merged_data['Request_Count']
-    model_snow = CatBoostRegressor(iterations=300, verbose=0)
-    model_snow.fit(X_snow, y_snow)
-    snow_model_path = os.path.join(output_dir, 'snow_model.cbm')
-    model_snow.save_model(snow_model_path)
+    model_snow_rf, lr_model_snow, features_snow = train_snow_model(train_df, weather_path)
+    snow_model_path = os.path.join(output_dir, 'snow_model.joblib')
+    joblib.dump(model_snow_rf, snow_model_path)
     print(f"Snow model saved to: {snow_model_path}")
 
-    # --- Model Comparison for Snow ---
-    lr_model_snow = LinearRegression()
-    lr_model_snow.fit(X_snow, y_snow)
+    # Evaluate on test data
+    snow_test_data = prepare_snow_model(test_df, weather_path)
 
-    catboost_pred_snow = model_snow.predict(X_snow)
-    lr_pred_snow = lr_model_snow.predict(X_snow)
+    # Ensure all feature columns exist, even if test set is small
+    for col in features_snow:
+        if col not in snow_test_data.columns:
+            snow_test_data[col] = 0
 
-    catboost_r2_snow = r2_score(y_snow, catboost_pred_snow)
-    lr_r2_snow = r2_score(y_snow, lr_pred_snow)
-    print(f"Snow Model R-squared (training data):")
-    print(f" - CatBoost: {catboost_r2_snow:.4f}")
-    print(f" - Linear Regression: {lr_r2_snow:.4f}")
-
-    # --- 4. Run Predictions and Analysis ---
-    print('\n--- ROAD POTHOLES (Rain Impact Scenarios) ---')
-    for rain_cm in range(10, 60, 10):
-        daily_mm = (rain_cm * 10) / 3
-        test_input = pd.DataFrame([[5, 15, daily_mm, daily_mm, daily_mm, daily_mm]],
-                                  columns=['Month', 'Day', 'precipitation', 'precip_lag1', 'precip_lag2', 'precip_lag3'])
-        pred = model_pothole_lagged.predict(test_input)[0]
-        print(f' - Total Rain {rain_cm}cm (over 3 days): {round(pred)} requests')
-
-    print('\n--- SNOW CLEARING (Snow Impact Scenarios) ---')
-    for snow_cm in range(10, 60, 10):
-        pred = predict_snow_event(model_snow, start_month=1, start_day_of_month=15, snow_depth_cm=snow_cm, duration_days=1)
-        print(f' - Snow Depth {snow_cm}cm: {pred} requests')
-    for month, season in [(1, "Winter"), (7, "Summer")]:
-        print(f"\n-- Testing for {season} (Month: {month}) --")
-        for snow_cm in range(10, 60, 10):
-            # A hypothetical snow event in a given month
-            pred = predict_snow_event(model_snow, start_month=month, start_day_of_month=15, snow_depth_cm=snow_cm, duration_days=1)
-            print(f' - Snow Depth {snow_cm}cm: {pred} requests')
-
+    X_test_snow = snow_test_data[features_snow]
+    y_test_snow = snow_test_data['Request_Count']
+    print(f"Snow Model R-squared (test data):")
+    print(f" - Random Forest: {r2_score(y_test_snow, model_snow_rf.predict(X_test_snow)):.4f}")
+    print(f" - Linear Regression: {r2_score(y_test_snow, lr_model_snow.predict(X_test_snow)):.4f}")
 
     print("\nScript finished successfully.")
 
